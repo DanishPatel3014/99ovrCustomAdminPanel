@@ -18,7 +18,7 @@ export default function Login() {
             Password
 
         }
-        if (data.Email=='admin' || data.Password=='admin') {
+        if (data.Email=='admin' && data.Password=='admin') {
             navigate('/')
         }
 
