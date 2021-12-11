@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react'
+import React, {useEffect , useState} from 'react'
 import avatar from '../assets/images/avtar/avatar-s-11.jpg'
-import { User, Mail, CheckSquare, MessageSquare, Settings, CreditCard, HelpCircle, Power } from 'react-feather'
+import { User, Mail, CheckSquare, MessageSquare, Settings, CreditCard, HelpCircle, Power  } from 'react-feather'
 import { Link } from 'react-router-dom'
-import { Table, Badge, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle } from 'reactstrap'
+import { Table, Badge, UncontrolledDropdown, DropdownMenu, DropdownItem, DropdownToggle  } from 'reactstrap'
 
 import { MoreVertical, Edit, Trash } from 'react-feather'
 
@@ -1024,9 +1024,9 @@ export default function Home() {
 
     
     
-    <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
- 
+    <button class="btn btn-primary btn-icon scroll-top" type="button"><i class="fal fa-arrow-up"></i></button>
       </div>
 
     )
+    
 }
