@@ -2,3 +2,7 @@
 {
     max-width: 120px;
 }
+.login-wrp .app-content.content {
+    margin-left: 0; 
+    padding: 0 !important;
+  }

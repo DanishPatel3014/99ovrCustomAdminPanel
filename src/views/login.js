@@ -10,23 +10,25 @@ export default function Login() {
     const [Password, setPassword] = useState(String.empty)
 
     
-    const loginAdmin = () =>
+    const loginAdmin = async () =>
     {
         let data = 
         {
-            Email,
-            Password
+            email : Email,
+            password : Password
 
         }
-        if (data.Email=='admin' && data.Password=='admin') {
+        let request = await axios.post(`https://thewebtestlink.xyz/api/admin/login`, data);
+        if (request.data.data) {
             navigate('/')
         }
+
 
     }
     
 
     return (
-        <div>
+        <div className='login-wrp'>
             <div className="app-content content ">
         <div className="content-overlay"></div>
         <div className="header-navbar-shadow"></div>
