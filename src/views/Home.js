@@ -10,7 +10,8 @@ import classnames from 'classnames'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import { Bell, X, Check, AlertTriangle } from 'react-feather'
 
-// import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+
 
 export default function Home() {
 
@@ -91,6 +92,22 @@ export default function Home() {
       )
     }
   ]
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        window.onbeforeunload = function() {
+            localStorage.removeItem('user');
+        }
+        if(localStorage.getItem('user')){
+            }else{
+                console.log('siri not available');
+                navigate('/login')
+            }
+    }, [])
+
+    // const navigate= useNavigate();
+
 
       /*eslint-disable */
   const renderNotificationItems = () => {
