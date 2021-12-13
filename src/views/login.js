@@ -6,21 +6,24 @@ const axios = require('axios');
 
 export default function Login() {
 
-
     const navigate = useNavigate();
     const [Email, setEmail] = useState('')
     const [Password, setPassword] = useState('')
     const [LoginAPIMessage, setLoginAPIMessage] = useState('')
-    
 
     const loginAdmin = async () => {
+      
         document.getElementById('loginBtn').disabled = true;
+      
         let userCredentials = {
             email : Email,
             password : Password
         }
+        
         let request = await axios.post(`https://thewebtestlink.xyz/api/admin/login`, userCredentials);
+      
         let {data} = request;
+      
         if(data.data){
             document.getElementById('loginAPIMessage-div').classList.add('bg-green');
             setLoginAPIMessage('Login Successful');
@@ -28,6 +31,7 @@ export default function Login() {
                 navigate('/');
             }, 500);
             document.getElementById('loginBtn').disabled = false;
+          
         }else if(data.message){
             document.getElementById('loginAPIMessage-div').classList.add('bg-red');
             setLoginAPIMessage(data.message)
@@ -37,7 +41,7 @@ export default function Login() {
     
 
     return (
-        <div>
+        <div className='login-wrp'>
             <div className="app-content content ">
         <div className="content-overlay"></div>
         <div className="header-navbar-shadow"></div>
