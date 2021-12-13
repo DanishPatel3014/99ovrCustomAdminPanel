@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import Logo from '../assets/images/logo/logo.png'
 import { Link } from 'react-router-dom'
 import {useNavigate} from 'react-router-dom'
@@ -8,6 +8,13 @@ export default function Login() {
 
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if(localStorage.getItem('user') == 'admin@admin.com'){
+            navigate('/')
+        }
+    }, [])
+
     const [Email, setEmail] = useState('')
     const [Password, setPassword] = useState('')
     const [LoginAPIMessage, setLoginAPIMessage] = useState('')
@@ -24,6 +31,7 @@ export default function Login() {
         if(data.data){
             document.getElementById('loginAPIMessage-div').classList.add('bg-green');
             setLoginAPIMessage('Login Successful');
+            localStorage.setItem('user',data.data.email)
             setTimeout(() => {
                 navigate('/');
             }, 500);
