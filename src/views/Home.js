@@ -6,9 +6,23 @@ import { Table, Badge, UncontrolledDropdown, DropdownMenu, DropdownItem, Dropdow
 
 import { MoreVertical, Edit, Trash } from 'react-feather'
 
-// import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+
 
 export default function Home() {
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        window.onbeforeunload = function() {
+            localStorage.removeItem('user');
+        }
+        if(localStorage.getItem('user')){
+            }else{
+                console.log('siri not available');
+                navigate('/login')
+            }
+    }, [])
 
     // const navigate= useNavigate();
 
