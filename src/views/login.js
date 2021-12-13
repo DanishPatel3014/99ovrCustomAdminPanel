@@ -6,24 +6,27 @@ const axios = require('axios');
 
 export default function Login() {
     const navigate = useNavigate();
-    const [Email, setEmail] = useState(String.empty)
-    const [Password, setPassword] = useState(String.empty)
-
+    const [Email, setEmail] = useState('')
+    const [Password, setPassword] = useState('')
+    const [LoginAPIMessage, setLoginAPIMessage] = useState('')
     
-    const loginAdmin = async () =>
-    {
-        let data = 
-        {
+    const loginAdmin = async () => {
+        let userCredentials = {
             email : Email,
             password : Password
-
         }
-        let request = await axios.post(`https://thewebtestlink.xyz/api/admin/login`, data);
-        if (request.data.data) {
-            navigate('/')
+        let request = await axios.post(`https://thewebtestlink.xyz/api/admin/login`, userCredentials);
+        let {data} = request;
+        if(data.data){
+            document.getElementById('loginAPIMessage-div').classList.add('bg-green');
+            setLoginAPIMessage('Login Successful');
+            setTimeout(() => {
+                navigate('/')
+            }, 500);
+        }else if(data.message){
+            document.getElementById('loginAPIMessage-div').classList.add('bg-red');
+            setLoginAPIMessage(data.message)
         }
-
-
     }
     
 
@@ -41,6 +44,7 @@ export default function Login() {
                        
                         <div className="card mb-0">
                             <div className="card-body">
+                                <div id='loginAPIMessage-div'>{LoginAPIMessage}</div>
                                 <Link to='' className="login-log brand-logo">
                                     <img src={Logo} alt=''/>
                                 </Link>
