@@ -10,8 +10,7 @@ export default function Login() {
     const [Password, setPassword] = useState('')
     const [LoginAPIMessage, setLoginAPIMessage] = useState('')
     
-    const loginAdmin = () =>
-    {
+    const loginAdmin = async () => {
         let userCredentials = {
             email : Email,
             password : Password
@@ -32,7 +31,7 @@ export default function Login() {
     
 
     return (
-        <div>
+        <div className='login-wrp'>
             <div className="app-content content ">
         <div className="content-overlay"></div>
         <div className="header-navbar-shadow"></div>
