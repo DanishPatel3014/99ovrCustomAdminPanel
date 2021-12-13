@@ -1,8 +1,43 @@
-.login-log img
-{
-    max-width: 120px;
+/*scroll*/
+::selection{background:#247976;color:#fff;text-shadow:none;}
+::-webkit-scrollbar{width: 5px;background-color:#fff;}
+::-webkit-scrollbar-button:start:decrement,::-webkit-scrollbar-button:end:increment{display:none;}
+::-webkit-scrollbar-track-piece{-webkit-box-shadow:inset 0 0 6px rgba(0,0,0,.3);background-color:#283046;}
+.main-menu::-webkit-scrollbar-thumb:vertical{border-radius:20px;-webkit-box-shadow:inset 0 0 6px rgba(0,0,0,.3);background-image:linear-gradient(#283046,#283046);}
+.main-menu:hover::-webkit-scrollbar-thumb:vertical{border-radius:20px;-webkit-box-shadow:inset 0 0 6px rgba(0,0,0,.3);background-image:linear-gradient(#b4b7bd,#b4b7bd);}
+/* scroll */
+
+.login-log img{max-width:120px;}
+.login-wrp .app-content.content{margin-left:0;padding:0 !important;}
+.main-menu{overflow:auto !important;overflow-x:hidden !important;}
+
+/* NAVIGATION */
+.navigation-main .nav-item.has-sub>a:after{position:absolute;content:'\f061';font-family:"Font Awesome 5";font-size:12px;bottom:0;right:25px;top:14px;}
+.navigation-main .nav-item.has-sub.open>a:after{content:'\f063';}
+.main-menu .navbar-header .navbar-brand .brand-logo img{max-width:50px;}
+.nav-item.me-auto.daslogo{margin:auto;}
+.nav-item.me-auto.daslogo h2.brand-text{color:#fff;font-size:25px;}
+body.vertical-layout.vertical-menu-modern.mystyle .main-menu{width:auto;transform:translate3d(0,0,0);transition:all 0.9s ease;}
+.ps{overflow:hidden!important;overflow-anchor:none;-ms-overflow-style:none;touch-action:auto;-ms-touch-action:auto;}
+.ps__rail-y,.ps__rail-x{display:none;}
+ul.dropdown-menu-media.mt-0.dropdown-menu.dropdown-menu-end.show {
+    margin-top: 0 !important;
 }
-.login-wrp .app-content.content {
-    margin-left: 0; 
-    padding: 0 !important;
-  }
+
+
+/* =====================MEDIA-SCEREEM====================== */
+
+@media (max-width: 767.98px)
+{
+    .vertical-layout.vertical-menu-modern .main-menu {
+        width: auto;
+        transform: translate3d(-260px, 0, 0);
+        transition: all 0.9s ease;
+    
+    }
+    .main-menu .navbar-header .navbar-brand
+    {
+        margin-top: 0;
+    }
+}
+
