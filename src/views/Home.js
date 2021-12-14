@@ -477,10 +477,10 @@ export default function Home() {
                             <Table hover responsive>
       <thead>
         <tr>
-          <th>Project</th>
-          <th>Client</th>
-          <th>Users</th>
-          <th>Status</th>
+          <th>id</th>
+          <th>Animation Name</th>
+          <th>Category</th>
+          <th>Action</th>
          
         </tr>
       </thead>
