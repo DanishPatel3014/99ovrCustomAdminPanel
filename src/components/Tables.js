@@ -1,8 +1,24 @@
+import React, { useEffect} from "react";
 import{Table,Badge,UncontrolledDropdown,DropdownMenu,DropdownItem,DropdownToggle,} from "reactstrap";
 import Reacticn from "../assets/images/logo/react.svg";
 import { MoreVertical, Edit, Trash } from "react-feather";
+import axios from 'axios'
   
   export default function Tables() {
+   
+   
+
+    const [data, setData] = React.useState();
+
+  useEffect(async () => {
+  
+    console.log(localStorage.getItem('userToken'));
+        let getData = await axios.get(`https://thewebtestlink.xyz/api/animation`, { headers: { Authorization:  `Bearer ${localStorage.getItem('userToken')}`} });
+       
+        console.log(getData.data[0]);
+        
+    }, [data])
+
     const avatarGroupData1 = [
       {
         title: "Griffith",

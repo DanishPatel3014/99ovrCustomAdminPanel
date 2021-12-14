@@ -35,6 +35,7 @@ export default function Login() {
             document.getElementById('loginAPIMessage-div').classList.add('bg-green');
             setLoginAPIMessage('Login Successful');
             localStorage.setItem('user',data.data.email)
+            localStorage.setItem('userToken',data.token)
             setTimeout(() => {
                 navigate('/');
             }, 500);
