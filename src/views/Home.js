@@ -11,35 +11,27 @@ import { useNavigate } from 'react-router-dom'
 
 
 export default function Home() {
+  
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  useEffect(() => {
+    
+    if (localStorage.getItem("userToken")) {
+    } else {
+      console.log("siri not available");
+      navigate("/login");
+    }
+  }, []);
 
-    useEffect(() => {
-        window.onbeforeunload = function() {
-            localStorage.removeItem('user');
-        }
-        if(localStorage.getItem('user')){
-            }else{
-                console.log('siri not available');
-                navigate('/login')
-            }
-    }, [])
+  // const navigate= useNavigate();
 
-    // const navigate= useNavigate();
-
-    // useEffect(() => {
-    //     if(localStorage.getItem('user')){
-    //     }else{
-    //         console.log('siri not available');
-    //         navigate('/login')
-    //     }
-    // }, [])
-
-    return (
-        <div id="home" className="home container">
-            <h1>Home Page</h1>
-            <span><i className="fab fa-facebook-f"></i></span>
-        </div>
-
-    )
+  return (
+    <div>
+     <Topnav/>
+     <Sidenav/>
+     <Tables/>
+      
+    </div>
+  );
 }
+
