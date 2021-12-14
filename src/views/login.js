@@ -10,7 +10,7 @@ export default function Login() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if(localStorage.getItem('user') == 'admin@admin.com'){
+        if(localStorage.getItem('userToken')){
             navigate('/')
         }
     }, [])
@@ -26,12 +26,14 @@ export default function Login() {
             email : Email,
             password : Password
         }
-        let request = await axios.post(`https://thewebtestlink.xyz/api/admin/login`, userCredentials);
+        
+        let request = await axios.post(`${process.env.REACT_APP_LOGIN_API}/api/admin/login`, userCredentials);
+      
         let {data} = request;
         if(data.data){
             document.getElementById('loginAPIMessage-div').classList.add('bg-green');
             setLoginAPIMessage('Login Successful');
-            localStorage.setItem('user',data.data.email)
+            localStorage.setItem('userToken',data.token)
             setTimeout(() => {
                 navigate('/');
             }, 500);
