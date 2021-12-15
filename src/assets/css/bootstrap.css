@@ -4614,6 +4614,11 @@ fieldset:disabled .btn {
   padding: 1.14rem;
   word-wrap: break-word; }
 
+  .show {
+    display: block !important;
+    background: rgba(0,0,0,0.5);
+}
+
 .modal {
   position: fixed;
   top: 0;

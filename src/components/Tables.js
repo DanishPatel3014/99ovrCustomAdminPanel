@@ -1,107 +1,39 @@
-import React, { useEffect} from "react";
+import React, { useEffect , useState} from "react";
 import{Table,Badge,UncontrolledDropdown,DropdownMenu,DropdownItem,DropdownToggle,} from "reactstrap";
-import Reacticn from "../assets/images/logo/react.svg";
 import { MoreVertical, Edit, Trash } from "react-feather";
 import axios from 'axios'
+import AddAnimationModal from "./AddAnimationModal";
   
   export default function Tables() {
    
    
+    const [datastate, setdatastate] = useState('')
+    const [animationlist, setanimationlist] = useState([])
 
-    const [data, setData] = React.useState();
 
   useEffect(async () => {
   
     console.log(localStorage.getItem('userToken'));
         let getData = await axios.get(`https://thewebtestlink.xyz/api/animation`, { headers: { Authorization:  `Bearer ${localStorage.getItem('userToken')}`} });
-       
-        console.log(getData.data[0]);
+        if(getData.data != animationlist){
+          setanimationlist(getData.data)
+        }
+     
         
-    }, [data])
+    }, [animationlist])
 
-    const avatarGroupData1 = [
-      {
-        title: "Griffith",
-  
-        imgHeight: 26,
-        imgWidth: 26,
-      },
-      {
-        title: "Hu",
-  
-        imgHeight: 26,
-        imgWidth: 26,
-      },
-      {
-        title: "Felicia",
-  
-        imgHeight: 26,
-        imgWidth: 26,
-      },
-    ];
-  
-    const avatarGroupData2 = [
-      {
-        title: "Quinlan",
-  
-        imgHeight: 26,
-        imgWidth: 26,
-      },
-      {
-        title: "Patrick",
-  
-        imgHeight: 26,
-        imgWidth: 26,
-      },
-      {
-        title: "Castor",
-  
-        imgHeight: 26,
-        imgWidth: 26,
-      },
-    ];
-  
-    const avatarGroupData3 = [
-      {
-        title: "Mohammad",
-  
-        imgHeight: 26,
-        imgWidth: 26,
-      },
-      {
-        title: "Isabella",
-  
-        imgHeight: 26,
-        imgWidth: 26,
-      },
-      {
-        title: "Michael",
-  
-        imgHeight: 26,
-        imgWidth: 26,
-      },
-    ];
-  
-    const avatarGroupData4 = [
-      {
-        title: "Lavinia",
-  
-        imgHeight: 26,
-        imgWidth: 26,
-      },
-      {
-        title: "Nelle",
-  
-        imgHeight: 26,
-        imgWidth: 26,
-      },
-      {
-        title: "Virginia",
-  
-        imgHeight: 26,
-        imgWidth: 26,
-      },
-    ];
+    const localcat = [
+      'GREEN',
+      'BLUE',
+      'RED', 
+      'PURPLE',
+      'GOLD',
+    ]
+
+    const openAddAnimationModal = () => {
+      document.getElementById('addNewCard').classList.add('show');
+      
+    }
   
     return (
       <div>
@@ -115,7 +47,10 @@ import axios from 'axios'
                 <div class="row" id="table-hover-row">
                   <div class="col-12">
                     <div class="card">
-                      <div class="card-header">
+                      <div className="crd-wrp">
+                        <div className="row align-items-center">
+                          <div className="col-md-9">
+                          <div class="card-header">
                         <h4 class="card-title">Animation Details</h4>
                       </div>
                       <div class="card-body">
@@ -123,6 +58,18 @@ import axios from 'axios'
                           Lorem Ipsum is simply dummy text of the printing and
                           typesetting industry.
                         </p>
+                      </div>
+                          </div>
+                          <div className="col-md-3">
+                            <div className="eid-btn">
+                            <button type="button" class="btn btn-outline-primary" onClick={()=>{openAddAnimationModal()}}>
+                            <i class="fal fa-plus"></i>
+                                            <span> Add Animation</span>
+                                        </button>
+                            </div>
+                          </div>
+
+                        </div>
                       </div>
                       <div class="table-responsive">
                         <Table hover responsive>
@@ -135,29 +82,28 @@ import axios from 'axios'
                             </tr>
                           </thead>
                           <tbody>
-                            <tr>
+                          {
+                            animationlist.map((v,i)=>{
+                              return(
+                                <tr key={i}>
                               <td>
-                                <img
-                                  className="me-75"
-                                  src={Reacticn}
-                                  alt="angular"
-                                  height="20"
-                                  width="20"
-                                />
+                                
                                 <span className="align-middle fw-bold">
-                                  Angular Project
+                                  {++i}
                                 </span>
                               </td>
-                              <td>Peter Charles</td>
+                              <td>{v.animation}</td>
   
                               <td>
-                                <Badge
-                                  pill
-                                  color="light-primary"
-                                  className="me-1"
-                                >
-                                  Active
-                                </Badge>
+                             {/* "light-danger" */}
+                                <Badge pill color={
+                                  localcat[0] == v.category ? 'success' : 
+                                  localcat[1] == v.category ? 'info' :
+                                  localcat[2] == v.category ? 'danger' :
+                                  localcat[3] == v.category ? 'primary' :
+                                  'warning'
+                                } 
+                                className="me-1" > {v.category} </Badge>
                               </td>
                               <td>
                                 <UncontrolledDropdown>
@@ -188,161 +134,10 @@ import axios from 'axios'
                                 </UncontrolledDropdown>
                               </td>
                             </tr>
-                            <tr>
-                              <td>
-                                <img
-                                  className="me-75"
-                                  src={Reacticn}
-                                  alt="react"
-                                  height="20"
-                                  width="20"
-                                />
-                                <span className="align-middle fw-bold">
-                                  React Project
-                                </span>
-                              </td>
-                              <td>Ronald Frest</td>
-  
-                              <td>
-                                <Badge
-                                  pill
-                                  color="light-success"
-                                  className="me-1"
-                                >
-                                  Completed
-                                </Badge>
-                              </td>
-                              <td>
-                                <UncontrolledDropdown>
-                                  <DropdownToggle
-                                    className="icon-btn hide-arrow"
-                                    color="transparent"
-                                    size="sm"
-                                    caret
-                                  >
-                                    <MoreVertical size={15} />
-                                  </DropdownToggle>
-                                  <DropdownMenu>
-                                    <DropdownItem
-                                      href="/"
-                                      onClick={(e) => e.preventDefault()}
-                                    >
-                                      <Edit className="me-50" size={15} />{" "}
-                                      <span className="align-middle">Edit</span>
-                                    </DropdownItem>
-                                    <DropdownItem
-                                      href="/"
-                                      onClick={(e) => e.preventDefault()}
-                                    >
-                                      <Trash className="me-50" size={15} />{" "}
-                                      <span className="align-middle">Delete</span>
-                                    </DropdownItem>
-                                  </DropdownMenu>
-                                </UncontrolledDropdown>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <img
-                                  className="me-75"
-                                  src={Reacticn}
-                                  alt="vuejs"
-                                  height="20"
-                                  width="20"
-                                />
-                                <span className="align-middle fw-bold">
-                                  Vuejs Project
-                                </span>
-                              </td>
-                              <td>Jack Obes</td>
-  
-                              <td>
-                                <Badge pill color="light-info" className="me-1">
-                                  Scheduled
-                                </Badge>
-                              </td>
-                              <td>
-                                <UncontrolledDropdown>
-                                  <DropdownToggle
-                                    className="icon-btn hide-arrow"
-                                    color="transparent"
-                                    size="sm"
-                                    caret
-                                  >
-                                    <MoreVertical size={15} />
-                                  </DropdownToggle>
-                                  <DropdownMenu>
-                                    <DropdownItem
-                                      href="/"
-                                      onClick={(e) => e.preventDefault()}
-                                    >
-                                      <Edit className="me-50" size={15} />{" "}
-                                      <span className="align-middle">Edit</span>
-                                    </DropdownItem>
-                                    <DropdownItem
-                                      href="/"
-                                      onClick={(e) => e.preventDefault()}
-                                    >
-                                      <Trash className="me-50" size={15} />{" "}
-                                      <span className="align-middle">Delete</span>
-                                    </DropdownItem>
-                                  </DropdownMenu>
-                                </UncontrolledDropdown>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <img
-                                  className="me-75"
-                                  src={Reacticn}
-                                  alt="bootstrap"
-                                  height="20"
-                                  width="20"
-                                />
-                                <span className="align-middle fw-bold">
-                                  Bootstrap Project
-                                </span>
-                              </td>
-                              <td>Jerry Milton</td>
-  
-                              <td>
-                                <Badge
-                                  pill
-                                  color="light-warning"
-                                  className="me-1"
-                                >
-                                  Pending
-                                </Badge>
-                              </td>
-                              <td>
-                                <UncontrolledDropdown>
-                                  <DropdownToggle
-                                    className="icon-btn hide-arrow"
-                                    color="transparent"
-                                    size="sm"
-                                    caret
-                                  >
-                                    <MoreVertical size={15} />
-                                  </DropdownToggle>
-                                  <DropdownMenu>
-                                    <DropdownItem
-                                      href="/"
-                                      onClick={(e) => e.preventDefault()}
-                                    >
-                                      <Edit className="me-50" size={15} />{" "}
-                                      <span className="align-middle">Edit</span>
-                                    </DropdownItem>
-                                    <DropdownItem
-                                      href="/"
-                                      onClick={(e) => e.preventDefault()}
-                                    >
-                                      <Trash className="me-50" size={15} />{" "}
-                                      <span className="align-middle">Delete</span>
-                                    </DropdownItem>
-                                  </DropdownMenu>
-                                </UncontrolledDropdown>
-                              </td>
-                            </tr>
+                              )
+                            })
+                          }
+                           
                           </tbody>
                         </Table>
                       </div>
@@ -353,6 +148,7 @@ import axios from 'axios'
             </div>
           </div>
         </div>
+        <AddAnimationModal />
       </div>
     );
   }

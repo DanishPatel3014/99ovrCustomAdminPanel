@@ -37,8 +37,15 @@ ul.dropdown-menu-media.mt-0.dropdown-menu.dropdown-menu-end.show {
 
 /* login card toast */
 
-
-
+/* animation-table */
+.crd-wrp .row {
+    --bs-gutter-x: 0;
+    --bs-gutter-y: 0;
+}
+.eid-btn
+{
+    text-align: center;
+}
 /* =====================MEDIA-SCEREEM====================== */
 
 @media (max-width: 767.98px)
