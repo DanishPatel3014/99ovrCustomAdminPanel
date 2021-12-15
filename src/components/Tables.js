@@ -11,16 +11,15 @@ import AddAnimationModal from "./AddAnimationModal";
     const [animationlist, setanimationlist] = useState([])
 
 
-  useEffect(async () => {
-  
-    console.log(localStorage.getItem('userToken'));
-        let getData = await axios.get(`https://thewebtestlink.xyz/api/animation`, { headers: { Authorization:  `Bearer ${localStorage.getItem('userToken')}`} });
-        if(getData.data != animationlist){
-          setanimationlist(getData.data)
-        }
-     
-        
-    }, [animationlist])
+  useEffect(() => {
+        triggeringFunction();
+    }, [])
+
+    const triggeringFunction = async () => {
+      console.log(localStorage.getItem('userToken'));
+      let getData = await axios.get(`https://thewebtestlink.xyz/api/animation`, { headers: { Authorization:  `Bearer ${localStorage.getItem('userToken')}`} });
+      setanimationlist(getData.data)
+    }
 
     const localcat = [
       'GREEN',
@@ -37,6 +36,7 @@ import AddAnimationModal from "./AddAnimationModal";
   
     return (
       <div>
+        <button id='munnababa' style={{display:'none'}} onClick={()=>{triggeringFunction()}}></button>
         <div class="app-content content ">
           <div class="content-overlay"></div>
           <div class="header-navbar-shadow"></div>

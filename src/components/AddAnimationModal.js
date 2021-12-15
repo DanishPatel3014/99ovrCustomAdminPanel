@@ -28,7 +28,7 @@ export default function AddAnimationModal() {
               let request = await axios.post(`https://thewebtestlink.xyz/api/animation`, data, { headers: { Authorization:  `Bearer ${localStorage.getItem('userToken')}`}});
               console.log(request)
              setanimationfield('')
-        
+              document.getElementById('munnababa').click();
                 if (request.data.message) {
                     <Toast>
                     <ToastHeader close={close} icon='primary'>
