@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Logo from "../assets/images/logo/logo.png";
 
 export default function Sidenav() {
@@ -18,15 +19,15 @@ export default function Sidenav() {
         <div class="navbar-header">
           <ul class="nav navbar-nav flex-row">
             <li class="nav-item me-auto daslogo">
-              <a
+              <Link
                 class="navbar-brand"
-                href="../../../html/ltr/vertical-menu-template-dark/index.html"
+               to="/"
               >
                 <span class="brand-logo">
                   <img src={Logo} alt="logo" />
                 </span>
                 <h2 class="brand-text">99OVR</h2>
-              </a>
+              </Link>
             </li>
             <li class="nav-item nav-toggle">
               <a
@@ -51,18 +52,18 @@ export default function Sidenav() {
               <i data-feather="more-horizontal"></i>
             </li>
             <li class=" nav-item">
-              <a class="d-flex align-items-center" href="app-email.html">
+              <Link class="d-flex align-items-center" to="/Animation">
                 <i class="fal fa-cube"></i>
                 <span class="menu-title text-truncate" data-i18n="Email">
                   Animation
                 </span>
-              </a>
+              </Link>
             </li>
             <li class=" nav-item">
               <a class="d-flex align-items-center" href="app-email.html">
-                <i class="fal fa-envelope-open"></i>
+              <i class="fal fa-chart-line"></i>
                 <span class="menu-title text-truncate" data-i18n="Email">
-                  Email
+                Top 10 Requests
                 </span>
               </a>
             </li>

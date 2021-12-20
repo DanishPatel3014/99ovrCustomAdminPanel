@@ -1,12 +1,13 @@
 import React, { Fragment } from "react";
 import avatar from "../assets/images/avtar/avatar-s-11.jpg";
+import { useNavigate } from "react-router-dom";
 import { User, Power, Settings } from "react-feather";
 import { Link } from "react-router-dom";
 import{Badge,UncontrolledDropdown,DropdownMenu,DropdownItem,DropdownToggle,Input,Button,}from "reactstrap";
 import classnames from "classnames";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import { Bell, X, Check, AlertTriangle } from "react-feather";
-
+import Logo from "../assets/images/logo/logo.png";
 export default function Topnav() {
   function addnav() {
     var element = document.getElementById("navadd");
@@ -16,6 +17,12 @@ export default function Topnav() {
     var element = document.getElementById("myDIV");
     element.classList.toggle("mystyle");
   }
+  const navigate = useNavigate();
+  const logout = ()=>{
+    localStorage.clear()
+    navigate("/login");
+    
+  } 
 
   // ** Notification Array
   const notificationsArray = [
@@ -170,7 +177,7 @@ export default function Topnav() {
             </ul>
           </div>
           <ul class="nav navbar-nav align-items-center ms-auto">
-            <UncontrolledDropdown tag="li" className="dropdown-notification nav-item me-25" >
+            {/* <UncontrolledDropdown tag="li" className="dropdown-notification nav-item me-25" >
              <DropdownToggle tag="a" className="nav-link" href="/" onClick={(e) => e.preventDefault()}>
                 <Bell size={21} />
                 <Badge pill color="danger" className="badge-up"> 5 </Badge>
@@ -191,29 +198,20 @@ export default function Topnav() {
                   </Button>
                 </li>
               </DropdownMenu>
-            </UncontrolledDropdown>
+            </UncontrolledDropdown> */}
             <UncontrolledDropdown tag="li" className="dropdown-user nav-item">
               <DropdownToggle href="/" tag="a" className="nav-link dropdown-user-link" onClick={(e) => e.preventDefault()}
 >
                 <div className="user-nav d-sm-flex d-none">
-                  <span className="user-name fw-bold">{"John Doe"}</span>
+                  <span className="user-name fw-bold">{"99 OVR"}</span>
                   <span className="user-status">{"Admin"}</span>
                 </div>
-                <img class="round" src={avatar} alt="avatar" height="40" width="40" />
+                <img class="round" src={Logo} alt="avatar" height="40" width="40" />
               </DropdownToggle>
               <DropdownMenu end>
-                <DropdownItem tag={Link} to="/pages/profile">
-                  <User size={14} className="me-75" />
-                  <span className="align-middle">Profile</span>
-                </DropdownItem>
+                
 
-                <DropdownItem divider />
-                <DropdownItem tag={Link} to="/pages/account-settings">
-                  <Settings size={14} className="me-75" />
-                  <span className="align-middle">Settings</span>
-                </DropdownItem>
-
-                <DropdownItem tag={Link} to="/login">
+                <DropdownItem onClick={() => logout()}>
                   <Power size={14} className="me-75" />
                   <span className="align-middle">Logout</span>
                 </DropdownItem>

@@ -5,13 +5,14 @@ import { Toast, ToastBody, ToastHeader} from 'reactstrap'
 
 
 
+
 export default function AddAnimationModal() {
     const close = <button type='button' className='ms-1 btn-close'></button>
     const closeAddAnimationModal = () => {
         document.getElementById('addNewCard').classList.remove('show');
         console.log('removed')
       }
-    
+      const [animationimgstate, setanimationimgstate] = useState('')
       const [animationfield, setanimationfield] = useState('')
       const [currentCategory, setCurrentCategory] = React.useState('GREEN')
       const changeCategory = (newCategory) => {
@@ -20,12 +21,18 @@ export default function AddAnimationModal() {
   
       const handelClick = async () => {
           let getInput = animationfield;
-          if (getInput && currentCategory) {
-              let data = {
-                  animation: getInput,
-                  category: currentCategory
-              }
-              let request = await axios.post(`https://thewebtestlink.xyz/api/animation`, data, { headers: { Authorization:  `Bearer ${localStorage.getItem('userToken')}`}});
+          if (getInput && currentCategory&&animationimgstate) {
+              // let data = {
+              //     animation: getInput,
+              //     category: currentCategory,
+              //     image: animationimgstate
+              // }
+              var data = new FormData();
+              data.append('image',animationimgstate)
+              data.append('animation',getInput)
+              data.append('category',currentCategory)
+              console.log(data)
+              let request = await axios.post(`https://thewebtestlink.xyz/api/admin/createAnimation`, data, { headers: { Authorization:  `Bearer ${localStorage.getItem('userToken')}`}});
               console.log(request)
              setanimationfield('')
               document.getElementById('munnababa').click();
@@ -93,6 +100,10 @@ export default function AddAnimationModal() {
                                 <option value="GOLDEN">GOLDEN</option>
                                         </select>
                                         </div>
+                                    </div>
+                                    <div className="col-12">
+                                    <label class="form-label" for="customFile">Default file input example</label>
+<input type="file" onChange={(e)=>setanimationimgstate(e.target.files[0])} className="form-control" id="customFile" accept="image/*"/>
                                     </div>
 
                                  
