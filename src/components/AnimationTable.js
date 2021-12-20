@@ -3,6 +3,7 @@ import{Table,Badge,UncontrolledDropdown,DropdownMenu,DropdownItem,DropdownToggle
 import { MoreVertical, Edit, Trash, Delete } from "react-feather";
 import axios from 'axios'
 import AddAnimationModal from "./AddAnimationModal";
+import  UpdateAnimationModel from "./UpdateAnimationModel"
 import animationPic from '../assets/images/avtar/animation-pic.jpg'
 import { Spinner } from 'reactstrap'
   
@@ -40,6 +41,12 @@ triggeringFunction();
       document.getElementById('addNewCard').classList.add('show');
       
     }
+    const openUpdateAnimationModal = async (Uanimation) => {
+      
+      document.getElementById('updateNewCard').classList.add('show');
+      setgetUpdateAnimationidstate(Uanimation)
+    }
+   const [getUpdateAnimationidstate, setgetUpdateAnimationidstate] = useState()
   
     return (
       <div>
@@ -132,8 +139,8 @@ triggeringFunction();
         </DropdownToggle>
         <DropdownMenu>
           <DropdownItem
-            href="/"
-            onClick={(e) => e.preventDefault()}
+          
+            onClick={()=>{openUpdateAnimationModal(v)}}
           >
             <Edit className="me-50" size={15} />{" "}
             <span className="align-middle">Edit</span>
@@ -181,6 +188,7 @@ triggeringFunction();
           </div>
         </div>
         <AddAnimationModal />
+        <UpdateAnimationModel {...getUpdateAnimationidstate}/>
       </div>
     );
   }

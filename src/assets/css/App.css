@@ -85,7 +85,12 @@ li.nav-item>a>i {
 .dashpic img {
     margin-bottom: 20px;
 }
-
+.dropdown-menu .dropdown-item {
+    width: 100% !important;
+}
+li.dropdown-user.nav-item.dropdown.show {
+    background: transparent;
+}
 /* =====================MEDIA-SCEREEM====================== */
 
 @media (max-width: 767.98px)

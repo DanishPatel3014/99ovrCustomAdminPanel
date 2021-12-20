@@ -22,11 +22,7 @@ export default function AddAnimationModal() {
       const handelClick = async () => {
           let getInput = animationfield;
           if (getInput && currentCategory&&animationimgstate) {
-              // let data = {
-              //     animation: getInput,
-              //     category: currentCategory,
-              //     image: animationimgstate
-              // }
+              
               var data = new FormData();
               data.append('image',animationimgstate)
               data.append('animation',getInput)
