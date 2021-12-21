@@ -29,41 +29,13 @@ export default function AddAnimationModal() {
               data.append('category',currentCategory)
               console.log(data)
               let request = await axios.post(`https://thewebtestlink.xyz/api/admin/createAnimation`, data, { headers: { Authorization:  `Bearer ${localStorage.getItem('userToken')}`}});
-              console.log(request)
+            
              setanimationfield('')
               document.getElementById('munnababa').click();
-                if (request.data.message) {
-                    <Toast>
-                    <ToastHeader close={close} icon='primary'>
-                      Vuexy
-                    </ToastHeader>
-                    <ToastBody>This is a toast with a primary icon — check it out!</ToastBody>
-                  </Toast>
-                } else if (request.data.animation) {
-                    <Toast>
-                    <ToastHeader close={close} icon='primary'>
-                      Vuexy
-                    </ToastHeader>
-                    <ToastBody>This is a toast with a primary icon — check it out!</ToastBody>
-                  </Toast>
-                } else {
-                    <Toast>
-                    <ToastHeader close={close} icon='primary'>
-                      Vuexy
-                    </ToastHeader>
-                    <ToastBody>This is a toast with a primary icon — check it out!</ToastBody>
-                  </Toast>
-                }
-            } else {
-                <Toast>
-                <ToastHeader close={close} icon='primary'>
-                  Vuexy
-                </ToastHeader>
-                <ToastBody>This is a toast with a primary icon — check it out!</ToastBody>
-              </Toast>
-            }
+               
             document.getElementById('addNewCard').classList.remove('show');
       }
+    }
 
     return (
         <>
