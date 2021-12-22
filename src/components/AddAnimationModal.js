@@ -1,13 +1,13 @@
 import React, { useState} from "react";
 import { Button } from "reactstrap";
 import axios from 'axios'
-import { Toast, ToastBody, ToastHeader} from 'reactstrap'
+
 
 
 
 
 export default function AddAnimationModal() {
-    const close = <button type='button' className='ms-1 btn-close'></button>
+    // const close = <button type='button' className='ms-1 btn-close'></button>
     const closeAddAnimationModal = () => {
         document.getElementById('addNewCard').classList.remove('show');
         console.log('removed')
@@ -29,7 +29,7 @@ export default function AddAnimationModal() {
               data.append('category',currentCategory)
               console.log(data)
               let request = await axios.post(`https://thewebtestlink.xyz/api/admin/createAnimation`, data, { headers: { Authorization:  `Bearer ${localStorage.getItem('userToken')}`}});
-            
+            console.log(request)
              setanimationfield('')
               document.getElementById('munnababa').click();
                
@@ -39,28 +39,28 @@ export default function AddAnimationModal() {
 
     return (
         <>
-                <div class="modal fade" id="addNewCard" tabindex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header bg-transparent">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={()=>{closeAddAnimationModal()}}></button>
+                <div className="modal fade" id="addNewCard" tabindex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">
+                    <div className="modal-dialog modal-dialog-centered">
+                        <div className="modal-content">
+                            <div className="modal-header bg-transparent">
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={()=>{closeAddAnimationModal()}}></button>
                             </div>
-                            <div class="modal-body px-sm-5 mx-50 pb-5">
-                                <h1 class="text-center mb-1" id="addNewCardTitle">Add New Animation</h1>
+                            <div className="modal-body px-sm-5 mx-50 pb-5">
+                                <h1 className="text-center mb-1" id="addNewCardTitle">Add New Animation</h1>
                                
 
-                                <form  class="row gy-1 gx-2 mt-75">
-                                    <div class="col-12">
-                                        <label class="form-label" for="modalAddCardNumber">Animation name</label>
-                                        <div class="input-group input-group-merge">
-                                            <input onChange={(e)=>{setanimationfield(e.target.value)}} value={animationfield} class="form-control add-credit-card-mask" type="text" placeholder="Enter Animation Name"  />
+                                <form  className="row gy-1 gx-2 mt-75">
+                                    <div className="col-12">
+                                        <label className="form-label" for="modalAddCardNumber">Animation name</label>
+                                        <div className="input-group input-group-merge">
+                                            <input onChange={(e)=>{setanimationfield(e.target.value)}} value={animationfield} className="form-control add-credit-card-mask" type="text" placeholder="Enter Animation Name"  />
                                            
                                         </div>
                                     </div>
-                                    <div class="col-12">
-                                        <label class="form-label" for="modalAddCardNumber">Select Category</label>
-                                        <div class="input-group input-group-merge">
-                                        <select class="form-select"  id="Category" onChange={(event) => changeCategory(event.target.value)} defaultValue={currentCategory}>
+                                    <div className="col-12">
+                                        <label className="form-label" for="modalAddCardNumber">Select Category</label>
+                                        <div className="input-group input-group-merge">
+                                        <select className="form-select"  id="Category" onChange={(event) => changeCategory(event.target.value)} defaultValue={currentCategory}>
                                         <option value="GREEN">GREEN</option>
                                 <option value="BLUE">BLUE</option>
                                 <option value="RED">RED</option>
@@ -70,15 +70,15 @@ export default function AddAnimationModal() {
                                         </div>
                                     </div>
                                     <div className="col-12">
-                                    <label class="form-label" for="customFile">Default file input example</label>
-<input type="file" onChange={(e)=>setanimationimgstate(e.target.files[0])} className="form-control" id="customFile" accept="image/*"/>
+                                    <label className="form-label" for="customFile">Default file input example</label>
+                                     <input type="file" onChange={(e)=>setanimationimgstate(e.target.files[0])} className="form-control" id="customFile" accept="image/*"/>
                                     </div>
 
                                  
 
                                    
 
-                                    <div class="col-12 text-center">
+                                    <div className="col-12 text-center">
                                     
                                     <Button className='me-1' color='primary'   onClick={handelClick}>Submit</Button>
                                         <Button  color='secondary'outline onClick={closeAddAnimationModal}>

@@ -150,33 +150,33 @@ export default function Topnav() {
 
   return (
     <div>
-      <nav class="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-dark navbar-shadow container-xxl">
-        <div class="navbar-container d-flex content">
-          <div class="bookmark-wrapper d-flex align-items-center">
-            <ul class="nav navbar-nav d-xl-none">
-              <li class="nav-item">
-                <a class="nav-link menu-toggle" href="#" onClick={() => dd()}>
-                  <i class="fal fa-bars"></i>
+      <nav className="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-dark navbar-shadow container-xxl">
+        <div className="navbar-container d-flex content">
+          <div className="bookmark-wrapper d-flex align-items-center">
+            <ul className="nav navbar-nav d-xl-none">
+              <li className="nav-item">
+                <a className="nav-link menu-toggle" href="#" onClick={() => dd()}>
+                  <i className="fal fa-bars"></i>
                 </a>
               </li>
             </ul>
 
-            <ul class="nav navbar-nav">
-              <li class="nav-item d-none d-lg-block">
-                <a class="nav-link bookmark-star">
-                  <i class="ficon text-warning" data-feather="star"></i>
+            <ul className="nav navbar-nav">
+              <li className="nav-item d-none d-lg-block">
+                <a className="nav-link bookmark-star">
+                  <i className="ficon text-warning" data-feather="star"></i>
                 </a>
-                <div class="bookmark-input search-input">
-                  <div class="bookmark-input-icon">
+                <div className="bookmark-input search-input">
+                  <div className="bookmark-input-icon">
                     <i data-feather="search"></i>
                   </div>
-                 <input class="form-control input" type="text" placeholder="Bookmark" tabindex="0" data-search="search" />
-                  <ul class="search-list search-list-bookmark"></ul>
+                 <input className="form-control input" type="text" placeholder="Bookmark" tabindex="0" data-search="search" />
+                  <ul className="search-list search-list-bookmark"></ul>
                 </div>
               </li>
             </ul>
           </div>
-          <ul class="nav navbar-nav align-items-center ms-auto">
+          <ul className="nav navbar-nav align-items-center ms-auto">
             {/* <UncontrolledDropdown tag="li" className="dropdown-notification nav-item me-25" >
              <DropdownToggle tag="a" className="nav-link" href="/" onClick={(e) => e.preventDefault()}>
                 <Bell size={21} />
@@ -206,7 +206,7 @@ export default function Topnav() {
                   <span className="user-name fw-bold">{"99 OVR"}</span>
                   <span className="user-status">{"Admin"}</span>
                 </div>
-                <img class="round" src={Logo} alt="avatar" height="40" width="40" />
+                <img className="round" src={Logo} alt="avatar" height="40" width="40" />
               </DropdownToggle>
               <DropdownMenu end>
                 

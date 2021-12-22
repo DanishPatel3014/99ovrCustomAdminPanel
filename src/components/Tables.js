@@ -43,24 +43,24 @@ triggeringFunction();
     return (
       <div>
         <button id='munnababa' style={{display:'none'}} onClick={()=>{triggeringFunction()}}></button>
-        <div class="app-content content ">
-          <div class="content-overlay"></div>
-          <div class="header-navbar-shadow"></div>
-          <div class="content-wrapper container-xxl p-0">
-            <div class="content-header row"></div>
-            <div class="content-body">
+        <div className="app-content content ">
+          <div className="content-overlay"></div>
+          <div className="header-navbar-shadow"></div>
+          <div className="content-wrapper container-xxl p-0">
+            <div className="content-header row"></div>
+            <div className="content-body">
               <section id="dashboard-ecommerce">
-                <div class="row" id="table-hover-row">
-                  <div class="col-12">
-                    <div class="card">
+                <div className="row" id="table-hover-row">
+                  <div className="col-12">
+                    <div className="card">
                       <div className="crd-wrp">
                         <div className="row align-items-center">
                           <div className="col-md-9">
-                          <div class="card-header">
-                        <h4 class="card-title">Animation Details</h4>
+                          <div className="card-header">
+                        <h4 className="card-title">Animation Details</h4>
                       </div>
-                      <div class="card-body">
-                        <p class="card-text">
+                      <div className="card-body">
+                        <p className="card-text">
                           Lorem Ipsum is simply dummy text of the printing and
                           typesetting industry.
                         </p>
@@ -68,8 +68,8 @@ triggeringFunction();
                           </div>
                           <div className="col-md-3">
                             <div className="eid-btn">
-                            <button type="button" class="btn btn-outline-primary" onClick={()=>{openAddAnimationModal()}}>
-                            <i class="fal fa-plus"></i>
+                            <button type="button" className="btn btn-outline-primary" onClick={()=>{openAddAnimationModal()}}>
+                            <i className="fal fa-plus"></i>
                                             <span> Add Animation</span>
                                         </button>
                             </div>
@@ -77,7 +77,7 @@ triggeringFunction();
 
                         </div>
                       </div>
-                      <div class="table-responsive">
+                      <div className="table-responsive">
                         <Table hover responsive>
                           <thead>
                             <tr>

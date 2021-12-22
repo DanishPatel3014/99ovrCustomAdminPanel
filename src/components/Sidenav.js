@@ -60,15 +60,15 @@ export default function Sidenav() {
               </Link>
             </li>
             <li class=" nav-item">
-              <a class="d-flex align-items-center" href="app-email.html">
+              <Link class="d-flex align-items-center" to=' '>
               <i class="fal fa-chart-line"></i>
                 <span class="menu-title text-truncate" data-i18n="Email">
                 Top 10 Requests
                 </span>
-              </a>
+              </Link>
             </li>
             <li class=" nav-item has-sub" id="navadd" onClick={() => addnav()}>
-              <a class="d-flex align-items-center" href="#">
+              <a class="d-flex align-items-center" to=' '>
                 <i class="fal fa-file-alt"></i>
                 <span class="menu-title text-truncate" data-i18n="Invoice">
                   Invoice
@@ -78,7 +78,7 @@ export default function Sidenav() {
                 <li>
                   <a
                     class="d-flex align-items-center"
-                    href="app-invoice-list.html"
+                    to=' '
                   >
                     <i class="fal fa-circle"></i>
                     <span class="menu-item text-truncate" data-i18n="List">
@@ -89,7 +89,7 @@ export default function Sidenav() {
                 <li>
                   <a
                     class="d-flex align-items-center"
-                    href="app-invoice-preview.html"
+                    to=' '
                   >
                     <i class="fal fa-circle"></i>
                     <span class="menu-item text-truncate" data-i18n="Preview">
@@ -100,7 +100,7 @@ export default function Sidenav() {
                 <li>
                   <a
                     class="d-flex align-items-center"
-                    href="app-invoice-edit.html"
+                    to=' '
                   >
                     <i class="fal fa-circle"></i>
                     <span class="menu-item text-truncate" data-i18n="Edit">
@@ -111,7 +111,7 @@ export default function Sidenav() {
                 <li>
                   <a
                     class="d-flex align-items-center"
-                    href="app-invoice-add.html"
+                    to=' '
                   >
                     <i class="fal fa-circle"></i>
                     <span class="menu-item text-truncate" data-i18n="Add">

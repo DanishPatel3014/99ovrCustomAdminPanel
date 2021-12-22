@@ -7,7 +7,7 @@ import {
   DropdownItem,
   DropdownToggle,
 } from "reactstrap";
-import { MoreVertical, Edit, Trash, Delete } from "react-feather";
+import { MoreVertical, Edit, Trash} from "react-feather";
 import axios from "axios";
 import AddAnimationModal from "./AddAnimationModal";
 import animationPic from "../assets/images/avtar/animation-pic.jpg";
@@ -56,7 +56,7 @@ export default function Tables() {
   };
 
 
-  const close = <button type="button" className="ms-1 btn-close"></button>;
+  // const close = <button type="button" className="ms-1 btn-close"></button>;
   const closeUpdateAnimationModal = () => {
     document.getElementById("updateNewCard").classList.remove("show");
   };
@@ -112,6 +112,7 @@ export default function Tables() {
           },
         }
       );
+      console.log(request)
       setanimationfield("");
       setanimationimgstate("");
       var data = new FormData();
@@ -130,40 +131,40 @@ export default function Tables() {
           triggeringFunction();
         }}
       ></button>
-      <div class="app-content content ">
-        <div class="content-overlay"></div>
-        <div class="header-navbar-shadow"></div>
-        <div class="content-wrapper container-xxl p-0">
-          <div class="content-header row"></div>
-          <div class="content-body">
+      <div className="app-content content ">
+        <div className="content-overlay"></div>
+        <div className="header-navbar-shadow"></div>
+        <div className="content-wrapper container-xxl p-0">
+          <div className="content-header row"></div>
+          <div className="content-body">
             <section id="dashboard-ecommerce">
-              <div class="row" id="table-hover-row">
-                <div class="col-12">
-                  <div class="card">
+              <div className="row" id="table-hover-row">
+                <div className="col-12">
+                  <div className="card">
                     <div className="crd-wrp">
                       <div className="row align-items-center">
                         <div className="col-md-9">
-                          <div class="card-header">
-                            <h4 class="card-title">Animation Details</h4>
+                          <div className="card-header">
+                            <h4 className="card-title">Animation Details</h4>
                           </div>
                         </div>
                         <div className="col-md-3">
                           <div className="eid-btn">
                             <button
                               type="button"
-                              class="btn btn-outline-primary"
+                              className="btn btn-outline-primary"
                               onClick={() => {
                                 openAddAnimationModal();
                               }}
                             >
-                              <i class="fal fa-plus"></i>
+                              <i className="fal fa-plus"></i>
                               <span> Add Animation</span>
                             </button>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="table-responsive">
+                    <div className="table-responsive">
                       {animationlist.length > 0 ? (
                         <Table hover responsive>
                           <thead>
@@ -276,18 +277,18 @@ export default function Tables() {
       {/* =====UPDATE==MODEL===== */}
       <div>
         <div
-          class="modal fade"
+          className="modal fade"
           id="updateNewCard"
           tabindex="-1"
           aria-labelledby="addNewCardTitle"
           aria-hidden="true"
         >
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header bg-transparent">
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="modal-header bg-transparent">
                 <button
                   type="button"
-                  class="btn-close"
+                  className="btn-close"
                   data-bs-dismiss="modal"
                   aria-label="Close"
                   onClick={() => {
@@ -295,36 +296,36 @@ export default function Tables() {
                   }}
                 ></button>
               </div>
-              <div class="modal-body px-sm-5 mx-50 pb-5">
-                <h1 class="text-center mb-1" id="addNewCardTitle">
+              <div className="modal-body px-sm-5 mx-50 pb-5">
+                <h1 className="text-center mb-1" id="addNewCardTitle">
                   {" "}
                   Update Animation{" "}
                 </h1>
 
-                <form class="row gy-1 gx-2 mt-75">
-                  <div class="col-12">
-                    <label class="form-label" for="modalAddCardNumber">
+                <form className="row gy-1 gx-2 mt-75">
+                  <div className="col-12">
+                    <label className="form-label" for="modalAddCardNumber">
                       Animation name
                     </label>
-                    <div class="input-group input-group-merge">
+                    <div className="input-group input-group-merge">
                       <input
                         onChange={(e) => {
                           setanimationfield(e.target.value);
                         }}
                         value={animationfield}
-                        class="form-control add-credit-card-mask"
+                        className="form-control add-credit-card-mask"
                         type="text"
                         placeholder="Enter Animation..."
                       />
                     </div>
                   </div>
-                  <div class="col-12">
-                    <label class="form-label" for="modalAddCardNumber">
+                  <div className="col-12">
+                    <label className="form-label" for="modalAddCardNumber">
                       Select Category
                     </label>
-                    <div class="input-group input-group-merge">
+                    <div className="input-group input-group-merge">
                       <select
-                        class="form-select"
+                        className="form-select"
                         id="Category"
                         onChange={(event) => changeCategory(event.target.value)}
                         defaultValue={"GREEN"}
@@ -338,7 +339,7 @@ export default function Tables() {
                     </div>
                   </div>
                   <div className="col-12">
-                    <label class="form-label" for="customFile">
+                    <label className="form-label" for="customFile">
                       Default file input example
                     </label>
                     <input
@@ -350,7 +351,7 @@ export default function Tables() {
                     />
                   </div>
 
-                  <div class="col-12 text-center">
+                  <div className="col-12 text-center">
                     <Button
                       className="me-1"
                       color="primary"
