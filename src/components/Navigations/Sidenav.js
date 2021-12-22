@@ -60,14 +60,14 @@ export default function Sidenav() {
               </Link>
             </li>
             <li className=" nav-item">
-              <Link className="d-flex align-items-center" to=' '>
+              <Link className="d-flex align-items-center" to='/TopTeenRequest'>
               <i className="fal fa-chart-line"></i>
                 <span className="menu-title text-truncate" data-i18n="Email">
                 Top 10 Requests
                 </span>
               </Link>
             </li>
-            <li className=" nav-item has-sub" id="navadd" onClick={() => addnav()}>
+             <li className=" nav-item has-sub" id="navadd" onClick={() => addnav()}>
               <a className="d-flex align-items-center" to=' '>
                 <i className="fal fa-file-alt"></i>
                 <span className="menu-title text-truncate" data-i18n="Invoice">
@@ -78,8 +78,8 @@ export default function Sidenav() {
                 <li>
                   <a
                     className="d-flex align-items-center"
-                    to=' '
-                  >
+                    to=' '>
+                 
                     <i className="fal fa-circle"></i>
                     <span className="menu-item text-truncate" data-i18n="List">
                       List
@@ -120,7 +120,7 @@ export default function Sidenav() {
                   </a>
                 </li>
               </ul>
-            </li>
+            </li> 
           </ul>
         </div>
       </div>

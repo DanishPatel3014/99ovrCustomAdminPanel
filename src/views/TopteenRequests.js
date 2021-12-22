@@ -2,7 +2,7 @@ import React, { useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import Topnav from "../components/Navigations/Topnav";
 import Sidenav from "../components/Navigations/Sidenav";
-import AnimationTable from "../components/Animations/AnimationTable"
+import TopTeen from "../components/Topteen/TopTeenRequests"
 export default function Home() {
   
   // const navigate = useNavigate();
@@ -22,7 +22,7 @@ export default function Home() {
     <div>
      <Topnav/>
      <Sidenav/>
-     <AnimationTable/>
+     <TopTeen/>
       
     </div>
   );
