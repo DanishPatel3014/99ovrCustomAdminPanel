@@ -279,7 +279,7 @@ export default function Tables() {
         <div
           className="modal fade"
           id="updateNewCard"
-          tabindex="-1"
+          tabIndex="-1"
           aria-labelledby="addNewCardTitle"
           aria-hidden="true"
         >
@@ -304,7 +304,7 @@ export default function Tables() {
 
                 <form className="row gy-1 gx-2 mt-75">
                   <div className="col-12">
-                    <label className="form-label" for="modalAddCardNumber">
+                    <label className="form-label" htmlFor="modalAddCardNumber">
                       Animation name
                     </label>
                     <div className="input-group input-group-merge">
@@ -320,7 +320,7 @@ export default function Tables() {
                     </div>
                   </div>
                   <div className="col-12">
-                    <label className="form-label" for="modalAddCardNumber">
+                    <label className="form-label" htmlFor="modalAddCardNumber">
                       Select Category
                     </label>
                     <div className="input-group input-group-merge">
@@ -339,7 +339,7 @@ export default function Tables() {
                     </div>
                   </div>
                   <div className="col-12">
-                    <label className="form-label" for="customFile">
+                    <label className="form-label" htmlFor="customFile">
                       Default file input example
                     </label>
                     <input

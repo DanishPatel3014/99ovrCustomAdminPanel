@@ -51,18 +51,18 @@ export default function UpdateAnimationModal(props) {
   return (
     <>
       <div
-        class="modal fade"
+        className="modal fade"
         id="updateNewCard"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="addNewCardTitle"
         aria-hidden="true"
       >
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header bg-transparent">
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header bg-transparent">
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
                 onClick={() => {
@@ -70,35 +70,35 @@ export default function UpdateAnimationModal(props) {
                 }}
               ></button>
             </div>
-            <div class="modal-body px-sm-5 mx-50 pb-5">
-              <h1 class="text-center mb-1" id="addNewCardTitle">
+            <div className="modal-body px-sm-5 mx-50 pb-5">
+              <h1 className="text-center mb-1" id="addNewCardTitle">
                 Update Animation
               </h1>
 
-              <form class="row gy-1 gx-2 mt-75">
-                <div class="col-12">
-                  <label class="form-label" for="modalAddCardNumber">
+              <form className="row gy-1 gx-2 mt-75">
+                <div className="col-12">
+                  <label className="form-label" htmlFor="modalAddCardNumber">
                     Animation name
                   </label>
-                  <div class="input-group input-group-merge">
+                  <div className="input-group input-group-merge">
                     <input
                       onChange={(e) => {
                         setanimationfield(e.target.value);
                       }}
                       value={animationfield}
-                      class="form-control add-credit-card-mask"
+                      className="form-control add-credit-card-mask"
                       type="text"
                       placeholder="Enter Animation..."
                     />
                   </div>
                 </div>
-                <div class="col-12">
-                  <label class="form-label" for="modalAddCardNumber">
+                <div className="col-12">
+                  <label className="form-label" htmlFor="modalAddCardNumber">
                     Select Category
                   </label>
-                  <div class="input-group input-group-merge">
+                  <div className="input-group input-group-merge">
                     <select
-                      class="form-select"
+                      className="form-select"
                       id="Category"
                       onChange={(event) => changeCategory(event.target.value)}
                       defaultValue={"GREEN"}
@@ -113,7 +113,7 @@ export default function UpdateAnimationModal(props) {
                   </div>
                 </div>
                 <div className="col-12">
-                  <label class="form-label" for="customFile">
+                  <label className="form-label" htmlFor="customFile">
                     Default file input example
                   </label>
                   <input
@@ -126,7 +126,7 @@ export default function UpdateAnimationModal(props) {
                   />
                 </div>
 
-                <div class="col-12 text-center">
+                <div className="col-12 text-center">
                   <Button
                     className="me-1"
                     color="primary"

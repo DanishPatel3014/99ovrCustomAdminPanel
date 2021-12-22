@@ -25,12 +25,12 @@ export default function Home() {
     <div className="app-content content">
     <div className="content-wrapper container-xxl p-0">
     <section id="dashboard-ecommerce">
-                    <div class="row">
+                    <div className="row">
                      
                     
                         
-                        <div class="col-xl-12 col-md-12 col-12">
-                            <div class="card card-statistics">
+                        <div className="col-xl-12 col-md-12 col-12">
+                            <div className="card card-statistics">
                                <div className="dashpic">
                                  <img src={dashlogo} alt="dashlogo"/>
                                  <div className="wel">

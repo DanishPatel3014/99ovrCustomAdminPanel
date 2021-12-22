@@ -39,7 +39,7 @@ export default function AddAnimationModal() {
 
     return (
         <>
-                <div className="modal fade" id="addNewCard" tabindex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">
+                <div className="modal fade" id="addNewCard" tabIndex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">
                     <div className="modal-dialog modal-dialog-centered">
                         <div className="modal-content">
                             <div className="modal-header bg-transparent">
@@ -51,14 +51,14 @@ export default function AddAnimationModal() {
 
                                 <form  className="row gy-1 gx-2 mt-75">
                                     <div className="col-12">
-                                        <label className="form-label" for="modalAddCardNumber">Animation name</label>
+                                        <label className="form-label" htmlFor="modalAddCardNumber">Animation name</label>
                                         <div className="input-group input-group-merge">
                                             <input onChange={(e)=>{setanimationfield(e.target.value)}} value={animationfield} className="form-control add-credit-card-mask" type="text" placeholder="Enter Animation Name"  />
                                            
                                         </div>
                                     </div>
                                     <div className="col-12">
-                                        <label className="form-label" for="modalAddCardNumber">Select Category</label>
+                                        <label className="form-label" htmlFor="modalAddCardNumber">Select Category</label>
                                         <div className="input-group input-group-merge">
                                         <select className="form-select"  id="Category" onChange={(event) => changeCategory(event.target.value)} defaultValue={currentCategory}>
                                         <option value="GREEN">GREEN</option>
@@ -70,7 +70,7 @@ export default function AddAnimationModal() {
                                         </div>
                                     </div>
                                     <div className="col-12">
-                                    <label className="form-label" for="customFile">Default file input example</label>
+                                    <label className="form-label" htmlFor="customFile">Default file input example</label>
                                      <input type="file" onChange={(e)=>setanimationimgstate(e.target.files[0])} className="form-control" id="customFile" accept="image/*"/>
                                     </div>
 

@@ -170,7 +170,7 @@ export default function Topnav() {
                   <div className="bookmark-input-icon">
                     <i data-feather="search"></i>
                   </div>
-                 <input className="form-control input" type="text" placeholder="Bookmark" tabindex="0" data-search="search" />
+                 <input className="form-control input" type="text" placeholder="Bookmark" tabIndex="0" data-search="search" />
                   <ul className="search-list search-list-bookmark"></ul>
                 </div>
               </li>
