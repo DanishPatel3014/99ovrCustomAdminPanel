@@ -14,6 +14,8 @@ import animationPic from "../../assets/images/avtar/animation-pic.jpg";
 import { Spinner } from "reactstrap";
 import { Button } from "reactstrap";
 import ReactPaginate from "react-paginate";
+import ReactFancyBox from 'react-fancybox'
+import 'react-fancybox/lib/fancybox.css'
 
 export default function Tables() {
   
@@ -203,10 +205,13 @@ export default function Tables() {
                                   </td>
                                   <td>
                                     <div className="aniimg">
-                                      <img
+                                      {/* <img
                                         src={v.image ? v.image : animationPic}
                                         alt=""
-                                      />
+                                      /> */}
+                                      <ReactFancyBox
+                                        thumbnail={v.image ? v.image : animationPic}
+                                        image={v.image ? v.image : animationPic}/>
                                     </div>
                                   </td>
                                   <td>{v.animation}</td>
