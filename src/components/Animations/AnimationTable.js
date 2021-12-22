@@ -13,12 +13,12 @@ import AddAnimationModal from "./AddAnimationModal";
 import animationPic from "../../assets/images/avtar/animation-pic.jpg";
 import { Spinner } from "reactstrap";
 import { Button } from "reactstrap";
-import ReactPaginate from 'react-paginate';
+import ReactPaginate from "react-paginate";
 
 export default function Tables() {
   
   const [animationlist, setanimationlist] = useState([]);
-  const [PageCount, setPageCount] = useState(1);
+  const [PageCount, setPageCount] = useState(1)
   var currentPage = 1;
 
   useEffect(() => {
@@ -30,11 +30,12 @@ export default function Tables() {
     let getData = await axios.get(`https://thewebtestlink.xyz/api/animation?page=${currentPage}&limit=10`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` },
     });
-    setPageCount(Math.ceil(getData.data.totallength / 10));
-    window.scrollTo(0,0);
+    setPageCount(Math.ceil(getData.data.totallength/10))
     console.log(getData)
+    window.scrollTo(0, 0)
     setanimationlist(getData.data.result);
   };
+
   const deletedata = async (animationid) => {
     await axios.delete(
       `https://thewebtestlink.xyz/api/admin/deleteAnimation/${animationid}`,
@@ -129,6 +130,7 @@ export default function Tables() {
       document.getElementById("updateNewCard").classList.remove("show");
     }
   };
+
   const handlePageClick = (data) => {
     console.log(data.selected)
     currentPage = data.selected + 1
@@ -279,8 +281,8 @@ export default function Tables() {
                       )}
                     </div>
                     <ReactPaginate 
-                      previousLabel={'previous'}
-                      nextLabel={'next'}
+                      previousLabel={'<<'}
+                      nextLabel={'>>'}
                       breakLabel={'...'}
                       pageCount={PageCount}
                       marginPagesDisplayed={3}
