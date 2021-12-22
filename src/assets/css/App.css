@@ -91,6 +91,11 @@ li.nav-item>a>i {
 li.dropdown-user.nav-item.dropdown.show {
     background: transparent;
 }
+
+
+.aniimg .image-box{width: 60%;height: 60%;background-color: #283046 !important;}
+.aniimg .image-box img:last-child{width: 100%;height: 100%;}
+
 /* =====================MEDIA-SCEREEM====================== */
 
 @media (max-width: 767.98px)
