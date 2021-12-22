@@ -10,7 +10,7 @@ import {
 import { MoreVertical, Edit, Trash} from "react-feather";
 import axios from "axios";
 import AddAnimationModal from "./AddAnimationModal";
-import animationPic from "../assets/images/avtar/animation-pic.jpg";
+import animationPic from "../../assets/images/avtar/animation-pic.jpg";
 import { Spinner } from "reactstrap";
 import { Button } from "reactstrap";
 

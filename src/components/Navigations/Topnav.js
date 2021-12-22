@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import avatar from "../assets/images/avtar/avatar-s-11.jpg";
+import avatar from "../../assets/images/avtar/avatar-s-11.jpg";
 import { useNavigate } from "react-router-dom";
 import { User, Power, Settings } from "react-feather";
 import { Link } from "react-router-dom";
@@ -7,7 +7,7 @@ import{Badge,UncontrolledDropdown,DropdownMenu,DropdownItem,DropdownToggle,Input
 import classnames from "classnames";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import { Bell, X, Check, AlertTriangle } from "react-feather";
-import Logo from "../assets/images/logo/logo.png";
+import Logo from "../../assets/images/logo/logo.png";
 export default function Topnav() {
   function addnav() {
     var element = document.getElementById("navadd");
@@ -27,7 +27,7 @@ export default function Topnav() {
   // ** Notification Array
   const notificationsArray = [
     {
-      img: require("../assets/images/avtar/avatar-s-11.jpg").default,
+      img: require("../../assets/images/avtar/avatar-s-11.jpg").default,
       subtitle: "Won the monthly best seller badge.",
       title: (
         <p className="media-heading">
@@ -36,7 +36,7 @@ export default function Topnav() {
       ),
     },
     {
-      img: require("../assets/images/avtar/avatar-s-11.jpg").default,
+      img: require("../../assets/images/avtar/avatar-s-11.jpg").default,
       subtitle: "You have 10 unread messages.",
       title: (
         <p className="media-heading">

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Logo from "../assets/images/logo/logo.png";
+import Logo from "../../assets/images/logo/logo.png";
 
 export default function Sidenav() {
   function dd() {
