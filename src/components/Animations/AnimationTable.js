@@ -13,20 +13,27 @@ import AddAnimationModal from "./AddAnimationModal";
 import animationPic from "../../assets/images/avtar/animation-pic.jpg";
 import { Spinner } from "reactstrap";
 import { Button } from "reactstrap";
+import ReactPaginate from 'react-paginate';
 
 export default function Tables() {
+  
   const [animationlist, setanimationlist] = useState([]);
+  const [PageCount, setPageCount] = useState(1);
+  var currentPage = 1;
 
   useEffect(() => {
-    triggeringFunction();
+    triggeringFunction(currentPage);
   }, []);
 
-  const triggeringFunction = async () => {
+  const triggeringFunction = async (currentPage) => {
     console.log(localStorage.getItem("userToken"));
-    let getData = await axios.get(`https://thewebtestlink.xyz/api/animation`, {
+    let getData = await axios.get(`https://thewebtestlink.xyz/api/animation?page=${currentPage}&limit=10`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` },
     });
-    setanimationlist(getData.data);
+    setPageCount(Math.ceil(getData.data.totallength / 10));
+    window.scrollTo(0,0);
+    console.log(getData)
+    setanimationlist(getData.data.result);
   };
   const deletedata = async (animationid) => {
     await axios.delete(
@@ -37,6 +44,7 @@ export default function Tables() {
         },
       }
     );
+    
     triggeringFunction();
   };
 
@@ -121,6 +129,11 @@ export default function Tables() {
       document.getElementById("updateNewCard").classList.remove("show");
     }
   };
+  const handlePageClick = (data) => {
+    console.log(data.selected)
+    currentPage = data.selected + 1
+    triggeringFunction(currentPage)
+  }
 
   return (
     <div>
@@ -265,6 +278,25 @@ export default function Tables() {
                         </div>
                       )}
                     </div>
+                    <ReactPaginate 
+                      previousLabel={'previous'}
+                      nextLabel={'next'}
+                      breakLabel={'...'}
+                      pageCount={PageCount}
+                      marginPagesDisplayed={3}
+                      pageRangeDisplayed={3}
+                      onPageChange={handlePageClick}
+                      containerClassName={'pagination justify-content-center'}
+                      pageClassName={'page-item'}
+                      pageLinkClassName={'page-link'}
+                      previousClassName={'page-item'}
+                      previousLinkClassName={'page-link'}
+                      nextClassName={'page-item'}
+                      nextLinkClassName={'page-link'}
+                      breakClassName={'page-item'}
+                      breakLinkClassName={'page-link'}
+                      activeClassName={'active'}
+                    />
                   </div>
                 </div>
               </div>
