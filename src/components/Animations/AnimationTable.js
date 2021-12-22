@@ -200,13 +200,13 @@ export default function Tables() {
                                     <Badge
                                       pill
                                       color={
-                                        localcat[0] == v.category
+                                        localcat[0] === v.category
                                           ? "success"
-                                          : localcat[1] == v.category
+                                          : localcat[1] === v.category
                                           ? "info"
-                                          : localcat[2] == v.category
+                                          : localcat[2] === v.category
                                           ? "danger"
-                                          : localcat[3] == v.category
+                                          : localcat[3] === v.category
                                           ? "primary"
                                           : "warning"
                                       }
@@ -378,18 +378,3 @@ export default function Tables() {
     </div>
   );
 }
-
-const SpinnerGrowColors = () => {
-  return (
-    <React.Fragment>
-      <Spinner type="grow" color="primary" />
-      <Spinner type="grow" color="secondary" />
-      <Spinner type="grow" color="success" />
-      <Spinner type="grow" color="danger" />
-      <Spinner type="grow" color="warning" />
-      <Spinner type="grow" color="info" />
-      <Spinner type="grow" color="light" />
-      <Spinner type="grow" color="dark" />
-    </React.Fragment>
-  );
-};
