@@ -20,20 +20,20 @@ import playicn from "../../assets/images/logo/play.png"
       
 
     const triggeringFunction = async () => {
-        console.log(localStorage.getItem("userToken"));
+        // console.log(localStorage.getItem("userToken"));
         let getData = await axios.get(
           `https://thewebtestlink.xyz/api/admin/getStreamRequest`,
           {
             headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` },
           }
         );
-        console.log(getData.data)
+        // console.log(getData.data)
         settopteenlist(getData.data);
       };
       
 
       const approveStreamCity = async (streamID) => {
-          console.log(streamID)
+          // console.log(streamID)
           axios.put(`https://thewebtestlink.xyz/api/admin/approveStreamRequest/${streamID}`,
             null,
             {
@@ -147,7 +147,7 @@ import playicn from "../../assets/images/logo/play.png"
                           </Table>
                         ) : topteenlist.length == 0 ? (
                           <div className="spiner">
-                            <p>No data to show</p>
+                            <p>No pending Stream</p>
                           </div>
                         ) : (
                           <div className="spiner">

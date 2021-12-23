@@ -28,12 +28,12 @@ export default function Tables() {
   }, []);
 
   const triggeringFunction = async (currentPage) => {
-    console.log(localStorage.getItem("userToken"));
+    // console.log(localStorage.getItem("userToken"));
     let getData = await axios.get(`https://thewebtestlink.xyz/api/animation?page=${currentPage}&limit=10`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` },
     });
     setPageCount(Math.ceil(getData.data.totallength/10))
-    console.log(getData)
+    // console.log(getData)
     window.scrollTo(0, 0)
     setanimationlist(getData.data.result);
   };
@@ -112,7 +112,7 @@ export default function Tables() {
       //   image: animationimgstate,
       // };
 
-      console.log(data);
+      // console.log(data);
 
       let request = await axios.put(
         `https://thewebtestlink.xyz/api/admin/updateAnimation/${updateanimationstate}`,
@@ -123,7 +123,7 @@ export default function Tables() {
           },
         }
       );
-      console.log(request)
+      // console.log(request)
       setanimationfield("");
       setanimationimgstate("");
       var data = new FormData();
@@ -134,7 +134,7 @@ export default function Tables() {
   };
 
   const handlePageClick = (data) => {
-    console.log(data.selected)
+    // console.log(data.selected)
     currentPage = data.selected + 1
     triggeringFunction(currentPage)
   }

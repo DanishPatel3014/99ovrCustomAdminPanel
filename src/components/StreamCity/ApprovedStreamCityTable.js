@@ -20,14 +20,14 @@ import playicn from "../../assets/images/logo/play.png"
       
 
     const triggeringFunction = async () => {
-        console.log(localStorage.getItem("userToken"));
+        // console.log(localStorage.getItem("userToken"));
         let getData = await axios.get(
           `https://thewebtestlink.xyz/api/admin/getApprovedStreamRequest`,
           {
             headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` },
           }
         );
-        console.log(getData.data)
+        // console.log(getData.data)
         settopteenlist(getData.data);
       };
       
@@ -133,7 +133,7 @@ import playicn from "../../assets/images/logo/play.png"
                           </Table>
                         ) : topteenlist.length ? (
                           <div className="spiner">
-                            <p>No data to show</p>
+                            <p>No Approved Stream</p>
                           </div>
                         ) : (
                           <div className="spiner">

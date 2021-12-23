@@ -10,7 +10,7 @@ export default function AddAnimationModal() {
     // const close = <button type='button' className='ms-1 btn-close'></button>
     const closeAddAnimationModal = () => {
         document.getElementById('addNewCard').classList.remove('show');
-        console.log('removed')
+        // console.log('removed')
       }
       const [animationimgstate, setanimationimgstate] = useState('')
       const [animationfield, setanimationfield] = useState('')
@@ -27,9 +27,9 @@ export default function AddAnimationModal() {
               data.append('image',animationimgstate)
               data.append('animation',getInput)
               data.append('category',currentCategory)
-              console.log(data)
+            //   console.log(data)
               let request = await axios.post(`https://thewebtestlink.xyz/api/admin/createAnimation`, data, { headers: { Authorization:  `Bearer ${localStorage.getItem('userToken')}`}});
-            console.log(request)
+            // console.log(request)
              setanimationfield('')
               document.getElementById('munnababa').click();
                

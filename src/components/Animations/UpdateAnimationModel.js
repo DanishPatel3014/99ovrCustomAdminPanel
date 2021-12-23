@@ -13,7 +13,7 @@ export default function UpdateAnimationModal(props) {
   const [animationfield, setanimationfield] = useState(props.animation);
   const [currentCategory, setCurrentCategory] = useState(props.category);
 
-  console.log(props.category)
+  // console.log(props.category)
 
   const changeCategory = (newCategory) => {
     setCurrentCategory(newCategory);
@@ -27,7 +27,7 @@ export default function UpdateAnimationModal(props) {
       data.append("image", animationimgstate);
       data.append("animation", getInput);
       data.append("category", currentCategory);
-      console.log(data);
+      // console.log(data);
       let request = await axios.put(
         `https://thewebtestlink.xyz/api/admin/updateAnimation/${props._id}`,
         data,

@@ -20,7 +20,7 @@ import playicn from "../../assets/images/logo/play.png"
       
 
     const triggeringFunction = async () => {
-        console.log(localStorage.getItem("userToken"));
+        // console.log(localStorage.getItem("userToken"));
         let getData = await axios.get(
           `https://thewebtestlink.xyz/api/admin/getTop10Requests`,
           {
