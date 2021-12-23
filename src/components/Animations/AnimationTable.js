@@ -48,7 +48,7 @@ export default function Tables() {
       }
     );
     
-    triggeringFunction();
+    triggeringFunction(currentPage);
   };
 
   const localcat = ["GREEN", "BLUE", "RED", "PURPLE", "GOLD"];

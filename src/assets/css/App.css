@@ -95,6 +95,17 @@ li.dropdown-user.nav-item.dropdown.show {
 
 .aniimg .image-box{width: 60%;height: 60%;background-color: #283046 !important;}
 .aniimg .image-box img:last-child{width: 100%;height: 100%;}
+td.playin a#sintel>span {
+    display: none;
+}
+td.playin img {
+    width: 36px;
+}
+.table-responsive .table th, td {
+    text-align: center;
+}
+
+
 
 /* =====================MEDIA-SCEREEM====================== */
 
