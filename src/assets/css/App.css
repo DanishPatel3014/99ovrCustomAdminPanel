@@ -104,8 +104,22 @@ td.playin img {
 .table-responsive .table th, td {
     text-align: center;
 }
-
-
+ul.menu-content>li>a>i {
+    font-size: 15px !important;
+    
+}
+i.fal.fa-user-times {
+    color: #fee500 !important;
+}
+i.fal.fa-user-check {
+    color: #20df20 !important;
+}
+ul.menu-content>li>a>span {
+    font-size: 14px !important;
+}
+.table > :not(caption) > * > * {
+    padding: 15px 5px !important;
+}
 
 /* =====================MEDIA-SCEREEM====================== */
 

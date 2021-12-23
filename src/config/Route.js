@@ -4,6 +4,8 @@ import Home from '../views/Home'
 import Login from '../views/Login'
 import Animation from '../views/Animation'
 import TopTeen from '../views/TopteenRequests'
+import StreamCity from '../views/StreamCity'
+import ApprovedStreamCity from '../views/ApprovedStreamCity'
 
 export default function AppRoute() {
     return (
@@ -14,6 +16,8 @@ export default function AppRoute() {
                     <Route exact path="/login" element={<Login/>}></Route>
                     <Route exact path="/Animation" element={<Animation/>}></Route>
                     <Route exact path="/TopTeenRequest" element={<TopTeen/>}></Route>
+                    <Route exact path="/StreamCity" element={<StreamCity/>}></Route>
+                    <Route exact path="/ApprovedStreamCity" element={<ApprovedStreamCity/>}></Route>
                 </Routes>        
            </Router>
         </div>

@@ -67,7 +67,41 @@ export default function Sidenav() {
                 </span>
               </Link>
             </li>
-             <li className=" nav-item has-sub" id="navadd" onClick={() => addnav()}>
+           
+            <li className=" nav-item has-sub" id="navadd" onClick={() => addnav()}>
+              <Link className="d-flex align-items-center" to=''>
+              <i class="fal fa-signal-stream"></i>
+                <span className="menu-title text-truncate" data-i18n="Invoice">
+                Stream City 
+                </span>
+              </Link>
+              <ul className="menu-content">
+                <li>
+                  <Link
+                    className="d-flex align-items-center"
+                    to='/StreamCity'>
+                 
+                 <i className="fal fa-user-times"></i>
+                    <span className="menu-item text-truncate" data-i18n="List">
+                    Stream Request
+                    </span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="d-flex align-items-center"
+                    to='/ApprovedStreamCity'
+                  >
+                    <i className="fal fa-user-check"></i>
+                    <span className="menu-item text-truncate" data-i18n="Preview">
+                    Stream Approved
+                    </span>
+                  </Link>
+                </li>
+                
+              </ul>
+            </li>
+             {/* <li className=" nav-item has-sub" id="navadd" onClick={() => addnav()}>
               <a className="d-flex align-items-center" to=' '>
                 <i className="fal fa-file-alt"></i>
                 <span className="menu-title text-truncate" data-i18n="Invoice">
@@ -120,7 +154,7 @@ export default function Sidenav() {
                   </a>
                 </li>
               </ul>
-            </li> 
+            </li>  */}
           </ul>
         </div>
       </div>
