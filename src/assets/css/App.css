@@ -103,6 +103,11 @@ td.playin img {
 }
 .table-responsive .table th, td {
     text-align: center;
+    font-size: 12px;
+}
+.table-responsive .table th
+{
+    font-size: 10px;
 }
 ul.menu-content>li>a>i {
     font-size: 15px !important;
@@ -120,7 +125,11 @@ ul.menu-content>li>a>span {
 .table > :not(caption) > * > * {
     padding: 15px 5px !important;
 }
-
+.turna-det 
+{
+    width: 15%;
+    
+}
 /* =====================MEDIA-SCEREEM====================== */
 
 @media (max-width: 767.98px)
