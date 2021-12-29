@@ -10,6 +10,10 @@ export default function Sidenav() {
     var element = document.getElementById("navadd");
     element.classList.toggle("open");
   }
+  function addTour() {
+    var element = document.getElementById("navTour");
+    element.classList.toggle("open");
+  }
   return (
     <div>
       <div
@@ -67,16 +71,48 @@ export default function Sidenav() {
                 </span>
               </Link>
             </li>
-            <li className=" nav-item">
+            {/* <li className=" nav-item">
               <Link className="d-flex align-items-center" to='/Tournaments'>
               <i class="fal fa-trophy"></i>
                 <span className="menu-title text-truncate" data-i18n="Email">
                 Tournaments
                 </span>
               </Link>
+            </li> */}
+            
+            <li className=" nav-item has-sub" id="navTour" onClick={() => addTour()}>
+              <Link className="d-flex align-items-center" to=''>
+              <i class="fal fa-trophy"></i>
+                <span className="menu-title text-truncate" data-i18n="Invoice">
+                Tournaments 
+                </span>
+              </Link>
+              <ul className="menu-content">
+                <li>
+                  <Link
+                    className="d-flex align-items-center"
+                    to='/Tournaments'>
+                 
+                 <i className="fal fa-user-times"></i>
+                    <span className="menu-item text-truncate" data-i18n="List">
+                    Tournaments Request
+                    </span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="d-flex align-items-center"
+                    to='/ApprovedTournaments'
+                  >
+                    <i className="fal fa-user-check"></i>
+                    <span className="menu-item text-truncate" data-i18n="Preview">
+                    Tournaments Approved
+                    </span>
+                  </Link>
+                </li>
+                
+              </ul>
             </li>
-            
-            
            
             <li className=" nav-item has-sub" id="navadd" onClick={() => addnav()}>
               <Link className="d-flex align-items-center" to=''>

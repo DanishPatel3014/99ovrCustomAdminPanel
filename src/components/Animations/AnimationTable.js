@@ -28,16 +28,16 @@ export default function Tables() {
   }, []);
 
   const triggeringFunction = async (currentPage) => {
-    // console.log(localStorage.getItem("userToken"));
-    let getData = await axios.get(`https://thewebtestlink.xyz/api/animation?page=${currentPage}&limit=10`, {
+   
+    let getData = await axios.get(`https://thewebtestlink.xyz/api/admin/getAnimation?page=${currentPage}&limit=10`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` },
     });
     setPageCount(Math.ceil(getData.data.totallength/10))
-    // console.log(getData)
+    console.log(getData.data)
     window.scrollTo(0, 0)
     setanimationlist(getData.data.result);
   };
-
+ 
   const deletedata = async (animationid) => {
     await axios.delete(
       `https://thewebtestlink.xyz/api/admin/deleteAnimation/${animationid}`,
@@ -64,6 +64,8 @@ export default function Tables() {
     setanimationfield(v.animation);
     setCurrentCategory(v.category);
     setanimationimgstate(v.image);
+    setanimationcoin(v.coins)
+    setdescription(v.description)
   };
 
 
@@ -75,6 +77,8 @@ export default function Tables() {
   const [animationimgstate, setanimationimgstate] = useState("");
   const [animationfield, setanimationfield] = useState("");
   const [currentCategory, setCurrentCategory] = useState("");
+  const [description, setdescription] = useState('')
+  const [animationcoin, setanimationcoin] = useState('')
 
   const changeCategory = (newCategory) => {
     setCurrentCategory(newCategory);
@@ -99,13 +103,14 @@ export default function Tables() {
 
   const handelClick = async () => {
     let getInput = animationfield;
-    if (getInput || currentCategory || animationimgstate) {
+    if (getInput || currentCategory || animationimgstate || description || animationcoin) {
 
       var data = new FormData();
       data.append("image", animationimgstate);
       data.append("animation", getInput);
       data.append("category", currentCategory);
-
+      data.append('coins',animationcoin)
+      data.append('description',description)
       // let newdata = {
       //   animation: animationfield,
       //   category: currentCategory,
@@ -126,6 +131,8 @@ export default function Tables() {
       // console.log(request)
       setanimationfield("");
       setanimationimgstate("");
+      setanimationcoin('')
+      setdescription('')
       var data = new FormData();
       data.append("image", animationimgstate);
       document.getElementById("munnababa").click();
@@ -145,7 +152,7 @@ export default function Tables() {
         id="munnababa"
         style={{ display: "none" }}
         onClick={() => {
-          triggeringFunction();
+          triggeringFunction(currentPage);
         }}
       ></button>
       <div className="app-content content ">
@@ -190,6 +197,8 @@ export default function Tables() {
                               <th>Animation Picture</th>
                               <th>Animation Name</th>
                               <th>Category</th>
+                              <th>description</th>
+                              <th>coins</th>
                               <th>Action</th>
                             </tr>
                           </thead>
@@ -236,6 +245,9 @@ export default function Tables() {
                                       {v.category}{" "}
                                     </Badge>
                                   </td>
+                                
+                                  <td>{v.description}</td>
+                                  <td>{v.coins}</td>
                                   <td>
                                     <UncontrolledDropdown>
                                       <DropdownToggle
@@ -357,6 +369,20 @@ export default function Tables() {
                         placeholder="Enter Animation..."
                       />
                     </div>
+                  </div>
+                  <div className="col-12">
+                      <label className="form-label" htmlFor="modalAddCardNumber">Add Description </label>
+                      <div className="input-group input-group-merge">
+                          <input onChange={(e)=>{setdescription(e.target.value)}} value={description} className="form-control add-credit-card-mask" type="text" placeholder="Enter Description"  />
+                          
+                      </div>
+                  </div>
+                  <div className="col-12">
+                      <label className="form-label" htmlFor="modalAddCardNumber">Add Coin </label>
+                      <div className="input-group input-group-merge">
+                          <input onChange={(e)=>{setanimationcoin(e.target.value)}} value={animationcoin} className="form-control add-credit-card-mask" type="number" placeholder="Enter Coin"  />
+                          
+                      </div>
                   </div>
                   <div className="col-12">
                     <label className="form-label" htmlFor="modalAddCardNumber">

@@ -29,7 +29,16 @@ import{Badge,} from "reactstrap";
       };
       
 
-    
+      const approveTournament = async (tournamentID) => {
+        // console.log(streamID)
+        axios.put(`https://thewebtestlink.xyz/api/admin/approveTournamentRequest/${tournamentID}`,
+          null,
+          {
+            headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` },
+          }
+        );
+        triggeringFunction();
+    }
   
 
     
@@ -57,7 +66,7 @@ import{Badge,} from "reactstrap";
                         <div className="row align-items-center">
                           <div className="col-md-9">
                             <div className="card-header">
-                              <h4 className="card-title">Turnament Requests</h4>
+                              <h4 className="card-title">Tournaments Requests</h4>
                             </div>
                           </div>
                           <div className="col-md-3">
@@ -81,7 +90,7 @@ import{Badge,} from "reactstrap";
                                 <th>tournament Type</th>
                                 <th>tournament Detail</th>
                                 <th>tournament Status</th>
-                                
+                                <th>Approve</th>
                                
                               </tr>
                             </thead>
@@ -125,7 +134,7 @@ import{Badge,} from "reactstrap";
                                       {v.tournamentStatus}
                                     </Badge>
                                   </td>
-
+                                  <td><button className="btn btn-success" onClick={()=>{approveTournament(v._id)}}>Approve</button></td>
                                     
                                 
                                   </tr>
