@@ -7,6 +7,8 @@ import TopTeen from '../views/TopteenRequests'
 import StreamCity from '../views/StreamCity'
 import ApprovedStreamCity from '../views/ApprovedStreamCity'
 import Tournaments from '../views/Tournaments'
+import ApprovedTournaments from '../views/ApprovedTournaments'
+import GetAssets from '../views/GetAssets'
 
 export default function AppRoute() {
     return (
@@ -20,6 +22,8 @@ export default function AppRoute() {
                     <Route exact path="/StreamCity" element={<StreamCity/>}></Route>
                     <Route exact path="/ApprovedStreamCity" element={<ApprovedStreamCity/>}></Route>
                     <Route exact path="/Tournaments" element={<Tournaments/>}></Route>
+                    <Route exact path="/ApprovedTournaments" element={<ApprovedTournaments/>}></Route>
+                    <Route exact path='/GetAssets' element={<GetAssets />}></Route>
                 </Routes>        
            </Router>
         </div>
