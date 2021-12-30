@@ -153,7 +153,7 @@ export default function GetAssets() {
                       <div className="row align-items-center">
                         <div className="col-md-9">
                           <div className="card-header">
-                            <h4 className="card-title">Animation Details</h4>
+                            <h4 className="card-title">Assets Details</h4>
                           </div>
                         </div>
                         <div className="col-md-3">
@@ -178,7 +178,7 @@ export default function GetAssets() {
                           <thead>
                             <tr>
                               <th>id</th>
-                              <th>Animation Picture</th>
+                              {/* <th>Animation Picture</th> */}
                               <th>Assets</th>
                               <th>Category</th>
                               <th>Tier</th>
@@ -196,18 +196,7 @@ export default function GetAssets() {
                                     <span className="align-middle fw-bold">
                                       {++i}
                                     </span>
-                                  </td>
-                                  <td>
-                                    <div className="aniimg">
-                                      {/* <img
-                                        src={v.image ? v.image : animationPic}
-                                        alt=""
-                                      /> */}
-                                      <ReactFancyBox
-                                        thumbnail={v.image ? v.image : animationPic}
-                                        image={v.image ? v.image : animationPic}/>
-                                    </div>
-                                  </td>
+                                  </td> 
                                   <td>{v.asset}</td>
 
                                   <td>

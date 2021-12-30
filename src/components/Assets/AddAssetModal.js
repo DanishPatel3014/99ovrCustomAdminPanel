@@ -32,10 +32,15 @@ export default function AddAnimationModal() {
               data.append('description',description)
               data.append('coins',animationcoin)
               data.append('category',currentCategory)
-              data.append('TIER',Tier)
+              data.append('tier',Tier)
               console.log(animationimgstate)
+              console.log(getInput)
+              console.log(description)
+              console.log(animationcoin)
+              console.log(currentCategory)
+              console.log(Tier)
             //   console.log(data)
-              let request = await axios.post(`https://thewebtestlink.xyz/api/admin//createAsset`, data, { headers: { Authorization:  `Bearer ${localStorage.getItem('userToken')}`}});
+              let request = await axios.post(`https://thewebtestlink.xyz/api/admin/createAsset`, data, { headers: { Authorization:  `Bearer ${localStorage.getItem('userToken')}`}});
             // console.log(request)
              setAssetfield('')
              setanimationcoin('')
@@ -102,7 +107,9 @@ export default function AddAnimationModal() {
                                     </div>
                                     <div className="col-12">
                                     <label className="form-label" htmlFor="customFile">Image</label>
-                                     <input type="file" onChange={(e)=>setanimationimgstate(e.target.files[0])} className="form-control" id="customFile" accept="image/*"/>
+                                     <input type="file" onChange={(e)=>
+                                        setanimationimgstate(e.target.files[0])}
+                                        className="form-control" id="customFile" accept=".glb"/>
                                     </div>
 
                                  
