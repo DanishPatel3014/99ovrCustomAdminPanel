@@ -150,7 +150,7 @@ export default function Sidenav() {
 
             <li className=" nav-item">
               <Link className="d-flex align-items-center" to='/GetAssets'>
-              <i className="fal fa-chart-line"></i>
+              <i class="fal fa-box-alt"></i>
                 <span className="menu-title text-truncate" data-i18n="Email">
                 Assets
                 </span>
