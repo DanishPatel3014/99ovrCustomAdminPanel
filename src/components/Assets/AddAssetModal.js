@@ -12,7 +12,7 @@ export default function AddAnimationModal() {
         document.getElementById('addNewCard').classList.remove('show');
         // console.log('removed')
       }
-      const [animationimgstate, setanimationimgstate] = useState('')
+      const [animationimgstate, setanimationimgstate] = useState(null)
       const [description, setdescription] = useState('')
       const [animationcoin, setanimationcoin] = useState('')
       const [Assetfield, setAssetfield] = useState('')
@@ -24,22 +24,20 @@ export default function AddAnimationModal() {
   
       const handelClick = async () => {
           let getInput = Assetfield;
+          if(animationimgstate == 'not_glb') {
+              alert('Please select a GLB file first!');
+              return;
+          }
+
           if (getInput && currentCategory && animationimgstate && description && animationcoin && Tier) {
               
-              var data = new FormData();
-              data.append('image',animationimgstate)
-              data.append('animation',getInput)
-              data.append('description',description)
-              data.append('coins',animationcoin)
-              data.append('category',currentCategory)
-              data.append('tier',Tier)
-              console.log(animationimgstate)
-              console.log(getInput)
-              console.log(description)
-              console.log(animationcoin)
-              console.log(currentCategory)
-              console.log(Tier)
-            //   console.log(data)
+              var data = new FormData(document.getElementById("assetForm"));
+            //   data.append('image',animationimgstate)
+            //   data.append('animation',getInput)
+            //   data.append('description',description)
+            //   data.append('coins',animationcoin)
+            //   data.append('category',currentCategory)
+            //   data.append('tier',Tier)
               let request = await axios.post(`https://thewebtestlink.xyz/api/admin/createAsset`, data, { headers: { Authorization:  `Bearer ${localStorage.getItem('userToken')}`}});
             // console.log(request)
              setAssetfield('')
@@ -49,6 +47,20 @@ export default function AddAnimationModal() {
             document.getElementById('munnababa').click();
             document.getElementById('addNewCard').classList.remove('show');
       }
+    }
+    function isGLB(file) {
+        console.log(file);
+        let fileName = file.name;
+        let idxDot = fileName.lastIndexOf(".") + 1;
+        let extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+        if (extFile == "glb") {
+            setanimationimgstate(file);
+            return true;
+        } else {
+            setanimationimgstate('not_glb');
+            alert("Only glb files are allowed!");
+            return false;
+        }
     }
 
     return (
@@ -63,39 +75,39 @@ export default function AddAnimationModal() {
                                 <h1 className="text-center mb-1" id="addNewCardTitle">Add New Asset</h1>
                                
 
-                                <form  className="row gy-1 gx-2 mt-75">
+                                <form id="assetForm" className="row gy-1 gx-2 mt-75">
                                     <div className="col-12">
                                         <label className="form-label" htmlFor="modalAddCardNumber">Asset name</label>
                                         <div className="input-group input-group-merge">
-                                            <input onChange={(e)=>{setAssetfield(e.target.value)}} value={Assetfield} className="form-control add-credit-card-mask" type="text" placeholder="Enter Asset Name"  />
+                                            <input onChange={(e)=>{setAssetfield(e.target.value)}} value={Assetfield} className="form-control add-credit-card-mask" name="asset" type="text" placeholder="Enter Asset Name"  />
                                            
                                         </div>
                                     </div>
                                     <div className="col-12">
                                         <label className="form-label" htmlFor="modalAddCardNumber">Add Description</label>
                                         <div className="input-group input-group-merge">
-                                            <input onChange={(e)=>{setdescription(e.target.value)}} value={description} className="form-control add-credit-card-mask" type="text" placeholder="Enter Description"  />
+                                            <input onChange={(e)=>{setdescription(e.target.value)}} value={description} className="form-control add-credit-card-mask" name="description" type="text" placeholder="Enter Description"  />
                                            
                                         </div>
                                     </div>
                                     <div className="col-12">
                                         <label className="form-label" htmlFor="modalAddCardNumber">Add Coins</label>
                                         <div className="input-group input-group-merge">
-                                            <input onChange={(e)=>{setanimationcoin(e.target.value)}} value={animationcoin} className="form-control add-credit-card-mask" type="number" placeholder="Enter Coin"  />
+                                            <input onChange={(e)=>{setanimationcoin(e.target.value)}} value={animationcoin} className="form-control add-credit-card-mask" name="coins" type="number" placeholder="Enter Coin"  />
                                            
                                         </div>
                                     </div>
                                     <div className="col-12">
                                         <label className="form-label" htmlFor="modalAddCardNumber">Tier</label>
                                         <div className="input-group input-group-merge">
-                                            <input onChange={(e)=>{setTier(e.target.value)}} value={Tier} className="form-control add-credit-card-mask" type="text" placeholder="Enter Tier"  />
+                                            <input onChange={(e)=>{setTier(e.target.value)}} value={Tier} className="form-control add-credit-card-mask" type="text" name="tier" placeholder="Enter Tier"  />
                                            
                                         </div>
                                     </div>
                                     <div className="col-12">
                                         <label className="form-label" htmlFor="modalAddCardNumber">Select Category</label>
                                         <div className="input-group input-group-merge">
-                                        <select className="form-select"  id="Category" onChange={(event) => changeCategory(event.target.value)} defaultValue={currentCategory}>
+                                        <select className="form-select" name="category"  id="Category" onChange={(event) => changeCategory(event.target.value)} defaultValue={currentCategory}>
                                             <option value="Tops">Tops</option>
                                             <option value="Shoes">Shoes</option>
                                             <option value="Jerseys">Jerseys	</option>
@@ -107,8 +119,10 @@ export default function AddAnimationModal() {
                                     </div>
                                     <div className="col-12">
                                     <label className="form-label" htmlFor="customFile">Image</label>
-                                     <input type="file" onChange={(e)=>
-                                        setanimationimgstate(e.target.files[0])}
+                                     <input 
+                                        type="file"
+                                        name="image"
+                                        onChange={(e)=> isGLB(e.target.files[0])}
                                         className="form-control" id="customFile" accept=".glb"/>
                                     </div>
 
