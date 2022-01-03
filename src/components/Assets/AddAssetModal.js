@@ -17,7 +17,7 @@ export default function AddAnimationModal() {
       const [animationcoin, setanimationcoin] = useState('')
       const [Assetfield, setAssetfield] = useState('')
       const [Tier, setTier] = useState('')
-      const [currentCategory, setCurrentCategory] = React.useState('GREEN')
+      const [currentCategory, setCurrentCategory] = useState('Tops')
       const changeCategory = (newCategory) => {
           setCurrentCategory(newCategory)
       }
@@ -98,16 +98,9 @@ export default function AddAnimationModal() {
                                         </div>
                                     </div>
                                     <div className="col-12">
-                                        <label className="form-label" htmlFor="modalAddCardNumber">Tier</label>
+                                        <label className="form-label" htmlFor="Category">Select Category</label>
                                         <div className="input-group input-group-merge">
-                                            <input onChange={(e)=>{setTier(e.target.value)}} value={Tier} className="form-control add-credit-card-mask" type="text" name="tier" placeholder="Enter Tier"  />
-                                           
-                                        </div>
-                                    </div>
-                                    <div className="col-12">
-                                        <label className="form-label" htmlFor="modalAddCardNumber">Select Category</label>
-                                        <div className="input-group input-group-merge">
-                                        <select className="form-select" name="category"  id="Category" onChange={(event) => changeCategory(event.target.value)} defaultValue={currentCategory}>
+                                            <select className="form-select" name="category"  id="Category" onChange={(event) => changeCategory(event.target.value)} defaultValue={currentCategory}>
                                             <option value="Tops">Tops</option>
                                             <option value="Shoes">Shoes</option>
                                             <option value="Jerseys">Jerseys	</option>
@@ -116,6 +109,56 @@ export default function AddAnimationModal() {
                                             <option value="Glasses">Glasses</option>
                                         </select>
                                         </div>
+                                    </div>
+                                    <div className="col-12">
+                                        <label className="form-label" htmlFor="tier">Tier</label>
+                                        {
+                                            currentCategory == 'Tops' ?
+                                            <div className="input-group input-group-merge">
+                                                <select className="form-select" name="tier"  id="tier"  onChange={(e)=>{setTier(e.target.value)}} defaultValue={Tier}>
+                                                    <option value="Average">Average</option>
+                                                    <option value="Basic">Basic</option>
+                                                    <option value="Elite">Elite</option>
+                                                </select>
+                                            </div>
+                                            :   currentCategory == 'Shoes' ?
+                                            <div className="input-group input-group-merge">
+                                                <select className="form-select" name="tier"  id="tier"  onChange={(e)=>{setTier(e.target.value)}} defaultValue={Tier}>
+                                                    <option value="Average">Average</option>
+                                                    <option value="Basic">Basic</option>
+                                                    <option value="Elite">Elite</option>
+                                                </select>
+                                            </div>
+                                            :   currentCategory == 'Hats' ?
+                                            <div className="input-group input-group-merge">
+                                                <select className="form-select" name="tier"  id="tier"  onChange={(e)=>{setTier(e.target.value)}} defaultValue={Tier}>
+                                                    <option value="Average">Average</option>
+                                                    <option value="Basic">Basic</option>
+                                                    <option value="Elite">Elite</option>
+                                                </select>
+                                            </div>
+                                            :   currentCategory == 'Bottoms' ?
+                                            <div className="input-group input-group-merge">
+                                                <select className="form-select" name="tier"  id="tier"  onChange={(e)=>{setTier(e.target.value)}} defaultValue={Tier}>
+                                                    <option value="Average">Average</option>
+                                                    <option value="Basic">Basic</option>
+                                                    <option value="Elite">Elite</option>
+                                                </select>
+                                            </div>
+                                            :   currentCategory == 'Glasses' ?
+                                            <div className="input-group input-group-merge">
+                                                <select className="form-select" name="tier"  id="tier"  onChange={(e)=>{setTier(e.target.value)}} defaultValue={Tier}>
+                                                    <option value="Average">Average</option>
+                                                    <option value="Basic">Basic</option>
+                                                </select>
+                                            </div>
+                                            : 
+                                            <div className="input-group input-group-merge">
+                                                <select className="form-select" name="tier"  id="tier"  onChange={(e)=>{setTier(e.target.value)}} defaultValue={Tier}>
+                                                    <option value="All Jerseys">All Jerseys</option>
+                                                </select>
+                                            </div>
+                                        }
                                     </div>
                                     <div className="col-12">
                                     <label className="form-label" htmlFor="customFile">Image</label>

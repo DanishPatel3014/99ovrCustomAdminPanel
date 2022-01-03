@@ -96,12 +96,12 @@ export default function GetAssets() {
 
       var data = new FormData();
       data.append("image", animationimgstate);
-      data.append("animation", getInput);
+      data.append("asset", getInput);
       data.append("category", currentCategory);
       data.append('coins',animationcoin)
       data.append('description',description)
       data.append('tier',Tier)
-
+      // var data = new FormData(document.getElementById("assetFormUpdate"));
       let request = await axios.put(
         `https://thewebtestlink.xyz/api/admin/updateAssets/${updateanimationstate}`,
         data,
@@ -329,7 +329,7 @@ export default function GetAssets() {
                   Update Asset{" "}
                 </h1>
 
-                <form className="row gy-1 gx-2 mt-75">
+                <form id="assetFormUpdate" className="row gy-1 gx-2 mt-75">
                   <div className="col-12">
                     <label className="form-label" htmlFor="modalAddCardNumber">
                       Asset name
@@ -360,13 +360,7 @@ export default function GetAssets() {
                           
                       </div>
                   </div>
-                  <div className="col-12">
-                      <label className="form-label" htmlFor="modalAddCardNumber">Tier</label>
-                      <div className="input-group input-group-merge">
-                          <input onChange={(e)=>{setTier(e.target.value)}} value={Tier} className="form-control add-credit-card-mask" type="text" placeholder="Enter Tier"  />
-                          
-                      </div>
-                  </div>
+                  
                   <div className="col-12">
                     <label className="form-label" htmlFor="modalAddCardNumber">
                       Select Category
@@ -376,7 +370,7 @@ export default function GetAssets() {
                         className="form-select"
                         id="Category"
                         onChange={(event) => changeCategory(event.target.value)}
-                        defaultValue={"GREEN"}
+                        defaultValue={currentCategory}
                       >
                         <option value="Tops">Tops</option>
                         <option value="Shoes">Shoes</option>
@@ -386,6 +380,57 @@ export default function GetAssets() {
                         <option value="Glasses">Glasses</option>
                       </select>
                     </div>
+                  </div>
+
+                  <div className="col-12">
+                      <label className="form-label" htmlFor="modalAddCardNumber">Tier</label>
+                      {
+                        currentCategory == 'Tops' ?
+                        <div className="input-group input-group-merge">
+                            <select className="form-select" name="tier"  id="tier"  onChange={(e)=>{setTier(e.target.value)}} defaultValue={Tier}>
+                                <option value="Average">Average</option>
+                                <option value="Basic">Basic</option>
+                                <option value="Elite">Elite</option>
+                            </select>
+                        </div>
+                        :   currentCategory == 'Shoes' ?
+                        <div className="input-group input-group-merge">
+                            <select className="form-select" name="tier"  id="tier"  onChange={(e)=>{setTier(e.target.value)}} defaultValue={Tier}>
+                                <option value="Average">Average</option>
+                                <option value="Basic">Basic</option>
+                                <option value="Elite">Elite</option>
+                            </select>
+                        </div>
+                        :   currentCategory == 'Hats' ?
+                        <div className="input-group input-group-merge">
+                            <select className="form-select" name="tier"  id="tier"  onChange={(e)=>{setTier(e.target.value)}} defaultValue={Tier}>
+                                <option value="Average">Average</option>
+                                <option value="Basic">Basic</option>
+                                <option value="Elite">Elite</option>
+                            </select>
+                        </div>
+                        :   currentCategory == 'Bottoms' ?
+                        <div className="input-group input-group-merge">
+                            <select className="form-select" name="tier"  id="tier"  onChange={(e)=>{setTier(e.target.value)}} defaultValue={Tier}>
+                                <option value="Average">Average</option>
+                                <option value="Basic">Basic</option>
+                                <option value="Elite">Elite</option>
+                            </select>
+                        </div>
+                        :   currentCategory == 'Glasses' ?
+                        <div className="input-group input-group-merge">
+                            <select className="form-select" name="tier"  id="tier"  onChange={(e)=>{setTier(e.target.value)}} defaultValue={Tier}>
+                                <option value="Average">Average</option>
+                                <option value="Basic">Basic</option>
+                            </select>
+                        </div>
+                        : 
+                        <div className="input-group input-group-merge">
+                            <select className="form-select" name="tier"  id="tier"  onChange={(e)=>{setTier(e.target.value)}} defaultValue={Tier}>
+                                <option value="All Jerseys">All Jerseys</option>
+                            </select>
+                        </div>
+                    }
                   </div>
                   <div className="col-12">
                     <label className="form-label" htmlFor="customFile">
