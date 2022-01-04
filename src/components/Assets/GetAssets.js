@@ -21,22 +21,22 @@ export default function GetAssets() {
   
   const [Assetlist, setAssetlist] = useState([]);
   const [PageCount, setPageCount] = useState(1)
-  var currentPage = 1;
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     triggeringFunction(currentPage);
   }, []);
 
   const triggeringFunction = async (currentPage) => {
-//    ?page=${currentPage}&limit=10
-    let getData = await axios.get(`https://thewebtestlink.xyz/api/admin/getAssets`, {
+//    
+    let getData = await axios.get(`https://thewebtestlink.xyz/api/admin/getAssets?page=${currentPage}&limit=10`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` },
     });
     setPageCount(Math.ceil(getData.data.totallength/10))
     console.log(getData.data)
     window.scrollTo(0, 0)
     console.log(getData.data)
-    setAssetlist(getData.data);
+    setAssetlist(getData.data.result);
   };
  
   const deletedata = async (animationid) => {
@@ -125,10 +125,12 @@ export default function GetAssets() {
   };
 
   const handlePageClick = (data) => {
-    // console.log(data.selected)
-    currentPage = data.selected + 1
-    triggeringFunction(currentPage)
+    setCurrentPage(data.selected + 1); 
   }
+
+  useEffect(() => {
+    triggeringFunction(currentPage)
+  }, [currentPage])
 
   return (
     <div>
@@ -190,15 +192,16 @@ export default function GetAssets() {
 
                           <tbody>
                             {Assetlist.map((v, i) => {
+                              // let listIndex = i+1; // 0,2
+                              // if(currentPage !== 1) listIndex = (listIndex + 10);
                               return (
                                 <tr key={i}>
                                   <td>
                                     <span className="align-middle fw-bold">
-                                      {++i}
+                                      {currentPage == 1 ? (i + 1) : ((i + (10 * currentPage))+1)}
                                     </span>
                                   </td> 
                                   <td>{v.asset}</td>
-
                                   <td>
                                     <Badge
                                       pill

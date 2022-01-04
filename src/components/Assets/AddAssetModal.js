@@ -20,8 +20,15 @@ export default function AddAnimationModal() {
       const [currentCategory, setCurrentCategory] = useState('Tops')
       const changeCategory = (newCategory) => {
           setCurrentCategory(newCategory)
+
       }
   
+      React.useEffect(() => {
+            if(currentCategory == 'Jerseys'){
+                setTier('All Jerseys')
+            }
+      }, [currentCategory])
+
       const handelClick = async () => {
           let getInput = Assetfield;
           if(animationimgstate == 'not_glb') {
@@ -44,6 +51,8 @@ export default function AddAnimationModal() {
              setanimationcoin('')
              setdescription('')
              setTier('')
+             setanimationimgstate('')
+             setCurrentCategory('')
             document.getElementById('munnababa').click();
             document.getElementById('addNewCard').classList.remove('show');
       }
@@ -111,6 +120,10 @@ export default function AddAnimationModal() {
                                         </div>
                                     </div>
                                     <div className="col-12">
+                                        {/* <label className="form-label" htmlFor="modalAddCardNumber">Tier</label>
+                                        <div className="input-group input-group-merge">
+                                            <input onChange={(e)=>{setTier(e.target.value)}} value={Tier} className="form-control add-credit-card-mask" type="text" name="tier" placeholder="Enter Tier"  />  
+                                        </div> */}
                                         <label className="form-label" htmlFor="tier">Tier</label>
                                         {
                                             currentCategory == 'Tops' ?
@@ -154,9 +167,12 @@ export default function AddAnimationModal() {
                                             </div>
                                             : 
                                             <div className="input-group input-group-merge">
-                                                <select className="form-select" name="tier"  id="tier"  onChange={(e)=>{setTier(e.target.value)}} defaultValue={Tier}>
-                                                    <option value="All Jerseys">All Jerseys</option>
+                                                <select className="form-select" name="tier"  id="tier"  onChange={(e)=>{setTier(e.target.value)}} defaultValue={'All Jerseys'}>
+                                                    <option selected value="All Jerseys">All Jerseys</option>
                                                 </select>
+                                                {/* <div className="input-group input-group-merge">
+                                                    <input onChange={(e)=>{setanimationcoin(e.target.value)}} value={animationcoin} className="form-control add-credit-card-mask" name="tier" id='tier' type="number" placeholder="Enter Coin"  />
+                                                </div> */}
                                             </div>
                                         }
                                     </div>

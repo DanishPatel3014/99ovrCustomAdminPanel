@@ -21,7 +21,7 @@ export default function Tables() {
   
   const [animationlist, setanimationlist] = useState([]);
   const [PageCount, setPageCount] = useState(1)
-  var currentPage = 1;
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     triggeringFunction(currentPage);
@@ -141,10 +141,12 @@ export default function Tables() {
   };
 
   const handlePageClick = (data) => {
-    // console.log(data.selected)
-    currentPage = data.selected + 1
-    triggeringFunction(currentPage)
+    setCurrentPage(data.selected + 1); 
   }
+
+  useEffect(() => {
+    triggeringFunction(currentPage)
+  }, [currentPage])
 
   return (
     <div>
@@ -209,7 +211,7 @@ export default function Tables() {
                                 <tr key={i}>
                                   <td>
                                     <span className="align-middle fw-bold">
-                                      {++i}
+                                        {currentPage == 1 ? (i + 1) : ((i + (10 * currentPage))+1)}
                                     </span>
                                   </td>
                                   <td>
