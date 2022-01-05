@@ -32,6 +32,16 @@ import playicn from "../../assets/images/logo/play.png"
       
 
     
+      const approveTopTen = async (topTenID) => {
+        // console.log(streamID)
+        axios.put(`https://thewebtestlink.xyz/api/admin/approveTop10Request/${topTenID}`,
+          null,
+          {
+            headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` },
+          }
+        );
+        triggeringFunction();
+    }
   
 
     
@@ -89,6 +99,7 @@ import playicn from "../../assets/images/logo/play.png"
                                 <th>game Name</th>
                                 <th>comments</th>
                                 <th>likes</th>
+                                <th>Approve</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -141,6 +152,7 @@ import playicn from "../../assets/images/logo/play.png"
       
                                     <td>{v.postid.comments}</td>
                                     <td>{v.postid.likes}</td>
+                                    <td><button className="btn btn-success" onClick={()=>{approveTopTen(v._id)}}>Approve</button></td>
                                   </tr>
                                 );
                               })}

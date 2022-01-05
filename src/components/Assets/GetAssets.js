@@ -88,7 +88,11 @@ export default function GetAssets() {
     setCurrentCategory(newCategory);
   };
 
-
+  React.useEffect(() => {
+    if(currentCategory == 'Jerseys'){
+        setTier('All Jerseys')
+    }
+}, [currentCategory])
 
   const handelClick = async () => {
     let getInput = Assetfield;

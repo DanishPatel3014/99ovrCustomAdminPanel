@@ -19,6 +19,7 @@ export default function AppRoute() {
                     <Route exact path="/login" element={<Login/>}></Route>
                     <Route exact path="/Animation" element={<Animation/>}></Route>
                     <Route exact path="/TopTeenRequest" element={<TopTeen/>}></Route>
+                    {/* ApprovedTopTen */}
                     <Route exact path="/StreamCity" element={<StreamCity/>}></Route>
                     <Route exact path="/ApprovedStreamCity" element={<ApprovedStreamCity/>}></Route>
                     <Route exact path="/Tournaments" element={<Tournaments/>}></Route>

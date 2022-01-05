@@ -14,6 +14,10 @@ export default function Sidenav() {
     var element = document.getElementById("navTour");
     element.classList.toggle("open");
   }
+  function addTopTen() {
+    var element = document.getElementById("navTopTen");
+    element.classList.toggle("open");
+  }
   return (
     <div>
       <div
@@ -63,13 +67,47 @@ export default function Sidenav() {
                 </span>
               </Link>
             </li>
-            <li className=" nav-item">
+            {/* <li className=" nav-item">
               <Link className="d-flex align-items-center" to='/TopTeenRequest'>
               <i className="fal fa-chart-line"></i>
                 <span className="menu-title text-truncate" data-i18n="Email">
                 Top 10 Requests
                 </span>
               </Link>
+            </li> */}
+            
+            <li className=" nav-item has-sub" id="navTopTen" onClick={() => addTopTen()}>
+              <Link className="d-flex align-items-center" to='#'>
+              <i class="fal fa-chart-line"></i>
+                <span className="menu-title text-truncate" data-i18n="Invoice">
+                Top 10 Requests 
+                </span>
+              </Link>
+              <ul className="menu-content">
+                <li>
+                  <Link
+                    className="d-flex align-items-center"
+                    to='/TopTeenRequest'>
+                 
+                 <i className="fal fa-user-times"></i>
+                    <span className="menu-item text-truncate" data-i18n="List">
+                    Top 10 Request
+                    </span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="d-flex align-items-center"
+                    to='/ApprovedTopTen'
+                  >
+                    <i className="fal fa-user-check"></i>
+                    <span className="menu-item text-truncate" data-i18n="Preview">
+                    Top 10 Approved
+                    </span>
+                  </Link>
+                </li>
+                
+              </ul>
             </li>
             {/* <li className=" nav-item">
               <Link className="d-flex align-items-center" to='/Tournaments'>
