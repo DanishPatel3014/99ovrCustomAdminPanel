@@ -4,6 +4,7 @@ import Home from '../views/Home'
 import Login from '../views/Login'
 import Animation from '../views/Animation'
 import TopTeen from '../views/TopteenRequests'
+import ApprovedTopTen from '../views/ApprovedTopTen'
 import StreamCity from '../views/StreamCity'
 import ApprovedStreamCity from '../views/ApprovedStreamCity'
 import Tournaments from '../views/Tournaments'
@@ -19,7 +20,7 @@ export default function AppRoute() {
                     <Route exact path="/login" element={<Login/>}></Route>
                     <Route exact path="/Animation" element={<Animation/>}></Route>
                     <Route exact path="/TopTeenRequest" element={<TopTeen/>}></Route>
-                    {/* ApprovedTopTen */}
+                    <Route exact path="/ApprovedTopTen" element={<ApprovedTopTen/>}></Route>
                     <Route exact path="/StreamCity" element={<StreamCity/>}></Route>
                     <Route exact path="/ApprovedStreamCity" element={<ApprovedStreamCity/>}></Route>
                     <Route exact path="/Tournaments" element={<Tournaments/>}></Route>
