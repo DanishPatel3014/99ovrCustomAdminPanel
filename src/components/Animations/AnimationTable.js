@@ -23,7 +23,7 @@ export default function Tables() {
   const [PageCount, setPageCount] = useState(1)
   const [currentPage, setCurrentPage] = useState(1);
 
-  useEffect(() => {
+  useEffect((currentPage) => {
     triggeringFunction(currentPage);
   }, []);
 
@@ -119,7 +119,7 @@ export default function Tables() {
 
       // console.log(data);
 
-      let request = await axios.put(
+      await axios.put(
         `https://thewebtestlink.xyz/api/admin/updateAnimation/${updateanimationstate}`,
         data,
         {
@@ -133,7 +133,7 @@ export default function Tables() {
       setanimationimgstate("");
       setanimationcoin('')
       setdescription('')
-      var data = new FormData();
+      // var data = new FormData();
       data.append("image", animationimgstate);
       document.getElementById("munnababa").click();
       document.getElementById("updateNewCard").classList.remove("show");
@@ -211,7 +211,7 @@ export default function Tables() {
                                 <tr key={i}>
                                   <td>
                                     <span className="align-middle fw-bold">
-                                        {currentPage == 1 ? (i + 1) : ((i + (10 * currentPage))+1)}
+                                        {currentPage === 1 ? (i + 1) : ((i + (10 * currentPage))+1)}
                                     </span>
                                   </td>
                                   <td>

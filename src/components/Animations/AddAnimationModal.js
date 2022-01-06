@@ -32,7 +32,7 @@ export default function AddAnimationModal() {
               data.append('coins',animationcoin)
               data.append('category',currentCategory)
             //   console.log(data)
-              let request = await axios.post(`https://thewebtestlink.xyz/api/admin/createAnimation`, data, { headers: { Authorization:  `Bearer ${localStorage.getItem('userToken')}`}});
+              await axios.post(`https://thewebtestlink.xyz/api/admin/createAnimation`, data, { headers: { Authorization:  `Bearer ${localStorage.getItem('userToken')}`}});
             // console.log(request)
              setanimationfield('')
              setanimationcoin('')

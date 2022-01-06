@@ -195,7 +195,14 @@ export default function Sidenav() {
               </Link>
             </li>
 
-            
+            <li className=" nav-item">
+              <Link className="d-flex align-items-center" to='/GetGame'>
+              <i class="fal fa-gamepad-alt"></i>
+                <span className="menu-title text-truncate" data-i18n="Email">
+                Game
+                </span>
+              </Link>
+            </li>
             
           </ul>
         </div>
