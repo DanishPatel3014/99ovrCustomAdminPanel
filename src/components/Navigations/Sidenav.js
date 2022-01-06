@@ -82,7 +82,7 @@ export default function Sidenav() {
             
             <li className=" nav-item has-sub" id="navTopTen" onClick={() => addTopTen()}>
               <Link className="d-flex align-items-center" to='#'>
-              <i class="fal fa-chart-line"></i>
+              <i className="fal fa-chart-line"></i>
                 <span className="menu-title text-truncate" data-i18n="Invoice">
                 Top 10 Requests 
                 </span>
@@ -116,7 +116,7 @@ export default function Sidenav() {
         
             <li className=" nav-item has-sub" id="navTour" onClick={() => addTour()}>
               <Link className="d-flex align-items-center" to=''>
-              <i class="fal fa-trophy"></i>
+              <i className="fal fa-trophy"></i>
                 <span className="menu-title text-truncate" data-i18n="Invoice">
                 Tournaments 
                 </span>
@@ -183,7 +183,7 @@ export default function Sidenav() {
            
             <li className=" nav-item has-sub" id="navadd" onClick={() => addnav()}>
               <Link className="d-flex align-items-center" to=''>
-              <i class="fal fa-signal-stream"></i>
+              <i className="fal fa-signal-stream"></i>
                 <span className="menu-title text-truncate" data-i18n="Invoice">
                 Stream City 
                 </span>
@@ -217,7 +217,7 @@ export default function Sidenav() {
 
             <li className=" nav-item">
               <Link className="d-flex align-items-center" to='/GetAssets'>
-              <i class="fal fa-box-alt"></i>
+              <i className="fal fa-box-alt"></i>
                 <span className="menu-title text-truncate" data-i18n="Email">
                 Assets
                 </span>
