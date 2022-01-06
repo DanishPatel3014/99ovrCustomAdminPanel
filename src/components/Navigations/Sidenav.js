@@ -14,6 +14,10 @@ export default function Sidenav() {
     var element = document.getElementById("navTour");
     element.classList.toggle("open");
   }
+  function addLeag() {
+    var element = document.getElementById("navLeag");
+    element.classList.toggle("open");
+  }
   function addTopTen() {
     var element = document.getElementById("navTopTen");
     element.classList.toggle("open");
@@ -109,15 +113,7 @@ export default function Sidenav() {
                 
               </ul>
             </li>
-            {/* <li className=" nav-item">
-              <Link className="d-flex align-items-center" to='/Tournaments'>
-              <i class="fal fa-trophy"></i>
-                <span className="menu-title text-truncate" data-i18n="Email">
-                Tournaments
-                </span>
-              </Link>
-            </li> */}
-            
+        
             <li className=" nav-item has-sub" id="navTour" onClick={() => addTour()}>
               <Link className="d-flex align-items-center" to=''>
               <i className="fal fa-trophy"></i>
@@ -145,6 +141,39 @@ export default function Sidenav() {
                     <i className="fal fa-user-check"></i>
                     <span className="menu-item text-truncate" data-i18n="Preview">
                     Tournaments Approved
+                    </span>
+                  </Link>
+                </li>
+                
+              </ul>
+            </li>
+            <li className=" nav-item has-sub" id="navLeag" onClick={() => addLeag()}>
+              <Link className="d-flex align-items-center" to=''>
+              <i class="fal fa-gamepad-alt"></i>
+                <span className="menu-title text-truncate" data-i18n="Invoice">
+                Leagues 
+                </span>
+              </Link>
+              <ul className="menu-content">
+                <li>
+                  <Link
+                    className="d-flex align-items-center"
+                    to='/Leagues'>
+                 
+                 <i className="fal fa-user-times"></i>
+                    <span className="menu-item text-truncate" data-i18n="List">
+                    Leagues Request
+                    </span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="d-flex align-items-center"
+                    to='/Leagues'
+                  >
+                    <i className="fal fa-user-check"></i>
+                    <span className="menu-item text-truncate" data-i18n="Preview">
+                    Leagues Approved
                     </span>
                   </Link>
                 </li>
@@ -191,6 +220,14 @@ export default function Sidenav() {
               <i className="fal fa-box-alt"></i>
                 <span className="menu-title text-truncate" data-i18n="Email">
                 Assets
+                </span>
+              </Link>
+            </li>
+            <li className=" nav-item">
+              <Link className="d-flex align-items-center" to='/Users'>
+              <i class="fal fa-users"></i>
+                <span className="menu-title text-truncate" data-i18n="Email">
+                Users
                 </span>
               </Link>
             </li>
