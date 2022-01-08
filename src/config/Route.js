@@ -11,6 +11,7 @@ import Tournaments from '../views/Tournaments'
 import ApprovedTournaments from '../views/ApprovedTournaments'
 import Leagues from '../views/Leagues'
 import GetAssets from '../views/GetAssets'
+import GetGame from '../views/GetGame'
 import Users from '../views/Users'
 
 export default function AppRoute() {
@@ -29,6 +30,7 @@ export default function AppRoute() {
                     <Route exact path="/Leagues" element={<Leagues/>}></Route>
                     <Route exact path="/ApprovedTournaments" element={<ApprovedTournaments/>}></Route>
                     <Route exact path='/GetAssets' element={<GetAssets />}></Route>
+                    <Route exact path='/GetGame' element={<GetGame />}></Route>
                     <Route exact path='/Users' element={<Users />}></Route>
                 </Routes>        
            </Router>

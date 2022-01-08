@@ -24,14 +24,14 @@ export default function AddAnimationModal() {
       }
   
       React.useEffect(() => {
-            if(currentCategory == 'Jerseys'){
+            if(currentCategory === 'Jerseys'){
                 setTier('All Jerseys')
             }
       }, [currentCategory])
 
       const handelClick = async () => {
           let getInput = Assetfield;
-          if(animationimgstate == 'not_glb') {
+          if(animationimgstate === 'not_glb') {
               alert('Please select a GLB file first!');
               return;
           }
@@ -45,7 +45,7 @@ export default function AddAnimationModal() {
             //   data.append('coins',animationcoin)
             //   data.append('category',currentCategory)
             //   data.append('tier',Tier)
-              let request = await axios.post(`https://thewebtestlink.xyz/api/admin/createAsset`, data, { headers: { Authorization:  `Bearer ${localStorage.getItem('userToken')}`}});
+            await axios.post(`https://thewebtestlink.xyz/api/admin/createAsset`, data, { headers: { Authorization:  `Bearer ${localStorage.getItem('userToken')}`}});
             // console.log(request)
              setAssetfield('')
              setanimationcoin('')
@@ -62,7 +62,7 @@ export default function AddAnimationModal() {
         let fileName = file.name;
         let idxDot = fileName.lastIndexOf(".") + 1;
         let extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
-        if (extFile == "glb") {
+        if (extFile === "glb") {
             setanimationimgstate(file);
             return true;
         } else {
@@ -126,7 +126,7 @@ export default function AddAnimationModal() {
                                         </div> */}
                                         <label className="form-label" htmlFor="tier">Tier</label>
                                         {
-                                            currentCategory == 'Tops' ?
+                                            currentCategory === 'Tops' ?
                                             <div className="input-group input-group-merge">
                                                 <select className="form-select" name="tier"  id="tier"  onChange={(e)=>{setTier(e.target.value)}} defaultValue={Tier}>
                                                     <option value="Average">Average</option>
@@ -134,7 +134,7 @@ export default function AddAnimationModal() {
                                                     <option value="Elite">Elite</option>
                                                 </select>
                                             </div>
-                                            :   currentCategory == 'Shoes' ?
+                                            :   currentCategory === 'Shoes' ?
                                             <div className="input-group input-group-merge">
                                                 <select className="form-select" name="tier"  id="tier"  onChange={(e)=>{setTier(e.target.value)}} defaultValue={Tier}>
                                                     <option value="Average">Average</option>
@@ -142,7 +142,7 @@ export default function AddAnimationModal() {
                                                     <option value="Elite">Elite</option>
                                                 </select>
                                             </div>
-                                            :   currentCategory == 'Hats' ?
+                                            :   currentCategory === 'Hats' ?
                                             <div className="input-group input-group-merge">
                                                 <select className="form-select" name="tier"  id="tier"  onChange={(e)=>{setTier(e.target.value)}} defaultValue={Tier}>
                                                     <option value="Average">Average</option>
@@ -150,7 +150,7 @@ export default function AddAnimationModal() {
                                                     <option value="Elite">Elite</option>
                                                 </select>
                                             </div>
-                                            :   currentCategory == 'Bottoms' ?
+                                            :   currentCategory === 'Bottoms' ?
                                             <div className="input-group input-group-merge">
                                                 <select className="form-select" name="tier"  id="tier"  onChange={(e)=>{setTier(e.target.value)}} defaultValue={Tier}>
                                                     <option value="Average">Average</option>
@@ -158,7 +158,7 @@ export default function AddAnimationModal() {
                                                     <option value="Elite">Elite</option>
                                                 </select>
                                             </div>
-                                            :   currentCategory == 'Glasses' ?
+                                            :   currentCategory === 'Glasses' ?
                                             <div className="input-group input-group-merge">
                                                 <select className="form-select" name="tier"  id="tier"  onChange={(e)=>{setTier(e.target.value)}} defaultValue={Tier}>
                                                     <option value="Average">Average</option>

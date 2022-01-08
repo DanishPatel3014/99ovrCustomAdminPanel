@@ -9,12 +9,12 @@ import {
 } from "reactstrap";
 import { MoreVertical, Edit, Trash} from "react-feather";
 import axios from "axios";
-import AddAssetModal from "./AddAssetModal";
-// import animationPic from "../../assets/images/avtar/animation-pic.jpg";
+import AddGameModal from "./AddGameModal";
+import animationPic from "../../assets/images/avtar/animation-pic.jpg";
 import { Spinner } from "reactstrap";
 import { Button } from "reactstrap";
 import ReactPaginate from "react-paginate";
-// import ReactFancyBox from 'react-fancybox'
+import ReactFancyBox from 'react-fancybox'
 import 'react-fancybox/lib/fancybox.css'
 
 export default function GetAssets() {
@@ -28,21 +28,24 @@ export default function GetAssets() {
   }, []);
 
   const triggeringFunction = async (currentPage) => {
-//    
-    let getData = await axios.get(`https://thewebtestlink.xyz/api/admin/getAssets?page=${currentPage}&limit=10`, {
+   
+    let getData = await axios.get(`https://thewebtestlink.xyz/api/admin/getGames?page=${currentPage}&limit=10`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` },
     });
     setPageCount(Math.ceil(getData.data.totallength/10))
-    console.log(getData.data)
     window.scrollTo(0, 0)
-    console.log(getData.data)
-    setAssetlist(getData.data.result);
+
+    setAssetlist(getData.data.result)
+    setTimeout(() => {
+        console.log(getData.data)
+    }, 2000);
   };
  
-  const deletedata = async (animationid) => {
-    await axios.delete(
-      `https://thewebtestlink.xyz/api/admin/deleteAssets/${animationid}`,
-      {
+  const deletedata = async (Gameid) => {
+    await axios.put(
+      `https://thewebtestlink.xyz/api/admin/deleteGame/${Gameid}`,
+      null,
+      { 
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
@@ -62,13 +65,10 @@ export default function GetAssets() {
 
   const openUpdateAnimationModal = (v) => {
     document.getElementById("updateNewCard").classList.add("show");
-    setupdateanimationstate(v._id);
-    setAssetfield(v.asset);
-    setCurrentCategory(v.category);
-    setanimationimgstate(v.image);
-    setanimationcoin(v.coins)
-    setdescription(v.description)
-    setTier(v.tier)
+    setupdateGamestate(v._id);
+    setGamefield(v.gameName);
+    setGameimgstate(v.imagePath);
+    setpopularRadio(v.popular)
   };
 
 
@@ -76,38 +76,22 @@ export default function GetAssets() {
     document.getElementById("updateNewCard").classList.remove("show");
   };
 
-  const [updateanimationstate, setupdateanimationstate] = useState("");
-  const [animationimgstate, setanimationimgstate] = useState("");
-  const [Assetfield, setAssetfield] = useState("");
-  const [currentCategory, setCurrentCategory] = useState("");
-  const [description, setdescription] = useState('')
-  const [animationcoin, setanimationcoin] = useState('')
-  const [Tier, setTier] = useState('')
-
-  const changeCategory = (newCategory) => {
-    setCurrentCategory(newCategory);
-  };
-
-  React.useEffect(() => {
-    if(currentCategory === 'Jerseys'){
-        setTier('All Jerseys')
-    }
-}, [currentCategory])
+  const [updateGamestate, setupdateGamestate] = useState("");
+  const [Gameimgstate, setGameimgstate] = useState("");
+  const [Gamefield, setGamefield] = useState("");
+  const [PopularRadio, setpopularRadio] = useState(1)
 
   const handelClick = async () => {
-    let getInput = Assetfield;
-    if (getInput || currentCategory || animationimgstate || description || animationcoin || Tier) {
+    let getInput = Gamefield;
+    if (getInput || PopularRadio || Gameimgstate) {
 
-      var data = new FormData();
-      data.append("image", animationimgstate);
-      data.append("asset", getInput);
-      data.append("category", currentCategory);
-      data.append('coins',animationcoin)
-      data.append('description',description)
-      data.append('tier',Tier)
+      let data = new FormData(document.getElementById('gameForm'))
+      data.set('popular',PopularRadio)
+      data.set('gameName',Gamefield)
+      data.set('imagePath',Gameimgstate)
       // var data = new FormData(document.getElementById("assetFormUpdate"));
       await axios.put(
-        `https://thewebtestlink.xyz/api/admin/updateAssets/${updateanimationstate}`,
+        `https://thewebtestlink.xyz/api/admin/editGame/${updateGamestate}`,
         data,
         {
           headers: {
@@ -116,13 +100,10 @@ export default function GetAssets() {
         }
       );
       // console.log(request)
-      setAssetfield("");
-      setanimationimgstate("");
-      setanimationcoin('')
-      setdescription('')
-      setTier('')
+      setGamefield("");
+      setGameimgstate("");
       // var data = new FormData();
-      data.append("image", animationimgstate);
+      data.append("image", Gameimgstate);
       document.getElementById("munnababa").click();
       document.getElementById("updateNewCard").classList.remove("show");
     }
@@ -159,7 +140,7 @@ export default function GetAssets() {
                       <div className="row align-items-center">
                         <div className="col-md-9">
                           <div className="card-header">
-                            <h4 className="card-title">Assets Details</h4>
+                            <h4 className="card-title">Game Details</h4>
                           </div>
                         </div>
                         <div className="col-md-3">
@@ -172,7 +153,7 @@ export default function GetAssets() {
                               }}
                             >
                               <i className="fal fa-plus"></i>
-                              <span> Add Asset</span>
+                              <span> Add Game</span>
                             </button>
                           </div>
                         </div>
@@ -183,13 +164,11 @@ export default function GetAssets() {
                         <Table hover responsive>
                           <thead>
                             <tr>
-                              <th>id</th>
-                              {/* <th>Animation Picture</th> */}
-                              <th>Assets</th>
-                              <th>Category</th>
-                              <th>Tier</th>
-                              <th>description</th>
-                              <th>coins</th>
+                              <th>ID</th>
+                              <th>Game Name</th>
+                              <th>Image</th>
+                              <th>Popular</th>
+                              <th>Created Date</th>
                               <th>Action</th>
                             </tr>
                           </thead>
@@ -205,32 +184,16 @@ export default function GetAssets() {
                                       {currentPage === 1 ? (i + 1) : ((i + (10 * currentPage))+1)}
                                     </span>
                                   </td> 
-                                  <td>{v.asset}</td>
-                                  <td>
-                                    <Badge
-                                      pill
-                                      color={
-                                        localcat[0] === v.category
-                                          ? "success"
-                                          : localcat[1] === v.category
-                                          ? "info"
-                                          : localcat[2] === v.category
-                                          ? "danger"
-                                          : localcat[3] === v.category
-                                          ? "primary"
-                                          : localcat[4] === v.category
-                                          ? "warning"
-                                          : "black"
-                                      }
-                                      className="me-1"
-                                    >
-                                      {" "}
-                                      {v.category}{" "}
-                                    </Badge>
+                                  <td>{v.gameName}</td>
+                                  <td> 
+                                    <div className="aniimg">
+                                      <ReactFancyBox
+                                          thumbnail={v.imagePath ? v.imagePath : animationPic}
+                                          image={v.imagePath ? v.imagePath : animationPic}/>
+                                    </div>
                                   </td>
-                                  <td>{v.tier}</td>
-                                  <td>{v.description}</td>
-                                  <td>{v.coins}</td>
+                                  <td>{v.popular == true ? 'true' : 'false' }</td>
+                                  <td>{v.createdDate}</td>
                                   <td>
                                     <UncontrolledDropdown>
                                       <DropdownToggle
@@ -306,7 +269,7 @@ export default function GetAssets() {
           </div>
         </div>
       </div>
-      <AddAssetModal />
+      <AddGameModal />
 
       {/* =====UPDATE==MODEL===== */}
       <div>
@@ -333,123 +296,61 @@ export default function GetAssets() {
               <div className="modal-body px-sm-5 mx-50 pb-5">
                 <h1 className="text-center mb-1" id="addNewCardTitle">
                   {" "}
-                  Update Asset{" "}
+                  Edit Game{" "}
                 </h1>
 
-                <form id="assetFormUpdate" className="row gy-1 gx-2 mt-75">
+                <form id="gameForm" className="row gy-1 gx-2 mt-75">
                   <div className="col-12">
                     <label className="form-label" htmlFor="modalAddCardNumber">
-                      Asset name
+                      Game Name
                     </label>
                     <div className="input-group input-group-merge">
                       <input
+                        name="gameName"
                         onChange={(e) => {
-                          setAssetfield(e.target.value);
+                          setGamefield(e.target.value);
                         }}
-                        value={Assetfield}
+                        value={Gamefield}
                         className="form-control add-credit-card-mask"
                         type="text"
-                        placeholder="Enter Animation..."
+                        placeholder="Enter Game Name..."
                       />
                     </div>
                   </div>
-                  <div className="col-12">
-                      <label className="form-label" htmlFor="modalAddCardNumber">Add Description </label>
-                      <div className="input-group input-group-merge">
-                          <input onChange={(e)=>{setdescription(e.target.value)}} value={description} className="form-control add-credit-card-mask" type="text" placeholder="Enter Description"  />
-                          
-                      </div>
-                  </div>
-                  <div className="col-12">
-                      <label className="form-label" htmlFor="modalAddCardNumber">Add Coin </label>
-                      <div className="input-group input-group-merge">
-                          <input onChange={(e)=>{setanimationcoin(e.target.value)}} value={animationcoin} className="form-control add-credit-card-mask" type="number" placeholder="Enter Coin"  />
-                          
-                      </div>
-                  </div>
                   
-                  <div className="col-12">
-                    <label className="form-label" htmlFor="modalAddCardNumber">
-                      Select Category
-                    </label>
-                    <div className="input-group input-group-merge">
-                      <select
-                        className="form-select"
-                        id="Category"
-                        onChange={(event) => changeCategory(event.target.value)}
-                        defaultValue={currentCategory}
-                      >
-                        <option value="Tops">Tops</option>
-                        <option value="Shoes">Shoes</option>
-                        <option value="Jerseys">Jerseys	</option>
-                        <option value="Hats">Hats</option>
-                        <option value="Bottoms">Bottoms</option>
-                        <option value="Glasses">Glasses</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div className="col-12">
-                      <label className="form-label" htmlFor="modalAddCardNumber">Tier</label>
-                      {
-                        currentCategory === 'Tops' ?
-                        <div className="input-group input-group-merge">
-                            <select className="form-select" name="tier"  id="tier"  onChange={(e)=>{setTier(e.target.value)}} defaultValue={Tier}>
-                                <option value="Average">Average</option>
-                                <option value="Basic">Basic</option>
-                                <option value="Elite">Elite</option>
-                            </select>
-                        </div>
-                        :   currentCategory === 'Shoes' ?
-                        <div className="input-group input-group-merge">
-                            <select className="form-select" name="tier"  id="tier"  onChange={(e)=>{setTier(e.target.value)}} defaultValue={Tier}>
-                                <option value="Average">Average</option>
-                                <option value="Basic">Basic</option>
-                                <option value="Elite">Elite</option>
-                            </select>
-                        </div>
-                        :   currentCategory === 'Hats' ?
-                        <div className="input-group input-group-merge">
-                            <select className="form-select" name="tier"  id="tier"  onChange={(e)=>{setTier(e.target.value)}} defaultValue={Tier}>
-                                <option value="Average">Average</option>
-                                <option value="Basic">Basic</option>
-                                <option value="Elite">Elite</option>
-                            </select>
-                        </div>
-                        :   currentCategory === 'Bottoms' ?
-                        <div className="input-group input-group-merge">
-                            <select className="form-select" name="tier"  id="tier"  onChange={(e)=>{setTier(e.target.value)}} defaultValue={Tier}>
-                                <option value="Average">Average</option>
-                                <option value="Basic">Basic</option>
-                                <option value="Elite">Elite</option>
-                            </select>
-                        </div>
-                        :   currentCategory === 'Glasses' ?
-                        <div className="input-group input-group-merge">
-                            <select className="form-select" name="tier"  id="tier"  onChange={(e)=>{setTier(e.target.value)}} defaultValue={Tier}>
-                                <option value="Average">Average</option>
-                                <option value="Basic">Basic</option>
-                            </select>
-                        </div>
-                        : 
-                        <div className="input-group input-group-merge">
-                            <select className="form-select" name="tier"  id="tier"  onChange={(e)=>{setTier(e.target.value)}} defaultValue={Tier}>
-                                <option value="All Jerseys">All Jerseys</option>
-                            </select>
-                        </div>
-                    }
-                  </div>
                   <div className="col-12">
                     <label className="form-label" htmlFor="customFile">
                       Default file input example
                     </label>
                     <input
                       type="file"
-                      onChange={(e) => setanimationimgstate(e.target.files[0])}
+                      onChange={(e) => setGameimgstate(e.target.files[0])}
                       className="form-control"
                       id="customFile"
+                      name="imagePath"
                       accept="image/*"
                     />
+                  </div>
+
+                  <div className="col-12">
+
+                      <ul>
+                          <li>
+                              <label htmlFor="popularRadio">Popular</label>
+                              <input onClick={(e)=>{
+                                      setpopularRadio(e.target.value)
+                                      console.log(e.target.value)
+                                  }} name="popular" value={true} type='radio' id='popularRadio' />
+                          </li>
+                          <li>
+                              <label htmlFor="NonpopularRadio">Non Popular</label>
+                              <input onClick={(e)=>{
+                                      setpopularRadio(e.target.value)
+                                      console.log(e.target.value)
+                                  }} name="popular" value={false} type='radio' id='NonpopularRadio' />
+                          </li>
+                      </ul>
+
                   </div>
 
                   <div className="col-12 text-center">

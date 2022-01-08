@@ -113,7 +113,7 @@ import ReactPaginate from "react-paginate";
                                   <tr key={i}>
                                     <td>
                                       <span className="align-middle fw-bold">
-                                        {++i}
+                                        {currentPage === 1 ? (i + 1) : ((i + (10 * currentPage))+1)}
                                       </span>
                                     </td>
                                     <td>{v.userName}</td>
