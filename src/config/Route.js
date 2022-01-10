@@ -13,6 +13,7 @@ import Leagues from '../views/Leagues'
 import GetAssets from '../views/GetAssets'
 import GetGame from '../views/GetGame'
 import Users from '../views/Users'
+import UserActivities from '../views/UserActivities'
 
 export default function AppRoute() {
     return (
@@ -32,6 +33,7 @@ export default function AppRoute() {
                     <Route exact path='/GetAssets' element={<GetAssets />}></Route>
                     <Route exact path='/GetGame' element={<GetGame />}></Route>
                     <Route exact path='/Users' element={<Users />}></Route>
+                    <Route exact path='/userActivity:userActivityID' element={<UserActivities />}></Route>
                 </Routes>        
            </Router>
         </div>

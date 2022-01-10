@@ -19,26 +19,23 @@ import 'react-fancybox/lib/fancybox.css'
 
 export default function GetAssets() {
   
-  const [Assetlist, setAssetlist] = useState([]);
+  const [GameList, setGameList] = useState([]);
   const [PageCount, setPageCount] = useState(1)
   const [currentPage, setCurrentPage] = useState(1);
 
-  useEffect((currentPage) => {
+  useEffect(() => {
     triggeringFunction(currentPage);
-  }, []);
+  }, [currentPage]);
 
   const triggeringFunction = async (currentPage) => {
-   
+    
     let getData = await axios.get(`https://thewebtestlink.xyz/api/admin/getGames?page=${currentPage}&limit=10`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` },
     });
     setPageCount(Math.ceil(getData.data.totallength/10))
     window.scrollTo(0, 0)
-
-    setAssetlist(getData.data.result)
-    setTimeout(() => {
-        console.log(getData.data)
-    }, 2000);
+    console.log(getData.data, currentPage);
+    setGameList(getData.data.result)
   };
  
   const deletedata = async (Gameid) => {
@@ -160,7 +157,7 @@ export default function GetAssets() {
                       </div>
                     </div>
                     <div className="table-responsive">
-                      {Assetlist.length > 0 ? (
+                      {GameList.length > 0 ? (
                         <Table hover responsive>
                           <thead>
                             <tr>
@@ -174,14 +171,14 @@ export default function GetAssets() {
                           </thead>
 
                           <tbody>
-                            {Assetlist.map((v, i) => {
+                            {GameList.map((v, i) => {
                               // let listIndex = i+1; // 0,2
                               // if(currentPage !== 1) listIndex = (listIndex + 10);
                               return (
                                 <tr key={i}>
                                   <td>
                                     <span className="align-middle fw-bold">
-                                      {currentPage === 1 ? (i + 1) : ((i + (10 * currentPage))+1)}
+                                      {currentPage === 1 ? (i + 1) : ((i + (10 * (currentPage - 1)))+1)}
                                     </span>
                                   </td> 
                                   <td>{v.gameName}</td>

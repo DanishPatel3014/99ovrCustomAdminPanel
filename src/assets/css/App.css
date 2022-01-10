@@ -133,6 +133,9 @@ ul.menu-content>li>a>span {
 .dark-layout .main-menu-content .navigation-main .nav-item i {
     color: #f4dd04;
 }
+tr:nth-child(even) {
+    background: #12182a5c;
+}
 /* =====================MEDIA-SCEREEM====================== */
 
 @media (max-width: 767.98px)
