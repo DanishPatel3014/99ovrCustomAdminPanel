@@ -73,7 +73,7 @@ import playicn from "../../assets/images/logo/play.png"
                             </div>
                           </div>
                           <div className="col-md-3">
-                            <div className="eid-btn">
+                            {/* <div className="eid-btn">
                               <button
                                 type="button"
                                 className="btn btn-outline-primary"
@@ -81,7 +81,7 @@ import playicn from "../../assets/images/logo/play.png"
                                 <i class="fal fa-check"></i>
                                 <span> Approve Top 10 Requests</span>
                               </button>
-                            </div>
+                            </div> */}
                           </div>
                         </div>
                       </div>

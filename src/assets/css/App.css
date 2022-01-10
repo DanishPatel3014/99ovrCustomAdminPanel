@@ -130,6 +130,9 @@ ul.menu-content>li>a>span {
     width: 15%;
     
 }
+.dark-layout .main-menu-content .navigation-main .nav-item i {
+    color: #f4dd04;
+}
 /* =====================MEDIA-SCEREEM====================== */
 
 @media (max-width: 767.98px)
