@@ -23,9 +23,9 @@ export default function GetAssets() {
   const [PageCount, setPageCount] = useState(1)
   const [currentPage, setCurrentPage] = useState(1);
 
-  useEffect((currentPage) => {
+  useEffect(() => {
     triggeringFunction(currentPage);
-  }, []);
+  }, [currentPage]);
 
   const triggeringFunction = async (currentPage) => {
 //    
