@@ -3,10 +3,14 @@ import{Table} from "reactstrap";
 import { Spinner } from "reactstrap";
 import axios from 'axios'
 import ReactPaginate from "react-paginate";
+import { useParams } from "react-router";
   
   export default function Tables() {
    
-   
+    const params = useParams();
+    console.log(params.userActivityID)
+    const currentUserActivityID = params.userActivityID;
+    console.log(currentUserActivityID)
 
     const [topteenlist, settopteenlist] = useState([])
     const [PageCount, setPageCount] = useState(1)
@@ -18,15 +22,15 @@ import ReactPaginate from "react-paginate";
     const triggeringFunction = async (currentPage) => {
         
         let getData = await axios.get(
-          `https://thewebtestlink.xyz/api/admin/userList?page=${currentPage}&limit=10`,
+          `https://thewebtestlink.xyz/api/admin/userActivities/${currentUserActivityID}`,
           {
             headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` },
           }
         );
-        setPageCount(Math.ceil(getData.data.totallength/10))
+        // setPageCount(Math.ceil(getData.data.totallength/10))
     console.log(getData.data)
     window.scrollTo(0, 0)
-        settopteenlist(getData.data.result);
+        // settopteenlist(getData.data.result);
       
       };
       

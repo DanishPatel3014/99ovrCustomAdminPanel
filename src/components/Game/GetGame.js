@@ -178,7 +178,7 @@ export default function GetAssets() {
                                 <tr key={i}>
                                   <td>
                                     <span className="align-middle fw-bold">
-                                      {currentPage === 1 ? (i + 1) : ((i + (10 * currentPage))+1)}
+                                      {currentPage === 1 ? (i + 1) : ((i + (10 * (currentPage - 1)))+1)}
                                     </span>
                                   </td> 
                                   <td>{v.gameName}</td>
