@@ -30,7 +30,7 @@ import { useParams } from "react-router";
         // setPageCount(Math.ceil(getData.data.totallength/10))
     console.log(getData.data)
     window.scrollTo(0, 0)
-        // settopteenlist(getData.data.result);
+        settopteenlist(getData.data);
       
       };
       
