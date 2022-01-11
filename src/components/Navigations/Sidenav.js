@@ -173,7 +173,7 @@ export default function Sidenav() {
                 <li>
                   <Link
                     className="d-flex align-items-center"
-                    to='/Leagues'
+                    to='/ApprovedLeagues'
                   >
                     <i className="fal fa-user-check"></i>
                     <span className="menu-item text-truncate" data-i18n="Preview">

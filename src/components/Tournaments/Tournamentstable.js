@@ -39,7 +39,18 @@ import{Badge,} from "reactstrap";
         );
         triggeringFunction();
     }
-  
+    const rejectTournament = async (tournamentID) => {
+      // console.log(streamID)
+      axios.put(`https://thewebtestlink.xyz/api/admin/rejectTournamentRequest/${tournamentID}`,
+      
+        null,
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` },
+        }
+      );
+      triggeringFunction();
+  }
+
 
     
   
@@ -79,6 +90,7 @@ import{Badge,} from "reactstrap";
                           <Table hover responsive>
                             <thead>
                               <tr>
+                              <th></th>
                                 <th>id</th>
                                 <th>user Name</th>
                                 <th>profile Picture</th>
@@ -91,6 +103,8 @@ import{Badge,} from "reactstrap";
                                 <th>tournament Detail</th>
                                 <th>tournament Status</th>
                                 <th>Approve</th>
+                                <th>Reject</th>
+                                <th></th>
                                
                               </tr>
                             </thead>
@@ -99,6 +113,7 @@ import{Badge,} from "reactstrap";
                                
                                 return (
                                   <tr key={i}>
+                                  <td></td>
                                     <td>
                                       <span className="align-middle fw-bold">
                                         {++i}
@@ -135,7 +150,8 @@ import{Badge,} from "reactstrap";
                                     </Badge>
                                   </td>
                                   <td><button className="btn btn-success" onClick={()=>{approveTournament(v._id)}}>Approve</button></td>
-                                    
+                                  <td><button className="btn btn-danger" onClick={()=>{rejectTournament(v._id)}}>Reject</button></td>
+                                    <td></td>
                                 
                                   </tr>
                                 );

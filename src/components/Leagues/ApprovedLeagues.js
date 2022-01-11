@@ -15,13 +15,14 @@ export default function Tables() {
   const triggeringFunction = async () => {
     // console.log(localStorage.getItem("userToken"));
     let getData = await axios.get(
-      `https://thewebtestlink.xyz/api/admin/getApprovedTournaments`,
+      `https://thewebtestlink.xyz/api/admin/getApprovedLeagues`,
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
         },
       }
     );
+    console.log(getData.data)
     settopteenlist(getData.data);
   };
   
@@ -48,7 +49,7 @@ export default function Tables() {
                       <div className="row align-items-center">
                         <div className="col-md-9">
                           <div className="card-header">
-                            <h4 className="card-title">Approved Tournaments Requests</h4>
+                            <h4 className="card-title">Approved Leagues Requests</h4>
                           </div>
                         </div>
                         <div className="col-md-3"></div>
@@ -66,9 +67,9 @@ export default function Tables() {
                               <th>game Name</th>
                               <th>player Type</th>
                               <th>noOf Player</th>
-                              <th>tournament Name</th>
-                              <th>tournament Type</th>
-                              <th>tournament Detail</th>
+                              <th>league Detail</th>
+                              <th>league Name</th>
+                              <th>league Type</th>
                               <th>tournament Status</th>
                             </tr>
                           </thead>
@@ -98,14 +99,14 @@ export default function Tables() {
                                   <td>{v.game.gameName}</td>
                                   <td>{v.playerType}</td>
                                   <td>{v.noOfPlayer}</td>
-                                  <td>{v.tournamentName}</td>
-                                  <td>{v.tournamentType}</td>
+                                  <td>{v.leagueDetail}</td>
+                                  <td>{v.leagueName}</td>
                                   <td className="turna-det">
-                                    {v.tournamentDetail}
+                                    {v.leagueType}
                                   </td>
                                   <td>
                                     <Badge pill color="danger" className="me-1">
-                                      {v.tournamentStatus}
+                                      {v.leagueStatus}
                                     </Badge>
                                   </td>
                                   {/* <td><button className="btn btn-success" onClick={()=>{approveTournament(v._id)}}>Approve</button></td> */}
