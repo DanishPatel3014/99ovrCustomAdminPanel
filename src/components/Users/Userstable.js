@@ -51,6 +51,65 @@ import { MoreVertical} from "react-feather";
         triggeringFunction(currentPage);
       }, [currentPage]);
       
+      // Function to set the current info of active status and id of clicked user
+      const [ActiveStatus, setActiveStatus] = useState(true);
+      const [CurrentClickedUserActiveStatusID, setCurrentClickedUserActiveStatusID] = useState('')
+
+      const changeUserActiveStatusAndID = (activeStatus,clickedUserID) => {
+        setActiveStatus(activeStatus);
+        if(clickedUserID === CurrentClickedUserActiveStatusID){
+          updateActiveRecord()
+        }else{
+          setCurrentClickedUserActiveStatusID(clickedUserID);
+        }
+      }
+
+      const updateActiveRecord = async () => {
+        console.log(CurrentClickedUserActiveStatusID)
+        await axios.put(`https://thewebtestlink.xyz/api/admin/userActive/${CurrentClickedUserActiveStatusID}`,
+          null,
+          {
+            headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` },
+          }
+        );
+        triggeringFunction(currentPage);
+      }
+
+      useEffect(() => {
+        if(CurrentClickedUserActiveStatusID){
+          updateActiveRecord();
+        }
+      }, [CurrentClickedUserActiveStatusID])
+
+       // Function to set the current info of verify status and id of clicked user
+       const [VerifyStatus, setVerifyStatus] = useState(true);
+       const [CurrentClickedUserVerifyStatusID, setCurrentClickedUserVerifyStatusID] = useState('')
+ 
+       const changeUserVerifyStatusAndID = (verifyStatus,clickedUserID) => {
+        setVerifyStatus(verifyStatus);
+        if(clickedUserID === CurrentClickedUserVerifyStatusID){
+          updateVerifyRecord();
+        }else{
+          setCurrentClickedUserVerifyStatusID(clickedUserID);
+        }
+       }
+ 
+       const updateVerifyRecord = async () => {
+         console.log(CurrentClickedUserVerifyStatusID)
+         await axios.put(`https://thewebtestlink.xyz/api/admin/userVerify/${CurrentClickedUserVerifyStatusID}`,
+           null,
+           {
+             headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` },
+           }
+         );
+         triggeringFunction(currentPage);
+       }
+ 
+       useEffect(() => {
+          if(CurrentClickedUserVerifyStatusID){
+            updateVerifyRecord();
+          }
+       }, [CurrentClickedUserVerifyStatusID])
   
     return (
         <div>
@@ -90,14 +149,14 @@ import { MoreVertical} from "react-feather";
                               <tr>
                                 <th>id</th>
                                 <th>user Name</th>
-                                <th>online status</th>
+                                {/* <th>online status</th> */}
                                 <th>user email</th>
-                                <th>active Status</th>
-                                <th>verified User</th>
                                 <th>xp</th>
                                 <th>coins</th>
                                 <th>level</th>
                                 <th>99 Count</th>
+                                <th>active Status</th>
+                                <th>verified User</th>
                                 <th>activities/post</th>
                                 
                                
@@ -115,15 +174,31 @@ import { MoreVertical} from "react-feather";
                                     </td>
                                     <td>{v.userName}</td>
                                     
-                                    <td>{v.online_status}</td>
+                                    {/* <td>{v.online_status}</td> */}
                                     <td>{v.email}</td>
-                                    <td>{v.activeStatus===true?"User Active":"User Nonactive"}</td>
-                                    <td>{v.verifiedUser===true?"User Verified":"User Nonverified"}</td>
                                     <td>{v.xp}</td>
                                     <td>{v.coins}</td>
                                     <td>{v.level}</td>
                                     
                                     <td>{v._99Count}</td>
+                                    <td>{
+                                      v.activeStatus === true ? 
+                                        <button onClick={()=>{
+                                          changeUserActiveStatusAndID(v.activeStatus,v._id)
+                                        }} className="btn btn-success">Active</button> :
+                                        <button onClick={()=>{
+                                          changeUserActiveStatusAndID(v.activeStatus,v._id)
+                                        }}  className="btn btn-danger">InActive</button>
+                                    }</td>
+                                    <td>{
+                                      v.verifiedUser === true ?
+                                        <button onClick={()=>{
+                                          changeUserVerifyStatusAndID(v.verifiedUser,v._id)
+                                        }} className="btn btn-success">Verified</button> :
+                                        <button onClick={()=>{
+                                          changeUserVerifyStatusAndID(v.verifiedUser,v._id)
+                                        }} className="btn btn-danger">Non-Verified</button>
+                                    }</td>
                                    <td>
                                    <UncontrolledDropdown>
                                       <DropdownToggle

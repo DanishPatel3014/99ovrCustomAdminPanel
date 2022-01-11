@@ -19,7 +19,7 @@ import { useParams } from "react-router";
 
     
 
-    const triggeringFunction = async (currentPage) => {
+    const triggeringFunction = async () => {
         
         let getData = await axios.get(
           `https://thewebtestlink.xyz/api/admin/userActivities/${currentUserActivityID}`,
@@ -54,7 +54,9 @@ import { useParams } from "react-router";
       useEffect(() => {
         triggeringFunction(currentPage);
       }, [currentPage]);
-      
+      useEffect(() => {
+        triggeringFunction();
+      }, []);
   
     return (
         <div>
@@ -93,14 +95,14 @@ import { useParams } from "react-router";
                             <thead>
                               <tr>
                                 <th>id</th>
-                                <th>user Name</th>
-                                <th>online status</th>
-                                <th>user email</th>
-                                <th>xp</th>
-                                <th>coins</th>
+                                <th>Coins</th>
+                                <th>Comment Count</th>
+                                <th>Favorite Game</th>
+                                <th>Followers</th>
+                                <th>Followings</th>
                                 <th>level</th>
-                                <th>total LikedVideos</th>
-                                <th>total 99 Videos</th>
+                                <th>Joined Clubs</th>
+                                <th>Posts</th>
                                 <th>total SharedVideos</th>
                                 <th>total CommentedVideos</th>
                                 <th>99 Count</th>
@@ -120,15 +122,15 @@ import { useParams } from "react-router";
                                         {currentPage === 1 ? (i + 1) : ((i + (10 * (currentPage - 1)))+1)}
                                       </span>
                                     </td>
-                                    <td>{v.userName}</td>
-                                    
-                                    <td>{v.online_status}</td>
-                                    <td>{v.email}</td>
-                                    <td>{v.xp}</td>
                                     <td>{v.coins}</td>
+                                    
+                                    <td>{v.commentCount}</td>
+                                    <td>{v.favoriteGames}</td>
+                                    <td>{v.followers}</td>
+                                    <td>{v.followings}</td>
                                     <td>{v.level}</td>
-                                    <td>{v.totalLikedVideos}</td>
-                                    <td>{v.total99edVideos}</td>
+                                    <td>{v.joinedClubs}</td>
+                                    <td>{v.post}</td>
                                     <td>{v.totalSharedVideos}</td>
                                     <td>{v.totalCommentedVideos}</td>
                                     <td>{v._99Count}</td>
