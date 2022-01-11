@@ -1,9 +1,9 @@
 import React, { useEffect , useState} from "react";
-import{Table} from "reactstrap";
 import { Spinner } from "reactstrap";
 import axios from 'axios'
 import ReactPaginate from "react-paginate";
-  
+import{Table,UncontrolledDropdown,DropdownMenu,DropdownItem,DropdownToggle,} from "reactstrap";
+import { MoreVertical} from "react-feather";
   export default function Tables() {
    
    
@@ -92,17 +92,14 @@ import ReactPaginate from "react-paginate";
                                 <th>user Name</th>
                                 <th>online status</th>
                                 <th>user email</th>
+                                <th>active Status</th>
+                                <th>verified User</th>
                                 <th>xp</th>
                                 <th>coins</th>
                                 <th>level</th>
-                                <th>total LikedVideos</th>
-                                <th>total 99 Videos</th>
-                                <th>total SharedVideos</th>
-                                <th>total CommentedVideos</th>
                                 <th>99 Count</th>
-                                <th>likes Count</th>
-                                <th>share Count</th>
-                                <th>comment Count</th>
+                                <th>activities/post</th>
+                                
                                
                               </tr>
                             </thead>
@@ -120,17 +117,44 @@ import ReactPaginate from "react-paginate";
                                     
                                     <td>{v.online_status}</td>
                                     <td>{v.email}</td>
+                                    <td>{v.activeStatus===true?"User Active":"User Nonactive"}</td>
+                                    <td>{v.verifiedUser===true?"User Verified":"User Nonverified"}</td>
                                     <td>{v.xp}</td>
                                     <td>{v.coins}</td>
                                     <td>{v.level}</td>
-                                    <td>{v.totalLikedVideos}</td>
-                                    <td>{v.total99edVideos}</td>
-                                    <td>{v.totalSharedVideos}</td>
-                                    <td>{v.totalCommentedVideos}</td>
+                                    
                                     <td>{v._99Count}</td>
-                                    <td>{v.likesCount}</td>
-                                    <td>{v.shareCount}</td>
-                                    <td>{v.commentCount}</td>
+                                   <td>
+                                   <UncontrolledDropdown>
+                                      <DropdownToggle
+                                        className="icon-btn hide-arrow"
+                                        color="transparent"
+                                        size="sm"
+                                        caret
+                                      >
+                                        <MoreVertical size={15} />
+                                      </DropdownToggle>
+                                      <DropdownMenu>
+                                        <DropdownItem
+                                       
+                                        >
+                                         
+                                          <span className="align-middle">
+                                            User activities
+                                          </span>
+                                        </DropdownItem>
+                                        <DropdownItem
+                                          href="#"
+                                         
+                                        >
+                                          
+                                          <span className="align-middle">
+                                            User Post
+                                          </span>
+                                        </DropdownItem>
+                                      </DropdownMenu>
+                                    </UncontrolledDropdown>
+                                   </td>
                                     
      
                                    

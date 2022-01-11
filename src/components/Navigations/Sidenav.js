@@ -22,6 +22,10 @@ export default function Sidenav() {
     var element = document.getElementById("navTopTen");
     element.classList.toggle("open");
   }
+  function adduser() {
+    var element = document.getElementById("navuser");
+    element.classList.toggle("open");
+  }
   return (
     <div>
       <div
@@ -223,13 +227,39 @@ export default function Sidenav() {
                 </span>
               </Link>
             </li>
-            <li className=" nav-item">
-              <Link className="d-flex align-items-center" to='/Users'>
+            
+            <li className=" nav-item has-sub" id="navuser" onClick={() => adduser()}>
+              <Link className="d-flex align-items-center" to=''>
               <i class="fal fa-users"></i>
-                <span className="menu-title text-truncate" data-i18n="Email">
+                <span className="menu-title text-truncate" data-i18n="Invoice">
                 Users
                 </span>
               </Link>
+              <ul className="menu-content">
+                <li>
+                  <Link
+                    className="d-flex align-items-center"
+                    to='/Users'>
+                 
+                 <i class="fal fa-poll-people"></i>
+                    <span className="menu-item text-truncate" data-i18n="List">
+                    Users list
+                    </span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="d-flex align-items-center"
+                    to=' '
+                  >
+                    <i className="fal fa-user-check"></i>
+                    <span className="menu-item text-truncate" data-i18n="Preview">
+                    Stream Approved
+                    </span>
+                  </Link>
+                </li>
+                
+              </ul>
             </li>
 
             <li className=" nav-item">
