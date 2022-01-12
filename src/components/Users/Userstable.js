@@ -27,6 +27,7 @@ import { MoreVertical} from "react-feather";
     console.log(getData.data)
     window.scrollTo(0, 0)
         settopteenlist(getData.data.result);
+        document.getElementById('yellowLoader').classList.remove('show-loader')
       
       };
       
@@ -112,7 +113,9 @@ import { MoreVertical} from "react-feather";
        }, [CurrentClickedUserVerifyStatusID])
   
     return (
+      
         <div>
+          
         <button
           id="munnababa"
           style={{ display: "none" }}
@@ -121,6 +124,7 @@ import { MoreVertical} from "react-feather";
           }}
         ></button>
         <div className="app-content content ">
+          
           <div className="content-overlay"></div>
           <div className="header-navbar-shadow"></div>
           <div className="content-wrapper container-xxl p-0">
@@ -135,6 +139,7 @@ import { MoreVertical} from "react-feather";
                           <div className="col-md-9">
                             <div className="card-header">
                               <h4 className="card-title">Users Requests</h4>
+                             
                             </div>
                           </div>
                           <div className="col-md-3">
@@ -184,19 +189,23 @@ import { MoreVertical} from "react-feather";
                                     <td>{
                                       v.activeStatus === true ? 
                                         <button onClick={()=>{
-                                          changeUserActiveStatusAndID(v.activeStatus,v._id)
+                                          changeUserActiveStatusAndID(v.activeStatus,v._id);
+                                          document.getElementById('yellowLoader').classList.add('show-loader');
                                         }} className="btn btn-success">Active</button> :
                                         <button onClick={()=>{
-                                          changeUserActiveStatusAndID(v.activeStatus,v._id)
+                                          changeUserActiveStatusAndID(v.activeStatus,v._id);
+                                          document.getElementById('yellowLoader').classList.add('show-loader');
                                         }}  className="btn btn-danger">InActive</button>
                                     }</td>
                                     <td>{
                                       v.verifiedUser === true ?
                                         <button onClick={()=>{
-                                          changeUserVerifyStatusAndID(v.verifiedUser,v._id)
+                                          changeUserVerifyStatusAndID(v.verifiedUser,v._id);
+                                          document.getElementById('yellowLoader').classList.add('show-loader');
                                         }} className="btn btn-success">Verified</button> :
                                         <button onClick={()=>{
-                                          changeUserVerifyStatusAndID(v.verifiedUser,v._id)
+                                          changeUserVerifyStatusAndID(v.verifiedUser,v._id);
+                                          document.getElementById('yellowLoader').classList.add('show-loader');
                                         }} className="btn btn-danger">Non-Verified</button>
                                     }</td>
                                    <td>

@@ -10,7 +10,6 @@ export default function Home() {
      <Topnav/>
      <Sidenav/>
      <Users/>
-      
     </div>
   );
 }

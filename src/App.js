@@ -17,11 +17,13 @@ import './assets/css/themes/dark-layout.css'
 import './assets/css/colors.css'
 import './assets/css/style.css'
 import AppRoute from './config/Route'
+import YellowLoader from './components/YellowLoader/YellowLoader'
 
 
 function App() {
   return (
     <div className="App">
+      <YellowLoader />
       <AppRoute/>
     </div>
   );
