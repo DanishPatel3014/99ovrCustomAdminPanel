@@ -4,7 +4,9 @@ import axios from 'axios'
 import ReactPaginate from "react-paginate";
 import{Table,UncontrolledDropdown,DropdownMenu,DropdownItem,DropdownToggle,} from "reactstrap";
 import { MoreVertical} from "react-feather";
-  export default function Tables() {
+import { Link } from 'react-router-dom'
+
+export default function Tables() {
    
    
 
@@ -13,8 +15,7 @@ import { MoreVertical} from "react-feather";
     const [currentPage, setCurrentPage] = useState(1);
 
 
-    
-
+  
     const triggeringFunction = async (currentPage) => {
         
         let getData = await axios.get(
@@ -28,7 +29,7 @@ import { MoreVertical} from "react-feather";
     window.scrollTo(0, 0)
         settopteenlist(getData.data.result);
         document.getElementById('yellowLoader').classList.remove('show-loader')
-      
+          
       };
       
 
@@ -46,6 +47,7 @@ import { MoreVertical} from "react-feather";
   
 
     const handlePageClick = (data) => {
+        document.getElementById('yellowLoader').classList.add('show-loader');
         setCurrentPage(data.selected + 1); 
       }
       useEffect(() => {
@@ -224,7 +226,7 @@ import { MoreVertical} from "react-feather";
                                         >
                                          
                                           <span className="align-middle">
-                                            User activities
+                                            <Link to={`/userActivityc${v._id}`}>User activities</Link>
                                           </span>
                                         </DropdownItem>
                                         <DropdownItem
@@ -239,11 +241,7 @@ import { MoreVertical} from "react-feather";
                                       </DropdownMenu>
                                     </UncontrolledDropdown>
                                    </td>
-                                    
-     
-                                   
-                                    
-                                
+
                                   </tr>
                                 );
                               })}
