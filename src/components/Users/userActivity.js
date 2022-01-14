@@ -10,13 +10,17 @@ import { useParams } from "react-router";
     const params = useParams();
     console.log(params.userActivityID)
     const currentUserActivityID = params.userActivityID;
-    console.log(currentUserActivityID)
+    console.log(params.userActivityID)
 
     const [topteenlist, settopteenlist] = useState([])
+    // const [NewID, setNewID] = useState('')
+    // setNewID(currentUserActivityID);
     const [PageCount, setPageCount] = useState(1)
     const [currentPage, setCurrentPage] = useState(1);
 
-
+    // useEffect(() => {
+    //   triggeringFunction();
+    // }, [NewID])
     
 
     const triggeringFunction = async () => {
@@ -89,7 +93,7 @@ import { useParams } from "react-router";
                           </div>
                         </div>
                       </div>
-                      <div className="table-responsive">
+                      {/* <div className="table-responsive">
                         {topteenlist.length > 0 ? (
                           <Table hover responsive>
                             <thead>
@@ -154,7 +158,7 @@ import { useParams } from "react-router";
                             <Spinner type="grow" color="success" />
                           </div>
                         )}
-                      </div>
+                      </div> */}
                       <ReactPaginate 
                       previousLabel={'<<'}
                       nextLabel={'>>'}

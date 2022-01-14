@@ -226,7 +226,7 @@ export default function Tables() {
                                         >
                                          
                                           <span className="align-middle">
-                                            <Link to={`/userActivityc${v._id}`}>User activities</Link>
+                                            <Link to={`/userActivity/${v._id}`}>User activities</Link>
                                           </span>
                                         </DropdownItem>
                                         <DropdownItem
@@ -235,7 +235,8 @@ export default function Tables() {
                                         >
                                           
                                           <span className="align-middle">
-                                            User Post
+                                            <Link to={`/userPosts/${v._id}`}>User Post</Link>
+                                            
                                           </span>
                                         </DropdownItem>
                                       </DropdownMenu>
