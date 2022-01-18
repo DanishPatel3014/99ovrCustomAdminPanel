@@ -12,11 +12,12 @@ import { useParams } from "react-router";
     const currentUserActivityID = params.userActivityID;
     console.log(params.userActivityID)
 
-    const [topteenlist, settopteenlist] = useState([])
+    const [topteenlist, settopteenlist] = useState(null)
     // const [NewID, setNewID] = useState('')
     // setNewID(currentUserActivityID);
     const [PageCount, setPageCount] = useState(1)
     const [currentPage, setCurrentPage] = useState(1);
+    const [ShowData, setShowData] = useState(false)
 
     // useEffect(() => {
     //   triggeringFunction();
@@ -31,11 +32,13 @@ import { useParams } from "react-router";
             headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` },
           }
         );
+        // lodash
         // setPageCount(Math.ceil(getData.data.totallength/10))
-    console.log(getData.data)
-    window.scrollTo(0, 0)
-        settopteenlist(getData.data);
-      
+        console.log(getData.data)
+        window.scrollTo(0, 0)
+        settopteenlist({VeryNew:getData.data});
+        console.log(topteenlist?topteenlist.VeryNew:'ok');
+        setShowData(true)
       };
       
 
@@ -61,7 +64,7 @@ import { useParams } from "react-router";
       useEffect(() => {
         triggeringFunction();
       }, []);
-  
+
     return (
         <div>
         <button
@@ -93,12 +96,12 @@ import { useParams } from "react-router";
                           </div>
                         </div>
                       </div>
-                      {/* <div className="table-responsive">
-                        {topteenlist.length > 0 ? (
-                          <Table hover responsive>
+                      <div className="table-responsive">
+                          {
+                            ShowData ? 
+                            <Table hover responsive>
                             <thead>
                               <tr>
-                                <th>id</th>
                                 <th>Coins</th>
                                 <th>Comment Count</th>
                                 <th>Favorite Game</th>
@@ -113,52 +116,31 @@ import { useParams } from "react-router";
                                 <th>likes Count</th>
                                 <th>share Count</th>
                                 <th>comment Count</th>
-                               
                               </tr>
                             </thead>
                             <tbody>
-                              {topteenlist.map((v, i) => {
-                               
-                                return (
-                                  <tr key={i}>
-                                    <td>
-                                      <span className="align-middle fw-bold">
-                                        {currentPage === 1 ? (i + 1) : ((i + (10 * (currentPage - 1)))+1)}
-                                      </span>
-                                    </td>
-                                    <td>{v.coins}</td>
-                                    
-                                    <td>{v.commentCount}</td>
-                                    <td>{v.favoriteGames}</td>
-                                    <td>{v.followers}</td>
-                                    <td>{v.followings}</td>
-                                    <td>{v.level}</td>
-                                    <td>{v.joinedClubs}</td>
-                                    <td>{v.post}</td>
-                                    <td>{v.totalSharedVideos}</td>
-                                    <td>{v.totalCommentedVideos}</td>
-                                    <td>{v._99Count}</td>
-                                    <td>{v.likesCount}</td>
-                                    <td>{v.shareCount}</td>
-                                    <td>{v.commentCount}</td>
-                                    
-     
-                                   
-                                    
-                                
-                                  </tr>
-                                );
-                              })}
+                              <tr key={topteenlist.VeryNew._id}>
+                                <td>{topteenlist.VeryNew?topteenlist.VeryNew.coins:0}</td>    
+                                <td>{topteenlist.VeryNew?topteenlist.VeryNew.commentCount:0}</td>
+                                <td>{topteenlist.VeryNew?topteenlist.VeryNew.favoriteGames.length:0}</td>
+                                <td>{topteenlist.VeryNew?topteenlist.VeryNew.followers.length:0}</td>
+                                <td>{topteenlist.VeryNew?topteenlist.VeryNew.followings.length:0}</td>
+                                <td>{topteenlist.VeryNew?topteenlist.VeryNew.level:0}</td>
+                                <td>{topteenlist.VeryNew?topteenlist.VeryNew.joinedClubs.length:0}</td>
+                                <td>{topteenlist.VeryNew?topteenlist.VeryNew.post:0}</td>
+                                <td>{topteenlist.VeryNew?topteenlist.VeryNew.totalSharedVideos:0}</td>
+                                <td>{topteenlist.VeryNew?topteenlist.VeryNew.totalCommentedVideos:0}</td>
+                                <td>{topteenlist.VeryNew?topteenlist.VeryNew._99Count:0}</td>
+                                <td>{topteenlist.VeryNew?topteenlist.VeryNew.likesCount:0}</td>
+                                <td>{topteenlist.VeryNew?topteenlist.VeryNew.shareCount:0}</td>
+                                <td>{topteenlist.VeryNew?topteenlist.VeryNew.commentCount:0}</td>
+                              </tr>
                             </tbody>
                           </Table>
-                        ) : (
-                          <div className="spiner">
-                            <Spinner type="grow" color="primary" />
-                            <Spinner type="grow" color="secondary" />
-                            <Spinner type="grow" color="success" />
-                          </div>
-                        )}
-                      </div> */}
+                          :
+                          <div></div>
+                          }
+                      </div>
                       <ReactPaginate 
                       previousLabel={'<<'}
                       nextLabel={'>>'}

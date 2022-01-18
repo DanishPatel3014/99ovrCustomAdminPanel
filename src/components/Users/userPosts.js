@@ -12,7 +12,7 @@ import { useParams } from "react-router";
     const currentUserPostsID = params.userPostsID;
     console.log(params.userPostsID)
 
-    const [topteenlist, settopteenlist] = useState([])
+    const [topteenlist, settopteenlist] = useState([null])
     // const [NewID, setNewID] = useState('')
     // setNewID(currentUserActivityID);
     const [PageCount, setPageCount] = useState(1)
