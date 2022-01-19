@@ -4,7 +4,10 @@ import { Spinner } from "reactstrap";
 import axios from 'axios'
 import ReactPaginate from "react-paginate";
 import { useParams } from "react-router";
+import ReactFancyBox from 'react-fancybox'
+import animationPic from "../../assets/images/avtar/animation-pic.jpg";
   
+
   export default function Tables() {
    
     const params = useParams();
@@ -12,12 +15,12 @@ import { useParams } from "react-router";
     const currentUserPostsID = params.userPostsID;
     console.log(params.userPostsID)
 
-    const [topteenlist, settopteenlist] = useState([null])
+    const [topteenlist, settopteenlist] = useState([])
     // const [NewID, setNewID] = useState('')
     // setNewID(currentUserActivityID);
     const [PageCount, setPageCount] = useState(1)
     const [currentPage, setCurrentPage] = useState(1);
-
+    const [CurrentSelectedUser,  ] = useState('')
     // useEffect(() => {
     //   triggeringFunction();
     // }, [NewID])
@@ -32,10 +35,9 @@ import { useParams } from "react-router";
           }
         );
         // setPageCount(Math.ceil(getData.data.totallength/10))
-    console.log(getData.data)
+    console.log(getData.data.result)
     window.scrollTo(0, 0)
-        settopteenlist(getData.data);
-      
+        settopteenlist(getData.data.result);
       };
       
 
@@ -83,7 +85,7 @@ import { useParams } from "react-router";
                         <div className="row align-items-center">
                           <div className="col-md-9">
                             <div className="card-header">
-                              <h4 className="card-title">Users Requests</h4>
+                              <h4 className="card-title">{}</h4>
                             </div>
                           </div>
                           <div className="col-md-3">
@@ -91,27 +93,21 @@ import { useParams } from "react-router";
                           </div>
                         </div>
                       </div>
-                      {/* <div className="table-responsive">
+                      <div className="table-responsive">
                         {topteenlist.length > 0 ? (
                           <Table hover responsive>
                             <thead>
                               <tr>
                                 <th>id</th>
-                                <th>Coins</th>
+                                <th>User Name</th>
+                                <th>Game Tag</th>
                                 <th>Comment Count</th>
-                                <th>Favorite Game</th>
-                                <th>Followers</th>
-                                <th>Followings</th>
-                                <th>level</th>
-                                <th>Joined Clubs</th>
-                                <th>Posts</th>
-                                <th>total SharedVideos</th>
-                                <th>total CommentedVideos</th>
-                                <th>99 Count</th>
-                                <th>likes Count</th>
-                                <th>share Count</th>
-                                <th>comment Count</th>
-                               
+                                <th>Description</th>
+                                <th>Game Name</th>
+                                <th>Game Image</th>
+                                <th>Likes</th>
+                                <th>Shares</th>
+                                <th>_99s</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -124,31 +120,34 @@ import { useParams } from "react-router";
                                         {currentPage === 1 ? (i + 1) : ((i + (10 * (currentPage - 1)))+1)}
                                       </span>
                                     </td>
-                                    <td>{v.coins}</td>
                                     
-                                    <td>{v.commentCount}</td>
-                                    <td>{v.favoriteGames}</td>
-                                    <td>{v.followers}</td>
-                                    <td>{v.followings}</td>
-                                    <td>{v.level}</td>
-                                    <td>{v.joinedClubs}</td>
-                                    <td>{v.post}</td>
-                                    <td>{v.totalSharedVideos}</td>
-                                    <td>{v.totalCommentedVideos}</td>
-                                    <td>{v._99Count}</td>
-                                    <td>{v.likesCount}</td>
-                                    <td>{v.shareCount}</td>
-                                    <td>{v.commentCount}</td>
-                                    
-     
-                                   
-                                    
-                                
+                                    <td>{v.user.userName}</td>
+                                    <td>{v.user.gamerTag}</td>
+                                    <td>{v.comment.length}</td>
+                                    <td>{v.description}</td>
+                                    <td>{v.game.gameName}</td>
+                                    <td>
+                                    <div className="aniimg">
+                                      {<ReactFancyBox
+                                        thumbnail={v.image ? v.image : animationPic}
+                                        image={v.image ? v.image : animationPic}/>}
+                                      </div>
+                                        </td>
+                                    <td>{v.likes.length}</td>
+                                    <td>{v.shares.length}</td>
+                                    <td>{v._99s.length}</td>
+
                                   </tr>
                                 );
-                              })}
+                              })
+                              }
+                              
                             </tbody>
                           </Table>
+                        ) : topteenlist.length === 0 ? (
+                          <div style={{textAlign:"center"}}>
+                            <p>No Data to Show</p>
+                          </div>
                         ) : (
                           <div className="spiner">
                             <Spinner type="grow" color="primary" />
@@ -156,7 +155,7 @@ import { useParams } from "react-router";
                             <Spinner type="grow" color="success" />
                           </div>
                         )}
-                      </div> */}
+                      </div>
                       <ReactPaginate 
                       previousLabel={'<<'}
                       nextLabel={'>>'}
