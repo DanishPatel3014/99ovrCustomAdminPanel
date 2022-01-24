@@ -4,205 +4,168 @@ import DataTable from "react-data-table-component";
 import { ChevronDown } from "react-feather";
 import axios from "axios";
 import{Row,Col,Card,Input,Label,CardTitle,CardHeader,} from "reactstrap";
+import FancyVideo from "react-videojs-fancybox";
+import animationPic from '../../assets/images/avtar/animation-pic.jpg'
+import playicn from "../../assets/images/logo/play.png"
 
-const newdata = [
-  {
-    responsive_id: "",
-    id: 1,
-    avatar: "10.jpg",
-    full_name: "Korrie O'Crevy",
-    post: "Nuclear Power Engineer",
-    email: "kocrevy0@thetimes.co.uk",
-    city: "Krasnosilka",
-    start_date: "09/23/2016",
-    salary: "$23896.35",
-    age: "61",
-    experience: "1 Year",
-    status: 2,
-  },
-  {
-    responsive_id: "",
-    id: 2,
-    avatar: "1.jpg",
-    full_name: "Bailie Coulman",
-    post: "VP Quality Control",
-    email: "bcoulman1@yolasite.com",
-    city: "Hinigaran",
-    start_date: "05/20/2018",
-    salary: "$13633.69",
-    age: "63",
-    experience: "3 Years",
-    status: 2,
-  },
-  {
-    responsive_id: "",
-    id: 3,
-    avatar: "9.jpg",
-    full_name: "Stella Ganderton",
-    post: "Operator",
-    email: "sganderton2@tuttocitta.it",
-    city: "Golcowa",
-    start_date: "03/24/2018",
-    salary: "$13076.28",
-    age: "66",
-    experience: "6 Years",
-    status: 5,
-  },
-  {
-    responsive_id: "",
-    id: 4,
-    avatar: "10.jpg",
-    full_name: "Dorolice Crossman",
-    post: "Cost Accountant",
-    email: "dcrossman3@google.co.jp",
-    city: "Paquera",
-    start_date: "12/03/2017",
-    salary: "$12336.17",
-    age: "22",
-    experience: "2 Years",
-    status: 2,
-  },
-  {
-    responsive_id: "",
-    id: 5,
-    avatar: "",
-    full_name: "Harmonia Nisius",
-    post: "Senior Cost Accountant",
-    email: "hnisius4@gnu.org",
-    city: "Lucan",
-    start_date: "08/25/2017",
-    salary: "$10909.52",
-    age: "33",
-    experience: "3 Years",
-    status: 2,
-  },
-  {
-    responsive_id: "",
-    id: 6,
-    avatar: "",
-    full_name: "Genevra Honeywood",
-    post: "Geologist",
-    email: "ghoneywood5@narod.ru",
-    city: "Maofan",
-    start_date: "06/01/2017",
-    salary: "$17803.80",
-    age: "61",
-    experience: "1 Year",
-    status: 1,
-  },
-  {
-    responsive_id: "",
-    id: 7,
-    avatar: "",
-    full_name: "Eileen Diehn",
-    post: "Environmental Specialist",
-    email: "ediehn6@163.com",
-    city: "Lampuyang",
-    start_date: "10/15/2017",
-    salary: "$18991.67",
-    age: "59",
-    experience: "9 Years",
-    status: 3,
-  },
-  {
-    responsive_id: "",
-    id: 8,
-    avatar: "9.jpg",
-    full_name: "Richardo Aldren",
-    post: "Senior Sales Associate",
-    email: "raldren7@mtv.com",
-    city: "Skoghall",
-    start_date: "11/05/2016",
-    salary: "$19230.13",
-    age: "55",
-    experience: "5 Years",
-    status: 3,
-  },
-  {
-    responsive_id: "",
-    id: 9,
-    avatar: "2.jpg",
-    full_name: "Allyson Moakler",
-    post: "Safety Technician",
-    email: "amoakler8@shareasale.com",
-    city: "Mogilany",
-    start_date: "12/29/2018",
-    salary: "$11677.32",
-    age: "39",
-    experience: "9 Years",
-    status: 5,
-  },
-  {
-    responsive_id: "",
-    id: 10,
-    avatar: "9.jpg",
-    full_name: "Merline Penhalewick",
-    post: "Junior Executive",
-    email: "mpenhalewick9@php.net",
-    city: "Kanuma",
-    start_date: "04/19/2019",
-    salary: "$15939.52",
-    age: "23",
-    experience: "3 Years",
-    status: 2,
-  },
+let CheckBoxCounter = 0;
 
-];
-
-
-
-// let newdata = [];
-
+const pleaseCheckTheCheckBox = (Checking) => {
+  
+  // if(CheckBoxCounter === 10 && Checking === true){
+  //   console.log('Handle From Here')
+  //   console.log(CheckBoxCounter)
+  //   console.log(Checking)
+  //   let number = document.getElementsByClassName('myCheckbox').length;
+  //   let numberTag = document.getElementsByClassName('myCheckbox');
+  //   for(var i = 0; i < number; ++i) {
+  //     if(numberTag[i].checked === true) {
+  //       console.log('true bc')
+  //     }
+  //   }
+  // }
+  // else
+   if(Checking === true){
+    ++CheckBoxCounter;
+    if(CheckBoxCounter === 10){
+      let number = document.getElementsByClassName('myCheckbox').length;
+      let numberTag = document.getElementsByClassName('myCheckbox');
+      for(var i = 0; i < number; ++i) {
+        if(numberTag[i].checked === false) {
+          numberTag[i].style.display = 'none';
+        }
+      }
+    }
+    console.log(CheckBoxCounter)
+    console.log(Checking)
+  }else{
+    --CheckBoxCounter
+    let number = document.getElementsByClassName('myCheckbox').length;
+    let numberTag = document.getElementsByClassName('myCheckbox');
+    for(var i = 0; i < number; ++i) {
+      if(numberTag[i].checked === false) {
+        numberTag[i].style.display = 'block';
+      }
+    }
+    console.log(CheckBoxCounter)
+    console.log(Checking)
+    
+  }
+}
 
 const BootstrapCheckbox = forwardRef((props, ref) => (
   <div className="form-check">
-    <Input type="checkbox" ref={ref} {...props} />
+    <Input className="myCheckbox" type="checkbox"  ref={ref} {...props} onChange={(e)=>{pleaseCheckTheCheckBox(e.target.checked)}} />
   </div>
+  
 ));
 
 // ** Table Common Column ya hamara table
 export const columns = [
+  // {
+  //   name: "ID",
+  //   sortable: true,
+  //   minWidth: "250px",
+  //   selector: (row) => row.id,
+  // },
   {
     name: "Name",
-    minWidth: "250px",
-    sortable: (row) => row.full_name,
+    // minWidth: "250px",
+    sortable: (row) => row.postid.user.userName,
     cell: (row) => (
       <div className="d-flex align-items-center">
         <div className="user-info text-truncate ms-1">
-          <span className="d-block fw-bold text-truncate">{row.city}</span>
+          <span className="d-block fw-bold text-truncate">{row.postid.user.userName}</span>
           <small>{row.post}</small>
         </div>
       </div>
     ),
   },
   {
-    name: "Email",
-    sortable: true,
-    minWidth: "250px",
-    selector: (row) => row.email,
+    name: "Profile Picture",
+    sortable: false,
+    // minWidth: "250px",
+    selector: (row) => row.postid.user.profilePicture,
+    cell: (row) => (
+      <div className="aniimg">
+        <img
+          src={
+            row.postid.user.profilePicture
+              ? row.postid.user.profilePicture
+              : animationPic
+          }
+          alt=""
+        />
+      </div>
+    )
   },
   {
-    name: "Date",
+    name: "Description",
     sortable: true,
-    minWidth: "150px",
-    selector: (row) => row.city,
+    // minWidth: "250px",
+    selector: (row) => row.postid.description,
+  },
+  {
+    name: "Video",
+    sortable: false,
+    // minWidth: "150px",
+    selector: (row) => row.postid.path,
+    cell: (row) => (
+      <div>
+        <FancyVideo
+          source={
+            
+          `https://thewebtestlink.xyz/${row.postid.path}`
+          }
+          poster={playicn}
+          id={"sintel"}
+        />
+        {/* <span>{row.postid.path}</span> */}
+      </div>
+    )
   },
 
   {
-    name: "Salary",
-    sortable: true,
-    minWidth: "150px",
-    selector: (row) => row.salary,
+    name: "Game Picture",
+    sortable: false,
+    // minWidth: "150px",
+    selector: (row) => row.game.imagePath,
+    cell: (row) => (
+      <div className="aniimg">
+        <img
+          src={
+            row.postid.game.imagePath
+              ? row.postid.game.imagePath
+              : animationPic
+          }
+          alt=""
+        />
+      </div>
+    )
   },
   {
-    name: "Age",
+    name: "Game Name",
+    sortable: true,
+    // minWidth: "250px",
+    selector: (row) => row.postid.game.gameName,
+  },
+  {
+    name: "Comments",
+    sortable: true,
+    // minWidth: "100px",
+    selector: (row) => row.postid.comments,
+  },
+  {
+    name: "Likes",
     sortable: true,
     minWidth: "100px",
-    selector: (row) => row.age,
+    selector: (row) => row.postid.likes,
   },
 ];
 
 const DataTableWithButtons = () => {
+
+  const [CheckBoxCounter, setCheckBoxCounter] = useState(0);
   const [topteenlist, settopteenlist] = useState([]);
 
   useEffect(() => {
@@ -220,9 +183,17 @@ const DataTableWithButtons = () => {
       }
     );
     settopteenlist(getData.data);
-    // newdata = JSON.parse(JSON.stringify(getData.data));
-    console.log(newdata)
+
+    console.log(topteenlist)
+
   };
+
+  useEffect(() => {
+    console.log(topteenlist)
+  }, [topteenlist]);
+  
+
+  
 
   // ** States
 
@@ -237,23 +208,19 @@ const DataTableWithButtons = () => {
 
 
     if (value.length) {
-      updatedData = newdata.filter((item) => {
+      updatedData = topteenlist.filter((item) => {
         const startsWith =
-          item.full_name.toLowerCase().startsWith(value.toLowerCase()) ||
-          item.post.toLowerCase().startsWith(value.toLowerCase()) ||
-          item.email.toLowerCase().startsWith(value.toLowerCase()) ||
-          item.age.toLowerCase().startsWith(value.toLowerCase()) ||
-          item.salary.toLowerCase().startsWith(value.toLowerCase()) ||
-          item.start_date.toLowerCase().startsWith(value.toLowerCase()) 
+          item.postid.user.userName.toLowerCase().startsWith(value.toLowerCase()) ||
+          item.postid.game.gameName.toLowerCase().startsWith(value.toLowerCase()) ||
+          item.postid.comments.toString().startsWith(value) ||
+          item.postid.likes.toString().startsWith(value)
          
 
         const includes =
-          item.full_name.toLowerCase().includes(value.toLowerCase()) ||
-          item.post.toLowerCase().includes(value.toLowerCase()) ||
-          item.email.toLowerCase().includes(value.toLowerCase()) ||
-          item.age.toLowerCase().includes(value.toLowerCase()) ||
-          item.salary.toLowerCase().includes(value.toLowerCase()) ||
-          item.start_date.toLowerCase().includes(value.toLowerCase()) 
+          item.postid.user.userName.toLowerCase().includes(value.toLowerCase()) ||
+          item.postid.game.gameName.toLowerCase().includes(value.toLowerCase()) ||
+          item.postid.comments.toString().includes(value) ||
+          item.postid.likes.toString().includes(value)
       
 
         if (startsWith) {
@@ -313,7 +280,7 @@ const DataTableWithButtons = () => {
                           columns={columns}
                           className="react-dataTable"
                           sortIcon={<ChevronDown size={10} />}
-                          data={searchValue.length ? filteredData : newdata}
+                          data={searchValue.length ? filteredData : topteenlist}
                           selectableRowsComponent={BootstrapCheckbox}
                         />
                       </div>
