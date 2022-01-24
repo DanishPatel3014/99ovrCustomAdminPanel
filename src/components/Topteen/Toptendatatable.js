@@ -281,18 +281,18 @@ const DataTableWithButtons = () => {
                   <Fragment>
                     <Card>
                       <CardHeader className=" align-md-items-center  border-bottom">
-                        <CardTitle tag="h4">DataTable with Buttons</CardTitle>
-                        <div className="d-flex mt-md-0 mt-1">
+                          <div className="col-md-8"><CardTitle tag="h4">DataTable with Buttons</CardTitle></div>
+                          <div className="col-md-4">
+                          <div className="d-flex mt-md-0 mt-1">
                           <Col
-                            className="d-flex align-items-center justify-content-end mt-1"
-                            md="6"
-                            sm="12"
+                            className="d-flex align-items-center justify-content-end "
+                           
                           >
                             <Label className="me-1" for="search-input">
                               Search
                             </Label>
                             <Input
-                              className="dataTable-filter mb-50"
+                              className="dataTable-filter "
                               type="text"
                               bsSize="sm"
                               id="search-input"
@@ -301,6 +301,9 @@ const DataTableWithButtons = () => {
                             />
                           </Col>
                         </div>
+                          </div>
+                        
+                        
                       </CardHeader>
                     
                       <div className="react-dataTable">
