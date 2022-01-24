@@ -26,7 +26,8 @@
     "react-scripts": "4.0.3",
     "react-videojs-fancybox": "0.0.7",
     "reactstrap": "^9.0.1",
-    "web-vitals": "^1.1.2"
+    "web-vitals": "^1.1.2",
+    "react-data-table-component": "^7.4.5"
   },
   "scripts": {
     "start": "react-scripts start",
