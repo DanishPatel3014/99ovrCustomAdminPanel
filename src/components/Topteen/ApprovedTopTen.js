@@ -18,6 +18,8 @@ import playicn from "../../assets/images/logo/play.png"
         triggeringFunction();
       }, []);
       
+    
+      
 
     const triggeringFunction = async () => {
         // console.log(localStorage.getItem("userToken"));
@@ -30,7 +32,7 @@ import playicn from "../../assets/images/logo/play.png"
         console.log(getData.data)
         // settopteenlist(getData.data);
       };
-      
+    
     
   
     return (
@@ -74,7 +76,7 @@ import playicn from "../../assets/images/logo/play.png"
                       </div>
                       <div className="streamcls table-responsive">
                         {topteenlist.length > 0 ? (
-                          <Table hover responsive>
+                          <Table className="datatables-ajax" hover responsive>
                             <thead>
                               <tr>
                                 <th>id</th>

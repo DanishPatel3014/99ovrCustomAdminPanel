@@ -9,7 +9,7 @@ import playicn from "../../assets/images/logo/play.png"
   
   export default function Tables() {
    
-   
+   let newData = [];
 
     const [topteenlist, settopteenlist] = useState([])
 
@@ -28,6 +28,12 @@ import playicn from "../../assets/images/logo/play.png"
           }
         );
         settopteenlist(getData.data);
+        console.log()
+        // newData.push(getData.data)
+        // console.log({newData})
+        // console.log(newData.length)
+        newData = JSON.parse(JSON.stringify(getData.data));
+        console.log(newData)
       };
       
 
