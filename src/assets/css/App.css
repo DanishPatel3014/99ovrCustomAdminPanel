@@ -143,6 +143,7 @@ tr:nth-child(even) {
     top: 50%;
 }
 .show-loader{display: block;}
+.pagination{margin-top: 15px;}
 /* =====================MEDIA-SCEREEM====================== */
 
 @media (max-width: 767.98px)

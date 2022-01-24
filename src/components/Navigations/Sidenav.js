@@ -227,8 +227,17 @@ export default function Sidenav() {
                 </span>
               </Link>
             </li>
+
+            <li className=" nav-item " id="navuser" onClick={() => adduser()}>
+              <Link className="d-flex align-items-center" to='/Users'>
+              <i className="fal fa-poll-people"></i>
+                <span className="menu-title text-truncate" data-i18n="Email">
+                Users
+                </span>
+              </Link>
+            </li>
             
-            <li className=" nav-item has-sub" id="navuser" onClick={() => adduser()}>
+            {/* <li className=" nav-item has-sub" id="navuser" onClick={() => adduser()}>
               <Link className="d-flex align-items-center" to=''>
               <i class="fal fa-users"></i>
                 <span className="menu-title text-truncate" data-i18n="Invoice">
@@ -260,7 +269,7 @@ export default function Sidenav() {
                 </li>
                 
               </ul>
-            </li>
+            </li> */}
 
             <li className=" nav-item">
               <Link className="d-flex align-items-center" to='/GetGame'>
