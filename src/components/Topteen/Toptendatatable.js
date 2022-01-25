@@ -125,7 +125,7 @@ export const columns = [
     name: "Checkbox",
     cell: (row) => (
       <div className="form-check">
-        <Input className="myCheckbox" type="checkbox" value={row._id} name={row.postid.user.userName}  onChange={(e)=>{
+        <Input className="myCheckbox" type="checkbox" value={row.postid.postid} name={row.postid.user.userName}  onChange={(e)=>{
           pleaseCheckTheCheckBox(e.target.checked, e.target.value,e.target.name)
           }} />
       </div>
@@ -135,7 +135,7 @@ export const columns = [
     name: "Rank",
     cell: (row) => (
       <div className="my-select">
-        <select className="selectMain" style={{display:'block'}} disabled='true' id={row._id} onChange={()=>{RemoveOtherOptions(row._id)}}>
+        <select className="selectMain" style={{display:'block'}} disabled='true' id={row.postid.postid} onChange={()=>{RemoveOtherOptions(row.postid.postid)}}>
           <option id={0} value={0} style={{display:'none'}}>Nill</option>
           <option id={1} value={1}>1</option>
           <option id={2} value={2}>2</option>
@@ -276,7 +276,7 @@ const DataTableWithButtons = () => {
     document.getElementById('openModalBtn').disabled = true;
     console.log(top10);
 
-    let getData = await axios.get(
+    let getData = await axios.post(
       `https://thewebtestlink.xyz/api/admin/approveTop10Request`,
       top10,
       {
