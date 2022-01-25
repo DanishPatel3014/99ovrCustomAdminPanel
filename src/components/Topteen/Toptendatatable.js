@@ -34,6 +34,14 @@ const pleaseCheckTheCheckBox = (Checking, checkID, name) => {
 
       document.getElementById(checkID).disabled = false;
 
+      let selectedDivToShow = document.getElementsByClassName('selectMain').length;
+      let selectedTagToShow = document.getElementsByClassName('selectMain');
+      for(var i = 0; i < selectedDivToShow; ++i) {
+        if(selectedTagToShow[i].disabled === false) {
+          selectedTagToShow[i].style.display = 'block';
+        }
+      }
+
       let selectedDiv = document.getElementsByClassName('selectMain').length;
       let selectedTag = document.getElementsByClassName('selectMain');
       for(var i = 0; i < selectedDiv; ++i) {
@@ -41,6 +49,7 @@ const pleaseCheckTheCheckBox = (Checking, checkID, name) => {
           selectedTag[i].style.display = 'none';
         }
       }
+
       // document.getElementById('openModalBtn').disabled = false;
     }
     document.getElementById(checkID).disabled = false;
@@ -135,7 +144,7 @@ export const columns = [
     name: "Rank",
     cell: (row) => (
       <div className="my-select">
-        <select className="selectMain" style={{display:'block'}} disabled='true' id={row.postid.postid} onChange={()=>{RemoveOtherOptions(row.postid.postid)}}>
+        <select className="selectMain" style={{display:'none'}} disabled='true' id={row.postid.postid} onChange={()=>{RemoveOtherOptions(row.postid.postid)}}>
           <option id={0} value={0} style={{display:'none'}}>Nill</option>
           <option id={1} value={1}>1</option>
           <option id={2} value={2}>2</option>
@@ -287,6 +296,8 @@ const DataTableWithButtons = () => {
     );
 
     console.log(getData)
+
+    triggeringFunction();
 
   };
 
