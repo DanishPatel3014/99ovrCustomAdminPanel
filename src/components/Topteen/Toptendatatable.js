@@ -7,26 +7,17 @@ import{Row,Col,Card,Input,Label,CardTitle,CardHeader,} from "reactstrap";
 import FancyVideo from "react-videojs-fancybox";
 import animationPic from '../../assets/images/avtar/animation-pic.jpg'
 import playicn from "../../assets/images/logo/play.png"
+import e from "cors";
 
 let CheckBoxCounter = 0;
+var tenids = [];
 
-const pleaseCheckTheCheckBox = (Checking) => {
-  
-  // if(CheckBoxCounter === 10 && Checking === true){
-  //   console.log('Handle From Here')
-  //   console.log(CheckBoxCounter)
-  //   console.log(Checking)
-  //   let number = document.getElementsByClassName('myCheckbox').length;
-  //   let numberTag = document.getElementsByClassName('myCheckbox');
-  //   for(var i = 0; i < number; ++i) {
-  //     if(numberTag[i].checked === true) {
-  //       console.log('true bc')
-  //     }
-  //   }
-  // }
-  // else
+const pleaseCheckTheCheckBox = (Checking, checkID, name) => {
+  console.log(name)
+
    if(Checking === true){
     ++CheckBoxCounter;
+    tenids.push(checkID);
     if(CheckBoxCounter === 10){
       let number = document.getElementsByClassName('myCheckbox').length;
       let numberTag = document.getElementsByClassName('myCheckbox');
@@ -35,11 +26,18 @@ const pleaseCheckTheCheckBox = (Checking) => {
           numberTag[i].style.display = 'none';
         }
       }
+      document.getElementById('openModalBtn').disabled = false;
+      // document.getElementById('selectForRank').disabled = false;
     }
-    console.log(CheckBoxCounter)
-    console.log(Checking)
+    document.getElementById(checkID).disabled = false;
+    console.log(tenids)
   }else{
     --CheckBoxCounter
+
+    var currentIndex = tenids.indexOf(checkID)
+    tenids = tenids.filter(e => e !== checkID);
+    console.log(tenids)
+
     let number = document.getElementsByClassName('myCheckbox').length;
     let numberTag = document.getElementsByClassName('myCheckbox');
     for(var i = 0; i < number; ++i) {
@@ -47,27 +45,56 @@ const pleaseCheckTheCheckBox = (Checking) => {
         numberTag[i].style.display = 'block';
       }
     }
-    console.log(CheckBoxCounter)
-    console.log(Checking)
-    
+    document.getElementById(checkID).disabled = true;
+    // document.getElementsById(checkID).value = 
+    document.getElementById('openModalBtn').disabled = true;
+    // document.getElementById('selectForRank').disabled = true;
   }
 }
 
-const BootstrapCheckbox = forwardRef((props, ref) => (
-  <div className="form-check">
-    <Input className="myCheckbox" type="checkbox"  ref={ref} {...props} onChange={(e)=>{pleaseCheckTheCheckBox(e.target.checked)}} />
-  </div>
+// const BootstrapCheckbox = forwardRef((props, ref) => (
+//   <div className="form-check">
+//     <Input className="myCheckbox" type="checkbox"  ref={ref} {...props} onChange={(e)=>{
+      
+//       pleaseCheckTheCheckBox(e.target.checked)
+//       }} />
+//   </div>
   
-));
+// ));
 
 // ** Table Common Column ya hamara table
 export const columns = [
-  // {
-  //   name: "ID",
-  //   sortable: true,
-  //   minWidth: "250px",
-  //   selector: (row) => row.id,
-  // },
+
+  {
+    name: "Checkbox",
+    cell: (row) => (
+      <div className="form-check">
+        <Input className="myCheckbox" type="checkbox" value={row._id} name={row.postid.user.userName}  onChange={(e)=>{
+          pleaseCheckTheCheckBox(e.target.checked, e.target.value,e.target.name)
+          }} />
+      </div>
+    ),
+  },
+  {
+    name: "Rank",
+    cell: (row) => (
+      <div className="my-select">
+        <select style={{display:'block'}} disabled='true' id={row._id}>
+          <option style={{display: 'none'}} value={0}>Nil</option>
+          <option value={1}>1</option>
+          <option value={2}>2</option>
+          <option value={3}>3</option>
+          <option value={4}>4</option>
+          <option value={5}>5</option>
+          <option value={6}>6</option>
+          <option value={7}>7</option>
+          <option value={8}>8</option>
+          <option value={9}>9</option>
+          <option value={10}>10</option>
+        </select>
+      </div>
+    ),
+  }, 
   {
     name: "Name",
     // minWidth: "250px",
@@ -267,6 +294,9 @@ const DataTableWithButtons = () => {
                               onChange={handleFilter}
                             />
                           </Col>
+                          <abbr title="Please select Top 10">
+                            <button id="openModalBtn" disabled="true" style={{marginLeft:'10px'}} className="btn btn-success">Proceed</button>
+                          </abbr>
                         </div>
                           </div>
                         
@@ -281,7 +311,7 @@ const DataTableWithButtons = () => {
                           className="react-dataTable"
                           sortIcon={<ChevronDown size={10} />}
                           data={searchValue.length ? filteredData : topteenlist}
-                          selectableRowsComponent={BootstrapCheckbox}
+                          // selectableRowsComponent={BootstrapCheckbox }
                         />
                       </div>
                     </Card>
