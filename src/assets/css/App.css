@@ -151,7 +151,34 @@ tr:nth-child(even) {
 .react-dataTable .sc-hKwDye.sc-gKclnd.grZUZw.kIfSjT.rdt_TableCell{display:none;}
 .react-dataTable .sc-hKwDye.sc-bqiRlB.hAquuJ.ksOnjL.rdt_TableCol{display:none;}
 
-
+.sc-dkPtRN.hCBnvI.rdt_TableHeadRow {
+    background-color: #343d55;
+    border-color: #3b4253;
+    color: #b4b7bd;
+}
+.dark-layout .react-dataTable .rdt_TableBody .rdt_TableRow {
+    background-color: #283046;
+    border-color: #3b4253;
+    color: #b4b7bd;
+}
+.selectMain:disabled {
+    width: 100px;
+    background: #c74748;
+    height: 25px;
+    text-align: center;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 600;
+}
+.selectMain {
+    width: 100px;
+    background: #28c76f;
+    height: 25px;
+    text-align: center;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 600;
+}
 /* =====================MEDIA-SCEREEM====================== */
 
 @media (max-width: 767.98px)
