@@ -69,17 +69,17 @@ const pleaseCheckTheCheckBox = (Checking, checkID, name) => {
       }
     }
     
-    document.getElementById(checkID).disabled = true;
+    // document.getElementById(checkID).disabled = true;
     document.getElementById(checkID).getElementsByTagName('option')[0].selected = 'selected';
     // document.getElementById('openModalBtn').disabled = true;
 
-    let selectedDiv = document.getElementsByClassName('selectMain').length;
-    let selectedTag = document.getElementsByClassName('selectMain');
-    for(var i = 0; i < selectedDiv; ++i) {
-      if(selectedTag[i].disabled === true) {
-        selectedTag[i].style.display = 'block';
-      }
-    }
+    // let selectedDiv = document.getElementsByClassName('selectMain').length;
+    // let selectedTag = document.getElementsByClassName('selectMain');
+    // for(var i = 0; i < selectedDiv; ++i) {
+    //   if(selectedTag[i].disabled === true) {
+    //     selectedTag[i].style.display = 'block';
+    //   }
+    // }
     // document.getElementById('selectForRank').disabled = true;
   }
 }
@@ -140,26 +140,6 @@ export const columns = [
       </div>
     ),
   },
-  {
-    name: "Rank",
-    cell: (row) => (
-      <div className="my-select">
-        <select className="selectMain" style={{display:'none'}} disabled='true' id={row.postid.postid} onChange={()=>{RemoveOtherOptions(row.postid.postid)}}>
-          <option id={0} value={0} style={{display:'none'}}>Nill</option>
-          <option id={1} value={1}>1</option>
-          <option id={2} value={2}>2</option>
-          <option id={3} value={3}>3</option>
-          <option id={4} value={4}>4</option>
-          <option id={5} value={5}>5</option>
-          <option id={6} value={6}>6</option>
-          <option id={7} value={7}>7</option>
-          <option id={8} value={8}>8</option>
-          <option id={9} value={9}>9</option>
-          <option id={10} value={10}>10</option>
-        </select>
-      </div>
-    ),
-  }, 
   {
     name: "Name",
     // minWidth: "250px",
@@ -253,6 +233,26 @@ export const columns = [
     minWidth: "100px",
     selector: (row) => row.postid.likes,
   },
+  {
+    name: "Rank",
+    cell: (row) => (
+      <div className="my-select">
+        <select className="selectMain" style={{display:'none'}} disabled='true' id={row.postid.postid} onChange={()=>{RemoveOtherOptions(row.postid.postid)}}>
+          <option id={0} value={0} style={{display:'none'}}>Nill</option>
+          <option id={1} value={1}>1</option>
+          <option id={2} value={2}>2</option>
+          <option id={3} value={3}>3</option>
+          <option id={4} value={4}>4</option>
+          <option id={5} value={5}>5</option>
+          <option id={6} value={6}>6</option>
+          <option id={7} value={7}>7</option>
+          <option id={8} value={8}>8</option>
+          <option id={9} value={9}>9</option>
+          <option id={10} value={10}>10</option>
+        </select>
+      </div>
+    ),
+  }, 
 ];
 
 const DataTableWithButtons = () => {
