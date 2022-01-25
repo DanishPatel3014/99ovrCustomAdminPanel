@@ -17,6 +17,7 @@ import Users from '../views/Users'
 import UserActivities from '../views/UserActivities'
 import UserPosts from '../views/UserPosts'
 import ApprovedLeagues from '../views/ApprovedLeagues'
+import Complain from '../views/Complain'
 
 export default function AppRoute() {
     return (
@@ -40,6 +41,7 @@ export default function AppRoute() {
                     <Route exact path='/Users' element={<Users />}></Route>
                     <Route exact path='/userActivity/:userActivityID' element={<UserActivities />}></Route>
                     <Route exact path='/userPosts/:userPostsID' element={<UserPosts />}></Route>
+                    <Route exact path="/Complain" element={<Complain/>}></Route>
                 </Routes>        
            </Router>
         </div>
