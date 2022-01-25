@@ -11,6 +11,9 @@ import e from "cors";
 
 let CheckBoxCounter = 0;
 var tenids = [];
+let top10 = {
+  'top10':[]
+};
 
 const pleaseCheckTheCheckBox = (Checking, checkID, name) => {
   console.log(name)
@@ -18,7 +21,9 @@ const pleaseCheckTheCheckBox = (Checking, checkID, name) => {
    if(Checking === true){
     ++CheckBoxCounter;
     tenids.push(checkID);
+
     if(CheckBoxCounter === 10){
+
       let number = document.getElementsByClassName('myCheckbox').length;
       let numberTag = document.getElementsByClassName('myCheckbox');
       for(var i = 0; i < number; ++i) {
@@ -26,8 +31,17 @@ const pleaseCheckTheCheckBox = (Checking, checkID, name) => {
           numberTag[i].style.display = 'none';
         }
       }
-      document.getElementById('openModalBtn').disabled = false;
-      // document.getElementById('selectForRank').disabled = false;
+
+      document.getElementById(checkID).disabled = false;
+
+      let selectedDiv = document.getElementsByClassName('selectMain').length;
+      let selectedTag = document.getElementsByClassName('selectMain');
+      for(var i = 0; i < selectedDiv; ++i) {
+        if(selectedTag[i].disabled === true) {
+          selectedTag[i].style.display = 'none';
+        }
+      }
+      // document.getElementById('openModalBtn').disabled = false;
     }
     document.getElementById(checkID).disabled = false;
     console.log(tenids)
@@ -45,22 +59,64 @@ const pleaseCheckTheCheckBox = (Checking, checkID, name) => {
         numberTag[i].style.display = 'block';
       }
     }
+    
     document.getElementById(checkID).disabled = true;
-    // document.getElementsById(checkID).value = 
-    document.getElementById('openModalBtn').disabled = true;
+    document.getElementById(checkID).getElementsByTagName('option')[0].selected = 'selected';
+    // document.getElementById('openModalBtn').disabled = true;
+
+    let selectedDiv = document.getElementsByClassName('selectMain').length;
+    let selectedTag = document.getElementsByClassName('selectMain');
+    for(var i = 0; i < selectedDiv; ++i) {
+      if(selectedTag[i].disabled === true) {
+        selectedTag[i].style.display = 'block';
+      }
+    }
     // document.getElementById('selectForRank').disabled = true;
   }
 }
 
-// const BootstrapCheckbox = forwardRef((props, ref) => (
-//   <div className="form-check">
-//     <Input className="myCheckbox" type="checkbox"  ref={ref} {...props} onChange={(e)=>{
-      
-//       pleaseCheckTheCheckBox(e.target.checked)
-//       }} />
-//   </div>
-  
-// ));
+
+
+const RemoveOtherOptions = (selectedID) => {
+    console.log(selectedID)
+    let selectedDiv = document.getElementsByClassName('selectMain').length;
+    let selectedTag = document.getElementsByClassName('selectMain');
+    console.log(selectedTag[0].id)
+
+    var newValue;
+
+    for(var i = 0; i < selectedDiv; ++i) {
+      if(selectedTag[i].id === selectedID) {
+        newValue = selectedTag[i].value;
+      }
+    }
+
+    for(var i = 0; i < selectedDiv; ++i) {
+      var newValue;
+      if(selectedTag[i].id === selectedID) {
+        newValue = selectedTag[i].value;
+      }else{
+        selectedTag[i].getElementsByTagName('option')[newValue].style.display = 'none';
+      }
+    }
+
+    newValue = Number(newValue)
+
+    top10.top10.push({
+      "post":selectedID,
+      "rank":newValue
+    })
+
+    console.log(top10.top10.length)
+
+    if(top10.top10.length > 9){
+      document.getElementById('openModalBtn').disabled = false;
+      console.log(top10)
+    }
+
+
+}
+
 
 // ** Table Common Column ya hamara table
 export const columns = [
@@ -79,18 +135,18 @@ export const columns = [
     name: "Rank",
     cell: (row) => (
       <div className="my-select">
-        <select style={{display:'block'}} disabled='true' id={row._id}>
-          <option style={{display: 'none'}} value={0}>Nil</option>
-          <option value={1}>1</option>
-          <option value={2}>2</option>
-          <option value={3}>3</option>
-          <option value={4}>4</option>
-          <option value={5}>5</option>
-          <option value={6}>6</option>
-          <option value={7}>7</option>
-          <option value={8}>8</option>
-          <option value={9}>9</option>
-          <option value={10}>10</option>
+        <select className="selectMain" style={{display:'block'}} disabled='true' id={row._id} onChange={()=>{RemoveOtherOptions(row._id)}}>
+          <option id={0} value={0} style={{display:'none'}}>Nill</option>
+          <option id={1} value={1}>1</option>
+          <option id={2} value={2}>2</option>
+          <option id={3} value={3}>3</option>
+          <option id={4} value={4}>4</option>
+          <option id={5} value={5}>5</option>
+          <option id={6} value={6}>6</option>
+          <option id={7} value={7}>7</option>
+          <option id={8} value={8}>8</option>
+          <option id={9} value={9}>9</option>
+          <option id={10} value={10}>10</option>
         </select>
       </div>
     ),
@@ -201,6 +257,7 @@ const DataTableWithButtons = () => {
 
   const triggeringFunction = async () => {
     // console.log(localStorage.getItem("userToken"));
+
     let getData = await axios.get(
       `https://thewebtestlink.xyz/api/admin/getTop10Requests`,
       {
@@ -212,6 +269,24 @@ const DataTableWithButtons = () => {
     settopteenlist(getData.data);
 
     console.log(topteenlist)
+
+  };
+
+  const sendTopTenToDB = async () => {
+    document.getElementById('openModalBtn').disabled = true;
+    console.log(top10);
+
+    let getData = await axios.get(
+      `https://thewebtestlink.xyz/api/admin/approveTop10Request`,
+      top10,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+        },
+      }
+    );
+
+    console.log(getData)
 
   };
 
@@ -240,14 +315,16 @@ const DataTableWithButtons = () => {
           item.postid.user.userName.toLowerCase().startsWith(value.toLowerCase()) ||
           item.postid.game.gameName.toLowerCase().startsWith(value.toLowerCase()) ||
           item.postid.comments.toString().startsWith(value) ||
-          item.postid.likes.toString().startsWith(value)
+          item.postid.likes.toString().startsWith(value) ||
+          item.postid.description.toLowerCase().startsWith(value)
          
 
         const includes =
           item.postid.user.userName.toLowerCase().includes(value.toLowerCase()) ||
           item.postid.game.gameName.toLowerCase().includes(value.toLowerCase()) ||
           item.postid.comments.toString().includes(value) ||
-          item.postid.likes.toString().includes(value)
+          item.postid.likes.toString().includes(value) ||
+          item.postid.description.toLowerCase().includes(value)
       
 
         if (startsWith) {
@@ -275,7 +352,7 @@ const DataTableWithButtons = () => {
                   <Fragment>
                     <Card>
                       <CardHeader className=" align-md-items-center  border-bottom">
-                          <div className="col-md-8"><CardTitle tag="h4">DataTable with Buttons</CardTitle></div>
+                          <div className="col-md-8"><CardTitle tag="h4">Top 10 Requests</CardTitle></div>
                           <div className="col-md-4">
                           <div className="d-flex mt-md-0 mt-1">
                           <Col
@@ -294,11 +371,12 @@ const DataTableWithButtons = () => {
                               onChange={handleFilter}
                             />
                           </Col>
-                          <abbr title="Please select Top 10">
-                            <button id="openModalBtn" disabled="true" style={{marginLeft:'10px'}} className="btn btn-success">Proceed</button>
+                          <abbr title="Please select Top 10" onClick={()=>sendTopTenToDB()}>
+                            <button  id="openModalBtn" disabled="true" style={{marginLeft:'10px'}} className="btn btn-success">Proceed</button>
                           </abbr>
                         </div>
                           </div>
+                          <div className="col-md-12" style={{marginLeft:'10px'}}><CardTitle tag='p'>Please select 10 checkbox then give ranking and proceed</CardTitle></div>
                         
                         
                       </CardHeader>
