@@ -22,7 +22,7 @@ const pleaseCheckTheCheckBox = (Checking, checkID, name) => {
     ++CheckBoxCounter;
     tenids.push(checkID);
 
-    if(CheckBoxCounter === 5){
+    if(CheckBoxCounter === 10){
 
       let number = document.getElementsByClassName('myCheckbox').length;
       let numberTag = document.getElementsByClassName('myCheckbox');

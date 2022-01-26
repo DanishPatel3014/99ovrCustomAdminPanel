@@ -180,7 +180,7 @@ tr:nth-child(even) {
     font-weight: 600;
 }
 .dark-layout .form-check-input:not(:checked):not(:indeterminate):not(:focus) {
-    border-color: #aaaeb9;
+    border-color: #aaaeb9 !important;
 }
 /* =====================MEDIA-SCEREEM====================== */
 
