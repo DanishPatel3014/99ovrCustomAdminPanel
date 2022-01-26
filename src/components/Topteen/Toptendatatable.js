@@ -22,7 +22,7 @@ const pleaseCheckTheCheckBox = (Checking, checkID, name) => {
     ++CheckBoxCounter;
     tenids.push(checkID);
 
-    if(CheckBoxCounter === 10){
+    if(CheckBoxCounter === 5){
 
       let number = document.getElementsByClassName('myCheckbox').length;
       let numberTag = document.getElementsByClassName('myCheckbox');
@@ -73,13 +73,13 @@ const pleaseCheckTheCheckBox = (Checking, checkID, name) => {
     document.getElementById(checkID).getElementsByTagName('option')[0].selected = 'selected';
     // document.getElementById('openModalBtn').disabled = true;
 
-    // let selectedDiv = document.getElementsByClassName('selectMain').length;
-    // let selectedTag = document.getElementsByClassName('selectMain');
-    // for(var i = 0; i < selectedDiv; ++i) {
-    //   if(selectedTag[i].disabled === true) {
-    //     selectedTag[i].style.display = 'block';
-    //   }
-    // }
+    let selectedDiv = document.getElementsByClassName('selectMain').length;
+    let selectedTag = document.getElementsByClassName('selectMain');
+    for(var i = 0; i < selectedDiv; ++i) {
+      
+        selectedTag[i].style.display = 'none';
+      
+    }
     // document.getElementById('selectForRank').disabled = true;
   }
 }
