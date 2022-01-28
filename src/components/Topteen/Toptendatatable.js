@@ -385,7 +385,7 @@ const DataTableWithButtons = () => {
                       <div className="react-dataTable">
                         <DataTable
                           noHeader
-                          selectableRows
+                          // selectableRows
                           columns={columns}
                           className="react-dataTable"
                           sortIcon={<ChevronDown size={10} />}

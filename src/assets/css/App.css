@@ -148,8 +148,8 @@ tr:nth-child(even) {
 
 #sintel img{width: 55px;}
 .rdt_TableCol div input{position:relative;z-index:-1;}
-.react-dataTable .sc-hKwDye.sc-gKclnd.grZUZw.kIfSjT.rdt_TableCell{display:none;}
-.react-dataTable .sc-hKwDye.sc-bqiRlB.hAquuJ.ksOnjL.rdt_TableCol{display:none;}
+/* .react-dataTable .sc-hKwDye.sc-gKclnd.grZUZw.kIfSjT.rdt_TableCell {display:none;}
+.react-dataTable .sc-hKwDye.sc-bqiRlB.hAquuJ.ksOnjL.rdt_TableCol{display:none;} */
 
 .sc-dkPtRN.hCBnvI.rdt_TableHeadRow {
     background-color: #343d55;
