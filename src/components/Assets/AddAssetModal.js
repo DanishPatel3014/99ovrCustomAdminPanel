@@ -177,7 +177,7 @@ export default function AddAnimationModal() {
                                         }
                                     </div>
                                     <div className="col-12">
-                                    <label className="form-label" htmlFor="customFile">Image</label>
+                                    <label className="form-label" htmlFor="customFile">Upload GLB File</label>
                                      <input 
                                         type="file"
                                         name="image"

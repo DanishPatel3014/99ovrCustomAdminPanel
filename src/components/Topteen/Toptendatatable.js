@@ -104,7 +104,7 @@ const RemoveOtherOptions = (selectedID) => {
       if(selectedTag[i].id === selectedID) {
         newValue = selectedTag[i].value;
       }else{
-        selectedTag[i].getElementsByTagName('option')[newValue].style.display = 'none';
+        // selectedTag[i].getElementsByTagName('option')[newValue].style.display = 'none';
       }
     }
 
@@ -176,6 +176,7 @@ export const columns = [
     // minWidth: "250px",
     selector: (row) => row.postid.description,
   },
+ 
   {
     name: "Video",
     sortable: false,
@@ -195,25 +196,14 @@ export const columns = [
       </div>
     )
   },
-
   {
-    name: "Game Picture",
-    sortable: false,
-    // minWidth: "150px",
-    selector: (row) => row.game.imagePath,
-    cell: (row) => (
-      <div className="aniimg">
-        <img
-          src={
-            row.postid.game.imagePath
-              ? row.postid.game.imagePath
-              : animationPic
-          }
-          alt=""
-        />
-      </div>
-    )
+    name: "99",
+    sortable: true,
+    // minWidth: "250px",
+    selector: (row) => row.postid._99s,
   },
+
+  
   {
     name: "Game Name",
     sortable: true,
@@ -232,12 +222,13 @@ export const columns = [
     minWidth: "100px",
     selector: (row) => row.postid.likes,
   },
+  // onChange={()=>{RemoveOtherOptions(row.postid.postid)}}
   {
     name: "Rank",
     cell: (row) => (
       <div className="my-select">
         <select className="selectMain" style={{display:'none'}} disabled='true' id={row.postid.postid} onChange={()=>{RemoveOtherOptions(row.postid.postid)}}>
-          <option id={0} value={0} style={{display:'none'}}>Nill</option>
+          <option id={0} value={0} style={{display:'none'}} >Nill</option>
           <option id={1} value={1}>1</option>
           <option id={2} value={2}>2</option>
           <option id={3} value={3}>3</option>
@@ -281,18 +272,18 @@ const DataTableWithButtons = () => {
   };
 
   const sendTopTenToDB = async () => {
-    document.getElementById('openModalBtn').disabled = true;
+    // document.getElementById('openModalBtn').disabled = true;
     
 
-    let getData = await axios.post(
-      `https://thewebtestlink.xyz/api/admin/approveTop10Request`,
-      top10,
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("userToken")}`,
-        },
-      }
-    );
+    // let getData = await axios.post(
+    //   `https://thewebtestlink.xyz/api/admin/approveTop10Request`,
+    //   top10,
+    //   {
+    //     headers: {
+    //       Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+    //     },
+    //   }
+    // );
 
     
 

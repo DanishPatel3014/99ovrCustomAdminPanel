@@ -122,8 +122,9 @@ import playicn from "../../assets/images/logo/play.png"
                                 <th>Profile Picture</th>
                                 <th>Description</th>
                                 <th>Video</th>
-                                <th>game Picture</th>
                                 <th>game Name</th>
+                                <th>Rank</th>
+                                
                               
                                
                                
@@ -148,19 +149,9 @@ import playicn from "../../assets/images/logo/play.png"
                                         id={"sintel"}
                                       />
                                     </td>
-                                    <td>
-                                      <div className="aniimg">
-                                        <img
-                                          src={
-                                            v.postid.game.imagePath
-                                              ? v.postid.game.imagePath
-                                              : animationPic
-                                          }
-                                          alt=""
-                                        />
-                                      </div>
-                                    </td>
+                                    
                                     <td>{v.postid.game.gameName}</td>
+                                    <td>{v.rank}</td>
                                     
                                     
                                 </tr>

@@ -89,7 +89,7 @@ export default function AddAnimationModal() {
                                         </div>
                                     </div>
                                     <div className="col-12">
-                                    <label className="form-label" htmlFor="customFile">Default file input example</label>
+                                    <label className="form-label" htmlFor="customFile">Upload File</label>
                                      <input type="file" onChange={(e)=>setanimationimgstate(e.target.files[0])} className="form-control" id="customFile" accept="image/*"/>
                                     </div>
 
