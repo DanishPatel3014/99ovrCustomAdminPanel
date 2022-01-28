@@ -16,7 +16,7 @@ let top10 = {
 };
 
 const pleaseCheckTheCheckBox = (Checking, checkID, name) => {
-  console.log(name)
+
 
    if(Checking === true){
     ++CheckBoxCounter;
@@ -53,13 +53,13 @@ const pleaseCheckTheCheckBox = (Checking, checkID, name) => {
       // document.getElementById('openModalBtn').disabled = false;
     }
     document.getElementById(checkID).disabled = false;
-    console.log(tenids)
+    
   }else{
     --CheckBoxCounter
 
     var currentIndex = tenids.indexOf(checkID)
     tenids = tenids.filter(e => e !== checkID);
-    console.log(tenids)
+    
 
     let number = document.getElementsByClassName('myCheckbox').length;
     let numberTag = document.getElementsByClassName('myCheckbox');
@@ -87,11 +87,10 @@ const pleaseCheckTheCheckBox = (Checking, checkID, name) => {
 
 
 const RemoveOtherOptions = (selectedID) => {
-    console.log(selectedID)
+   
     let selectedDiv = document.getElementsByClassName('selectMain').length;
     let selectedTag = document.getElementsByClassName('selectMain');
-    console.log(selectedTag[0].id)
-
+    
     var newValue;
 
     for(var i = 0; i < selectedDiv; ++i) {
@@ -116,11 +115,11 @@ const RemoveOtherOptions = (selectedID) => {
       "rank":newValue
     })
 
-    console.log(top10.top10.length)
+    
 
     if(top10.top10.length > 9){
       document.getElementById('openModalBtn').disabled = false;
-      console.log(top10)
+     
     }
 
 
@@ -265,7 +264,7 @@ const DataTableWithButtons = () => {
   }, []);
 
   const triggeringFunction = async () => {
-    // console.log(localStorage.getItem("userToken"));
+   
 
     let getData = await axios.get(
       `https://thewebtestlink.xyz/api/admin/getTop10Requests`,
@@ -277,13 +276,13 @@ const DataTableWithButtons = () => {
     );
     settopteenlist(getData.data);
 
-    console.log(topteenlist)
+   
 
   };
 
   const sendTopTenToDB = async () => {
     document.getElementById('openModalBtn').disabled = true;
-    console.log(top10);
+    
 
     let getData = await axios.post(
       `https://thewebtestlink.xyz/api/admin/approveTop10Request`,
@@ -295,14 +294,14 @@ const DataTableWithButtons = () => {
       }
     );
 
-    console.log(getData)
+    
 
     triggeringFunction();
 
   };
 
   useEffect(() => {
-    console.log(topteenlist)
+  
   }, [topteenlist]);
   
 

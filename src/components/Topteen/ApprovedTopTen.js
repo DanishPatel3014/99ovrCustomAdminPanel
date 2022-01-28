@@ -5,32 +5,54 @@ import axios from 'axios'
 import animationPic from '../../assets/images/avtar/animation-pic.jpg'
 import FancyVideo from "react-videojs-fancybox";
 import playicn from "../../assets/images/logo/play.png"
-
   
   export default function ApprovedTopTen() {
    
    
 
     const [topteenlist, settopteenlist] = useState([])
+    const [approveddate, setapproveddate] = useState([]);
+    const [ShowData, setShowData] = useState(false);
 
 
     useEffect(() => {
         triggeringFunction();
       }, []);
       
+    useEffect(() => {
+      if(approveddate.length == undefined){
+        setShowData(true)
+      }
+    }, [approveddate]);
     
       
 
     const triggeringFunction = async () => {
-        // console.log(localStorage.getItem("userToken"));
+        
         let getData = await axios.get(
-          `https://thewebtestlink.xyz/api/admin/approveTop10Request`,
+          `https://thewebtestlink.xyz/api/admin/getTop10RequestsApproved`,
           {
             headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` },
           }
         );
-        console.log(getData.data)
-        // settopteenlist(getData.data);
+       
+        settopteenlist(getData.data);
+      };
+
+      const topapproveddate = async (topapprovedid) => {
+        let dateData = await axios.get(
+          `https://thewebtestlink.xyz/api/admin/getApprovedTop10ByDate/${topapprovedid}`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+            },
+          }
+        );
+        setapproveddate(dateData.data);
+        console.log(dateData.data);
+        
+      
+        
       };
     
     
@@ -58,92 +80,100 @@ import playicn from "../../assets/images/logo/play.png"
                         <div className="row align-items-center">
                           <div className="col-md-9">
                             <div className="card-header">
-                              <h4 className="card-title">Stream City Request</h4>
+                              <h4 className="card-title">Approved Top 10 By Date</h4>
                             </div>
                           </div>
                           <div className="col-md-3">
-                            {/* <div className="eid-btn">
-                              <button
-                                type="button"
-                                className="btn btn-outline-primary"
-                              >
-                                <i class="fal fa-check"></i>
-                                <span> Approve Top 10 Requests</span>
-                              </button>
-                            </div> */}
+                         <div className="selectdate">
+                         <div class="mb-1">
+                                        <label class="form-label" for="selectLarge">Select Date</label>
+                                        <select class="form-select form-select-lg" id="selectLarge" onChange={(d) => {
+                                            d.preventDefault();
+                                            topapproveddate(d.target.value)
+                                          }}>
+                                          {
+                                            topteenlist.length > 0 ?
+                                              topteenlist.map((v,i)=>{
+                                                return(
+                                                <option value={v.createdDate}>{v.createdDate}</option>
+                                                )
+                                              })
+                                              :
+                                              <option>loading</option>
+                                          }
+                                       
+                                            
+                                           
+                                        </select>
+                                    </div>
+                         </div>
                           </div>
                         </div>
                       </div>
                       <div className="streamcls table-responsive">
-                        {topteenlist.length > 0 ? (
-                          <Table className="datatables-ajax" hover responsive>
+
+                        {
+                          ShowData ? 
+
+                          <Table hover responsive>
                             <thead>
                               <tr>
-                                <th>id</th>
-                                <th>user name</th>
-                                <th>game name</th>
+                                <th>Name</th>
+                                <th>Profile Picture</th>
+                                <th>Description</th>
+                                <th>Video</th>
+                                <th>game Picture</th>
+                                <th>game Name</th>
+                              
                                
-                                <th>Stream Picture</th>
-                                
-                                <th>platform</th>
-                                <th>time Limit</th>
-                                <th>time Slot</th>
-                                <th>time Zone</th>
-                                <th>stream Date</th>
+                               
                               </tr>
                             </thead>
                             <tbody>
-                              {topteenlist.map((v, i) => {
-                               
-                                return (
-                                  <tr key={i}>
-                                    <td>
-                                      <span className="align-middle fw-bold">
-                                        {++i}
-                                      </span>
+                            {approveddate.post.map((v, i) => {
+                              return (
+                                <tr key={i}>
+                                  {/* <td>{approveddate.createdDate?approveddate.createdDate:'Select Date'}</td>  */}
+                                  
+                                  <td>{v.postid.user.userName}</td>
+                                  <td><div className="aniimg"><img src={v.postid.user.profilePicture?v.postid.user.profilePicture:animationPic} alt=""/></div></td>
+                                  <td>{v.postid.description}</td>
+                                  <td className="playin">
+                                      <FancyVideo
+                                        source={
+                                          "https://thewebtestlink.xyz/" +
+                                          v.postid.path
+                                        }
+                                        poster={playicn}
+                                        id={"sintel"}
+                                      />
                                     </td>
-                                    <td>{v.userid.userName}</td>
-                                    <td>{v.game.gameName}</td>
-                                   
                                     <td>
                                       <div className="aniimg">
-                                        <img loading="lazy"
+                                        <img
                                           src={
-                                            v.thumbnail
-                                              ? v.thumbnail
+                                            v.postid.game.imagePath
+                                              ? v.postid.game.imagePath
                                               : animationPic
                                           }
                                           alt=""
                                         />
                                       </div>
                                     </td>
-                                   
+                                    <td>{v.postid.game.gameName}</td>
                                     
-                                    <td>{v.platform}</td>
-                                    <td>{v.timeLimit}</td>
-                                    <td>{v.timeSlot}</td>
-                                    <td>{v.timeZone}</td>
-                                    <td>{v.streamDate}</td>
-                                   
-                                   
                                     
-                                   
-                                  </tr>
-                                );
-                              })}
+                                </tr>
+                              );
+                            })}
                             </tbody>
                           </Table>
-                        ) : topteenlist.length ? (
-                          <div className="spiner">
-                            <p>No Approved Stream</p>
-                          </div>
-                        ) : (
-                          <div className="spiner">
-                            <Spinner type="grow" color="primary" />
-                            <Spinner type="grow" color="secondary" />
-                            <Spinner type="grow" color="success" />
-                          </div>
-                        )}
+                          :
+                          <div></div>
+                        }
+
+
+                
                       </div>
                     </div>
                   </div>

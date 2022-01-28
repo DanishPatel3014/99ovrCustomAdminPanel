@@ -1,5 +1,5 @@
 import React, { useEffect , useState} from "react";
-import{Table,Badge,UncontrolledDropdown,DropdownMenu,DropdownItem,DropdownToggle,} from "reactstrap";
+import{Table, Button,} from "reactstrap";
 import { MoreVertical, Edit, Trash, Delete } from "react-feather";
 import axios from 'axios'
 
@@ -22,10 +22,18 @@ import animationPic from "../../assets/images/avtar/animation-pic.jpg";
       setanimationlist(getData.data)
 
     }
-    const deletedata = async (animationid)=>{
-await axios.delete(`https://thewebtestlink.xyz/api/admin/deleteAnimation/${animationid}`, { headers: { Authorization:  `Bearer ${localStorage.getItem('userToken')}`} })
-triggeringFunction();
-    }
+    const deletedata = async (animationid) => {
+      await axios.delete(
+        `https://thewebtestlink.xyz/api/admin/complain/${animationid}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+          },
+        }
+      );
+      
+      triggeringFunction();
+    };
 
   
     return (
@@ -68,7 +76,7 @@ triggeringFunction();
                               <th>User Name</th>
                               <th>User Email</th>
                               <th>Complain Message</th>
-                              <th>Action</th>
+                              <th>delete</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -87,39 +95,13 @@ triggeringFunction();
                               <td>{v.name}</td>
                               <td>{v.email}</td>
                               <td>{v.message}</td>
+                              <td><Button className="delet-btn" onClick={(d) => {
+                                            d.preventDefault();
+                                            deletedata(v._id);
+                                          }}><i class="fal fa-trash-alt"></i></Button></td>
                               
                             
-                              <td>
-                                <UncontrolledDropdown>
-                                  <DropdownToggle
-                                    className="icon-btn hide-arrow"
-                                    color="transparent"
-                                    size="sm"
-                                    caret
-                                  >
-                                    <MoreVertical size={15} />
-                                  </DropdownToggle>
-                                  <DropdownMenu>
-                                    <DropdownItem
-                                      href="/"
-                                      onClick={(e) => e.preventDefault()}
-                                    >
-                                      <Edit className="me-50" size={15} />{" "}
-                                      <span className="align-middle">Edit</span>
-                                    </DropdownItem>
-                                    <DropdownItem
-                                      href="#"
-                                      onClick={(d)=>{
-                                        d.preventDefault()
-                                     deletedata(v._id)
-                                      }}
-                                    >
-                                      <Trash className="me-50" size={15} />{" "}
-                                      <span className="align-middle" >Delete</span>
-                                    </DropdownItem>
-                                  </DropdownMenu>
-                                </UncontrolledDropdown>
-                              </td>
+                        
                             </tr>
                               )
                             })
