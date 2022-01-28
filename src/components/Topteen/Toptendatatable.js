@@ -109,13 +109,27 @@ const RemoveOtherOptions = (selectedID) => {
     }
 
     newValue = Number(newValue)
+    
+
+    top10.top10.map((v,i)=>{
+      console.log(v.post)
+      if(v.post == selectedID){
+        var index = top10.top10.findIndex(function(v){
+          return v.post === selectedID;
+        })
+        if (index !== -1){
+          top10.top10.splice(index, 1)
+          console.log('done')
+        } 
+      }
+    })
 
     top10.top10.push({
       "post":selectedID,
       "rank":newValue
     })
 
-    
+    console.log(top10.top10)
 
     if(top10.top10.length > 9){
       document.getElementById('openModalBtn').disabled = false;
@@ -249,6 +263,7 @@ const DataTableWithButtons = () => {
 
   const [CheckBoxCounter, setCheckBoxCounter] = useState(0);
   const [topteenlist, settopteenlist] = useState([]);
+  const [ShouldProceedWithAPI, SetshouldProceedWithAPI] = useState(false);
 
   useEffect(() => {
     triggeringFunction();
@@ -271,24 +286,41 @@ const DataTableWithButtons = () => {
 
   };
 
-  const sendTopTenToDB = async () => {
-    // document.getElementById('openModalBtn').disabled = true;
-    
 
-    // let getData = await axios.post(
-    //   `https://thewebtestlink.xyz/api/admin/approveTop10Request`,
-    //   top10,
-    //   {
-    //     headers: {
-    //       Authorization: `Bearer ${localStorage.getItem("userToken")}`,
-    //     },
-    //   }
-    // );
-
+  const CallTopTenAPI = async () => {
+    document.getElementById('openModalBtn').disabled = true;
     
+    let getData = await axios.post(
+      `https://thewebtestlink.xyz/api/admin/approveTop10Request`,
+      top10,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+        },
+      }
+    );
 
     triggeringFunction();
+  }
 
+  const sendTopTenToDB = async () => {
+    
+    let checkingDuplicate = [];
+    let numberArray = [];
+
+    top10.top10.map((v,i)=>{ 
+      
+      if(numberArray.includes(v.rank)){
+        alert("Two similar ranks selected!");
+      }else{
+        checkingDuplicate.push(v.rank);
+        if(checkingDuplicate.length > 9){
+          CallTopTenAPI();
+        }
+      }
+      numberArray.push(v.rank);
+    })
+ 
   };
 
   useEffect(() => {
